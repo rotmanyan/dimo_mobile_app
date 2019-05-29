@@ -21,7 +21,7 @@ export const StyledText = styled.Text`
 `
 
 export const StyledButtonView = styled.View`
-  background-color: #008855;
+  background-color: #4EDBD0;
   border-radius: 50px;
   width: 156px;
   margin: auto;
