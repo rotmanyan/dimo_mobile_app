@@ -1,9 +1,7 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import SignUser from './app/views/signUser'
+import {StyledView} from "./stylesApp";
 
-export const App = () => <View style={styles.container}>
-  <Text>Hello it's me</Text>
-</View>
-const styles = StyleSheet.create({
-
-});
+export const App = () => <StyledView>
+  <SignUser/>
+</StyledView>
