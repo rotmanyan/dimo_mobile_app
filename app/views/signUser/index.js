@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import PhoneInput from 'react-native-phone-input'
-import {StyledView, StyledText, StyledButton, StyledButtonView, StyledInputView} from './styles'
+import {TextHead, TextMiddle, StyledButton, ButtonView, PhoneView, MainView, View, Image} from './styles'
 
 class SignUser extends Component {
   state = {
@@ -10,26 +10,33 @@ class SignUser extends Component {
   render() {
     const {value} = this.state
     return (
-      <StyledView>
-        <StyledText>
+      <MainView>
+        <View>
+          <Image source={require('/react-native/img/favicon.png')}/>
+        </View>
+        <TextHead>
           Please enter your number
-          {value}
-        </StyledText>
-        <StyledInputView>
+        </TextHead>
+
+        <PhoneView>
           <PhoneInput
             flagStyle={{borderRadius: 12.5, width: 25, height: 25}}
             value={value}
+            confirmText='Confirm'
+            cancelText='Cancel'
             onChangePhoneNumber={value => this.setState({value})}
           />
-        </StyledInputView>
-        <StyledText>
+        </PhoneView>
+
+        <TextMiddle>
           By clicking 'Next' you confirm that you have read and understand the Dimo Privacy Policy
           and Terms and Conditions, and agree to its
-        </StyledText>
-        <StyledButtonView>
-          <StyledButton title='NEXT' color='#fff' style={{backgroundColor: 'red'}}/>
-        </StyledButtonView>
-      </StyledView>
+        </TextMiddle>
+        <ButtonView>
+          <StyledButton title='NEXT' color='#fff'/>
+        </ButtonView>
+
+      </MainView>
     )
   }
 }
