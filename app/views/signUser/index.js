@@ -10,9 +10,10 @@ class SignUser extends Component {
   render() {
     const {value} = this.state
     return (
-      <MainView>
+      <MainView source={require('../../assets/backgrounds/bottom.png')}>
         <View>
-          <Image source={require('/react-native/img/favicon.png')}/>
+          <Image
+            source={require('../../assets/backgrounds/bottom.png')}/>
         </View>
         <TextHead>
           Please enter your number
@@ -35,7 +36,6 @@ class SignUser extends Component {
         <ButtonView>
           <StyledButton title='NEXT' color='#fff'/>
         </ButtonView>
-
       </MainView>
     )
   }

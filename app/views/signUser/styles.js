@@ -1,5 +1,19 @@
 import styled from 'styled-components/native'
 
+export const MainView = styled.View`
+  background-color: #3878FF;
+  flex: 1;
+  position: relative;
+`
+
+export const Image = styled.Image`
+position: absolute;
+top: 500%;
+left: 0;
+height: 240px;
+width: 100%;
+`
+
 export const PhoneView = styled.View`
   background-color: #fff;
   padding: 10px;
@@ -35,17 +49,12 @@ export const StyledButton = styled.Button`
   font-size: 150px;
 `
 
-export const MainView = styled.View`
-  flex: 5;
-`
-
 export const BackView = styled.ImageBackground`
-  background-image: url('./');
+  width: 100%;
+  height: 100%
 `
 
 export const View = styled.View`
 `
 
-export const Image = styled.Image`
-`
 
