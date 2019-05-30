@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
-import {connect} from 'react-redux'
 import AsyncStorage from '@react-native-community/async-storage'
+import en from '../../i18n/locales/en'
+import ru from '../../i18n/locales/ru'
+import pl from '../../i18n/locales/pl'
 
 import {getLanguages} from 'react-native-i18n'
 import PhoneInput from 'react-native-phone-input'
@@ -21,24 +23,54 @@ class SignUser extends Component {
   state = {
     value: '+255',
     storage: '',
-    str: ''
+    language: 'ru',
   }
 
   componentDidMount() {
-    AsyncStorage.setItem('@storage_Key', this.state.value)
+    AsyncStorage.setItem('@storage_Key', 'yeyyeuquqwuewquuqwe')
+    getLanguages().then(languages => {
+      let language = languages[0].split('-')[0]
+
+      this.setState({language})
+    })
   }
 
-  componentDidUpdate(prevProps: Readonly<P>, prevState: Readonly<S>, snapshot: SS): void {
-    prevState.storage !== this.state.storage
+  componentDidUpdate(prevProps: Readonly<P>, prevState: Readonly<S>): void {
+    this.state.storage.length === 0
       ? AsyncStorage.getItem('@storage_Key').then(storage => this.setState({storage}))
       : null
   }
 
+  writeButton = () => {
+    console.log(this.state.language, 'state lang');
+    switch (this.state.language) {
+      case 'ru':
+        return <StyledButton
+          onPress={() => this.setState({language: 'en', lnth: this.state.lnth + 1})}
+          title={ru.next}
+          color='#fff'/>
+      case 'pl':
+        return <StyledButton
+          onPress={() => this.setState({language: 'en', lnth: this.state.lnth + 1})}
+          title={pl.next}
+          color='#fff'/>
+      case 'en':
+        return <StyledButton
+          onPress={() => this.setState({language: 'ru', lnth: this.state.lnth + 1})}
+          title={en.next}
+          color='#fff'/>
+      default:
+        return <StyledButton
+          onPress={() => this.setState({language: 'ru', lnth: this.state.lnth + 1})}
+          title={en.next}
+          color='#fff'/>
+    }
+  }
+
   render() {
-    const {value, storage, str} = this.state
-    getLanguages().then(languages => {
-      console.log(languages, 'languages');
-    });
+    const {value} = this.state
+    console.log(this.state, 'this.state');
+
     return (
       <MainView>
         <View style={styles}>
@@ -46,7 +78,6 @@ class SignUser extends Component {
             source={require('../../assets/backgrounds/bottom.png')}/>
         </View>
         <TextHead>
-          {str}
           Please enter your number
         </TextHead>
 
@@ -65,7 +96,7 @@ class SignUser extends Component {
           and Terms and Conditions, and agree to its
         </TextMiddle>
         <ButtonView>
-          <StyledButton onPress={() => this.setState({str: value})} title='NEXT' color='#fff'/>
+          {this.writeButton()}
         </ButtonView>
       </MainView>
     )

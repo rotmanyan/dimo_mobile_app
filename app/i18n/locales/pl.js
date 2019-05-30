@@ -1,3 +1,3 @@
 export default {
-  next: 'Next'
+  next: 'Dalej'
 }

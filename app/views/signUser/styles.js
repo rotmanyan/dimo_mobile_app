@@ -72,7 +72,7 @@ export const View = styled.View`
 export const styles = StyleSheet.create({
   textWrapper: {
     position: 'absolute',
-    bottom: hp('1%'),
+    bottom: hp('-50%'),
     left: wp('1%'),
     height: hp('70%'),
     width: wp('80%')
