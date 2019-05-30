@@ -8,8 +8,7 @@ import ru from '../../i18n/locales/ru'
 import pl from '../../i18n/locales/pl'
 
 import {
-  TextHead,
-  TextMiddle,
+  TextHeadMiddle,
   StyledButton,
   ButtonView,
   PhoneView,
@@ -45,22 +44,22 @@ class SignUser extends Component {
     switch (this.state.language) {
       case 'ru':
         return <StyledButton
-          onPress={() => this.setState({language: 'en', lnth: this.state.lnth + 1})}
+          onPress={() => this.setState({language: 'en'})}
           title={ru.next}
           color='#fff'/>
       case 'pl':
         return <StyledButton
-          onPress={() => this.setState({language: 'en', lnth: this.state.lnth + 1})}
+          onPress={() => this.setState({language: 'en'})}
           title={pl.next}
           color='#fff'/>
       case 'en':
         return <StyledButton
-          onPress={() => this.setState({language: 'ru', lnth: this.state.lnth + 1})}
+          onPress={() => this.setState({language: 'ru'})}
           title={en.next}
           color='#fff'/>
       default:
         return <StyledButton
-          onPress={() => this.setState({language: 'ru', lnth: this.state.lnth + 1})}
+          onPress={() => this.setState({language: 'ru'})}
           title={en.next}
           color='#fff'/>
     }
@@ -78,24 +77,31 @@ class SignUser extends Component {
         <ViewBottom>
           <ImageBg source={require('../../assets/backgrounds/bottom.png')}/>
         </ViewBottom>
-        <TextHead>
+        <TextHeadMiddle>
           Please enter your number
-        </TextHead>
+        </TextHeadMiddle>
 
         <PhoneView>
           <PhoneInput
+            initialCountry='tz'
+            ref={(ref) => { this.phone = ref; }}
+            autoFormat={true}
             flagStyle={{borderRadius: 12.5, width: 25, height: 25}}
-            value={value}
+            isValidNumber={e=> console.log(e,'eve t')}
+            blur={()=> console.log('1zzzzzz')}
+            focus={
+              () => console.log('2qqqqq')
+            }
             confirmText='Confirm'
             cancelText='Cancel'
             onChangePhoneNumber={value => this.setState({value})}
           />
         </PhoneView>
 
-        <TextMiddle>
+        <TextHeadMiddle>
           By clicking 'Next' you confirm that you have read and understand the Dimo Privacy Policy
           and Terms and Conditions, and agree to its
-        </TextMiddle>
+        </TextHeadMiddle>
         <ButtonView>
           {this.writeButton()}
         </ButtonView>

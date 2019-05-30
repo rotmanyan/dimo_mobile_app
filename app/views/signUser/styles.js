@@ -4,50 +4,12 @@ import styled from 'styled-components/native'
 
 export const MainView = styled.View`
   background-color: #3878FF;
-  flex: 1;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
 `
 
-export const ImageBg = styled.Image`
-  min-height: 20%;
-  max-height: 280px;
-  width: 100%;
-`
-
-export const PhoneView = styled.View`
-  background-color: #fff;
-  padding: 10px;
-  width: 296px;
-  margin: auto;
-  border-radius: 50px;
-`
-
-export const TextHead = styled.Text`
-  color: #fff;
-  text-align: center;
-  max-width: 296px;
-  margin: auto;
-`
-
-export const TextMiddle = styled.Text`
-  color: #fff;
-  text-align: center;
-  max-width: 296px;
-  margin: auto;
-`
-
-export const ButtonView = styled.View`
-  background-color: #4EDBD0;
-  border-radius: 50px;
-  width: 156px;
-  height: 40px;
-  margin: auto;
-`
-
-export const StyledButton = styled.Button`
-  color: #fff;
-  font-size: 150px;
-`
-
+//image
 export const ViewHead = styled.View`
   position: absolute;
   top: 0;
@@ -66,4 +28,40 @@ export const ViewBottom = styled.View`
   bottom: 0;
   justify-content: flex-end;
   align-items: flex-end;
+`
+
+export const ImageBg = styled.Image`
+  min-height: 20%;
+  max-height: 280px;
+  width: 100%;
+`
+
+//button
+export const ButtonView = styled.View`
+  background-color: #4EDBD0;
+  border-radius: 50px;
+  width: 156px;
+  height: 40px;
+  margin: auto;
+`
+
+export const StyledButton = styled.Button`
+  color: #fff;
+  font-size: 150px;
+`
+
+//all
+export const PhoneView = styled.View`
+  background-color: #fff;
+  padding: 10px;
+  width: 296px;
+  margin: auto;
+  border-radius: 50px;
+`
+
+export const TextHeadMiddle = styled.Text`
+  color: #fff;
+  text-align: center;
+  max-width: 296px;
+  margin: auto;
 `
