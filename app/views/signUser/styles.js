@@ -1,17 +1,25 @@
+import {StyleSheet} from 'react-native'
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import styled from 'styled-components/native'
 
 export const MainView = styled.View`
   background-color: #3878FF;
   flex: 1;
-  position: relative;
 `
 
-export const Image = styled.Image`
-position: absolute;
-top: 500%;
-left: 0;
-height: 240px;
-width: 100%;
+export const ImageTop = styled.Image`
+  position: absolute;
+  bottom: -630px;
+  left: 0;
+  height: 240px;
+  width: 100%;
+`
+
+export const ImageBottom = styled.Image`
+  position: absolute;
+  bottom: -630px;
+  height: 240px;
+  width: 100%;
 `
 
 export const PhoneView = styled.View`
@@ -55,6 +63,18 @@ export const BackView = styled.ImageBackground`
 `
 
 export const View = styled.View`
+  position: absolute;
+  bottom: -150px;
+  left: 0;
 `
 
 
+export const styles = StyleSheet.create({
+  textWrapper: {
+    position: 'absolute',
+    bottom: hp('1%'),
+    left: wp('1%'),
+    height: hp('70%'),
+    width: wp('80%')
+  }
+})

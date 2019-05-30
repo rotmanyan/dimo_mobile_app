@@ -1,21 +1,52 @@
 import React, {Component} from 'react'
+import {connect} from 'react-redux'
+import AsyncStorage from '@react-native-community/async-storage'
+
+import {getLanguages} from 'react-native-i18n'
 import PhoneInput from 'react-native-phone-input'
-import {TextHead, TextMiddle, StyledButton, ButtonView, PhoneView, MainView, View, Image} from './styles'
+import {
+  TextHead,
+  TextMiddle,
+  StyledButton,
+  ButtonView,
+  PhoneView,
+  MainView,
+  View,
+  ImageTop,
+  ImageBottom,
+  styles
+} from './styles'
 
 class SignUser extends Component {
   state = {
-    value: '+255'
+    value: '+255',
+    storage: '',
+    str: ''
+  }
+
+  componentDidMount() {
+    AsyncStorage.setItem('@storage_Key', this.state.value)
+  }
+
+  componentDidUpdate(prevProps: Readonly<P>, prevState: Readonly<S>, snapshot: SS): void {
+    prevState.storage !== this.state.storage
+      ? AsyncStorage.getItem('@storage_Key').then(storage => this.setState({storage}))
+      : null
   }
 
   render() {
-    const {value} = this.state
+    const {value, storage, str} = this.state
+    getLanguages().then(languages => {
+      console.log(languages, 'languages');
+    });
     return (
-      <MainView source={require('../../assets/backgrounds/bottom.png')}>
-        <View>
-          <Image
+      <MainView>
+        <View style={styles}>
+          <ImageBottom
             source={require('../../assets/backgrounds/bottom.png')}/>
         </View>
         <TextHead>
+          {str}
           Please enter your number
         </TextHead>
 
@@ -34,7 +65,7 @@ class SignUser extends Component {
           and Terms and Conditions, and agree to its
         </TextMiddle>
         <ButtonView>
-          <StyledButton title='NEXT' color='#fff'/>
+          <StyledButton onPress={() => this.setState({str: value})} title='NEXT' color='#fff'/>
         </ButtonView>
       </MainView>
     )
