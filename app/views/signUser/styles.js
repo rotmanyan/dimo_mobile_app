@@ -7,18 +7,9 @@ export const MainView = styled.View`
   flex: 1;
 `
 
-export const ImageTop = styled.Image`
-  position: absolute;
-  bottom: -630px;
-  left: 0;
-  height: 240px;
-  width: 100%;
-`
-
-export const ImageBottom = styled.Image`
-  position: absolute;
-  bottom: -630px;
-  height: 240px;
+export const ImageBg = styled.Image`
+  min-height: 20%;
+  max-height: 280px;
   width: 100%;
 `
 
@@ -57,24 +48,22 @@ export const StyledButton = styled.Button`
   font-size: 150px;
 `
 
-export const BackView = styled.ImageBackground`
-  width: 100%;
-  height: 100%
-`
-
-export const View = styled.View`
+export const ViewHead = styled.View`
   position: absolute;
-  bottom: -150px;
+  top: 0;
   left: 0;
+  right: 0;
+  bottom: 0;
+  justify-content: flex-start;
+  align-items: flex-start;
 `
 
-
-export const styles = StyleSheet.create({
-  textWrapper: {
-    position: 'absolute',
-    bottom: hp('-50%'),
-    left: wp('1%'),
-    height: hp('70%'),
-    width: wp('80%')
-  }
-})
+export const ViewBottom = styled.View`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  justify-content: flex-end;
+  align-items: flex-end;
+`

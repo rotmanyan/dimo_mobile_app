@@ -1,11 +1,12 @@
 import React, {Component} from 'react'
+// import {connect} from 'react-redux'
 import AsyncStorage from '@react-native-community/async-storage'
+import {getLanguages} from 'react-native-i18n'
+import PhoneInput from 'react-native-phone-input'
 import en from '../../i18n/locales/en'
 import ru from '../../i18n/locales/ru'
 import pl from '../../i18n/locales/pl'
 
-import {getLanguages} from 'react-native-i18n'
-import PhoneInput from 'react-native-phone-input'
 import {
   TextHead,
   TextMiddle,
@@ -13,10 +14,9 @@ import {
   ButtonView,
   PhoneView,
   MainView,
-  View,
-  ImageTop,
-  ImageBottom,
-  styles
+  ViewHead,
+  ViewBottom,
+  ImageBg
 } from './styles'
 
 class SignUser extends Component {
@@ -30,7 +30,6 @@ class SignUser extends Component {
     AsyncStorage.setItem('@storage_Key', 'yeyyeuquqwuewquuqwe')
     getLanguages().then(languages => {
       let language = languages[0].split('-')[0]
-
       this.setState({language})
     })
   }
@@ -69,14 +68,16 @@ class SignUser extends Component {
 
   render() {
     const {value} = this.state
-    console.log(this.state, 'this.state');
+    console.log(this.state, 'this.state')
 
     return (
       <MainView>
-        <View style={styles}>
-          <ImageBottom
-            source={require('../../assets/backgrounds/bottom.png')}/>
-        </View>
+        <ViewHead>
+          <ImageBg source={require('../../assets/backgrounds/Top.png')}/>
+        </ViewHead>
+        <ViewBottom>
+          <ImageBg source={require('../../assets/backgrounds/bottom.png')}/>
+        </ViewBottom>
         <TextHead>
           Please enter your number
         </TextHead>
