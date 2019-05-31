@@ -40,7 +40,6 @@ class SignUser extends Component {
   }
 
   writeButton = () => {
-    console.log(this.state.language, 'state lang');
     switch (this.state.language) {
       case 'ru':
         return <StyledButton
@@ -66,9 +65,6 @@ class SignUser extends Component {
   }
 
   render() {
-    const {value} = this.state
-    console.log(this.state, 'this.state')
-
     return (
       <MainView>
         <ViewHead>
@@ -84,11 +80,20 @@ class SignUser extends Component {
         <PhoneView>
           <PhoneInput
             initialCountry='tz'
-            ref={(ref) => { this.phone = ref; }}
+            ref={input => {
+              if (input !== null) {
+                let a = this.state.value.split(' ').join('')
+                input.focus()
+
+                if (a.length >= 13) {
+                  input.blur()
+                }
+              }
+            }}
             autoFormat={true}
             flagStyle={{borderRadius: 12.5, width: 25, height: 25}}
-            isValidNumber={e=> console.log(e,'eve t')}
-            blur={()=> console.log('1zzzzzz')}
+            isValidNumber={e => console.log(e, 'eve t')}
+            blur={() => console.log('1zzzzzz')}
             focus={
               () => console.log('2qqqqq')
             }

@@ -3,10 +3,10 @@ import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-nativ
 import styled from 'styled-components/native'
 
 export const MainView = styled.View`
+  flex: 5;
   background-color: #3878FF;
   align-items: center;
   justify-content: center;
-  height: 100%;
 `
 
 //image
