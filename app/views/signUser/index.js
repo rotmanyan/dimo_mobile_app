@@ -27,7 +27,7 @@ class SignUser extends Component {
   }
 
   componentDidMount() {
-    // signUser()
+    this.props.sign()
 
     AsyncStorage.setItem('@storage_Key', 'yeyyeuquqwuewquuqwe')
     getLanguages().then(languages => {
@@ -113,6 +113,6 @@ class SignUser extends Component {
   }
 }
 
-const MDTP = {signUser}
+const MDTP = {sign: signUser}
 
 export default connect(null, MDTP)(SignUser)
