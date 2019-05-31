@@ -3,26 +3,27 @@ import {
   signUserRequest,
   signUserSuccess,
   signUserError
-} from './action'
+} from './actions'
 import {urlSign, token} from '../baseUrl'
+import AsyncStorage from "@react-native-community/async-storage";
 
-export const signUser = credential => (dispatch, getState) => {
+export const signUser = credential => dispatch => {
   signUserRequest()
+  // const actualToken = getState().profile.token || token;
+  // const headerDefault = {Authorization: `Bearer ${actualToken}`};
 
-  const actualToken = getState().profile.token || token;
-  const headerDefault = {Authorization: `Bearer ${actualToken}`};
+  const options = {
+    method: 'POST',
+    data: {number: credential},
+    url: urlSign
+  }
 
-  const option = actualToken
-    ? {
-      method: 'GET',
+  // localStorage.setItem('token', response.data.session.jwt);
 
-    }
-    : {
-      method: 'GET',
-
-    }
-
-  axios(option)
-    .then(data => dispatch(signUserSuccess(data)))
+  axios(options)
+    .then(response => {
+      AsyncStorage.setItem('token', response.data)
+      dispatch(signUserSuccess(response))
+    })
     .catch(shit => dispatch(signUserError(shit)))
 }

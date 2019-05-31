@@ -5,15 +5,15 @@ export const actionTypes = {
 }
 
 export const signUserRequest = () => ({
-  type: actionTypes.REQUEST
+  type: actionTypes.SIGN_USER_REQUEST
 })
 
 export const signUserSuccess = data => ({
-  type: actionTypes.REQUEST,
+  type: actionTypes.SIGN_USER_SUCCESS,
   payload: data
 })
 
 export const signUserError = error => ({
-  type: actionTypes.ERROR,
+  type: actionTypes.SIGN_USER_ERROR,
   payload: error
 })

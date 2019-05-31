@@ -6,6 +6,7 @@ import PhoneInput from 'react-native-phone-input'
 import en from '../../i18n/locales/en'
 import ru from '../../i18n/locales/ru'
 import pl from '../../i18n/locales/pl'
+import {signUser} from '../../services/profile/operation'
 
 import {
   TextHeadMiddle,
@@ -26,6 +27,8 @@ class SignUser extends Component {
   }
 
   componentDidMount() {
+    // signUser()
+
     AsyncStorage.setItem('@storage_Key', 'yeyyeuquqwuewquuqwe')
     getLanguages().then(languages => {
       let language = languages[0].split('-')[0]
@@ -92,11 +95,6 @@ class SignUser extends Component {
             }}
             autoFormat={true}
             flagStyle={{borderRadius: 12.5, width: 25, height: 25}}
-            isValidNumber={e => console.log(e, 'eve t')}
-            blur={() => console.log('1zzzzzz')}
-            focus={
-              () => console.log('2qqqqq')
-            }
             confirmText='Confirm'
             cancelText='Cancel'
             onChangePhoneNumber={value => this.setState({value})}
@@ -115,4 +113,6 @@ class SignUser extends Component {
   }
 }
 
-export default SignUser
+const MDTP = {signUser}
+
+export default connect(null, MDTP)(SignUser)
