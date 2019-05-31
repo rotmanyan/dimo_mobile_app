@@ -1,0 +1,1 @@
+export const token = state => state.profile.token

@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-// import {connect} from 'react-redux'
+import {connect} from 'react-redux'
 import AsyncStorage from '@react-native-community/async-storage'
 import {getLanguages} from 'react-native-i18n'
 import PhoneInput from 'react-native-phone-input'

@@ -1,6 +1,7 @@
 import {createStore, applyMiddleware, combineReucers, compose} from 'redux'
+import thunkMiddleware from 'redux-thunk'
 import {createLogger} from 'redux-logger'
-// import reviewJWT from './middlewares/reviewJWT'
+import reviewJWT from './middlewares/reviewJWT'
 
 // const rootReducer = combineReducers({})
 const loggerMiddleware = createLogger({
@@ -19,7 +20,7 @@ const devtools = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
 const composeEnhancers = devtools ? devtools : compose
 
 const store = createStore(
-  composeEnhancers(applyMiddleware(loggerMiddleware))
+  composeEnhancers(applyMiddleware(thunkMiddleware, reviewJWT, loggerMiddleware))
 )
 /*const store = createStore(
   rootReducer,
