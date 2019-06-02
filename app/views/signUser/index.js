@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import AsyncStorage from '@react-native-community/async-storage'
 import {getLanguages} from 'react-native-i18n'
 import PhoneInput from 'react-native-phone-input'
 import en from '../../i18n/locales/en'
@@ -27,26 +26,19 @@ class SignUser extends Component {
   }
 
   componentDidMount() {
-    this.props.sign()
-
-    AsyncStorage.setItem('@storage_Key', 'yeyyeuquqwuewquuqwe')
     getLanguages().then(languages => {
       let language = languages[0].split('-')[0]
       this.setState({language})
     })
   }
 
-  componentDidUpdate(prevProps: Readonly<P>, prevState: Readonly<S>): void {
-    this.state.storage.length === 0
-      ? AsyncStorage.getItem('@storage_Key').then(storage => this.setState({storage}))
-      : null
-  }
-
   writeButton = () => {
     switch (this.state.language) {
       case 'ru':
         return <StyledButton
-          onPress={() => this.setState({language: 'en'})}
+          onPress={() => {
+            this.props.sign()
+          }}
           title={ru.next}
           color='#fff'/>
       case 'pl':

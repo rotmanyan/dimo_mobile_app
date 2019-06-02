@@ -3,9 +3,11 @@ import thunkMiddleware from 'redux-thunk'
 import {createLogger} from 'redux-logger'
 // import reviewJWT from './middlewares/reviewJWT'
 import {signUser} from "./profile/reducer";
+import {i18n} from "./i18n/reducer";
 
 const rootReducer = combineReducers({
-  profile: signUser
+  profile: signUser,
+  localization: i18n
 })
 
 const loggerMiddleware = createLogger({

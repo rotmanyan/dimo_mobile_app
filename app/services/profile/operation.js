@@ -8,7 +8,7 @@ import {urlSign, token} from '../baseUrl'
 import AsyncStorage from "@react-native-community/async-storage";
 
 export const signUser = credential => (dispatch, getState) => {
-  signUserRequest()
+  dispatch(signUserRequest())
   console.log(getState());
   // const actualToken = getState().profile.token || token;
   // const headerDefault = {Authorization: `Bearer ${actualToken}`};
