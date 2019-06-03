@@ -1,0 +1,1 @@
+export const translate = state => state.localization.translate

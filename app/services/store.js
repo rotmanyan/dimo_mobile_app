@@ -25,10 +25,6 @@ const loggerMiddleware = createLogger({
 const devtools = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
 const composeEnhancers = devtools ? devtools : compose
 
-// const store = createStore(
-//   composeEnhancers(applyMiddleware(thunkMiddleware, loggerMiddleware))
-// )
-
 const store = createStore(
   rootReducer,
   composeEnhancers(applyMiddleware(thunkMiddleware, loggerMiddleware))

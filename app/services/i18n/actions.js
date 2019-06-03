@@ -1,9 +1,8 @@
 export const actionTypes = {
-  'SET_LOCALIZATION': 'SET_LOCALIZATION',
-  // 'SIGN_USER_SUCCESS': 'SIGN_USER_SUCCESS',
-  // 'SIGN_USER_ERROR': 'SIGN_USER_ERROR',
+  'SET_LOCALIZATION': 'SET_LOCALIZATION'
 }
 
-export const setLocalization = () => ({
-  type: actionTypes.SET_LOCALIZATION
+export const setLocalization = data => ({
+  type: actionTypes.SET_LOCALIZATION,
+  payload: data
 })
