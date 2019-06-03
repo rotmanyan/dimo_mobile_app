@@ -1,75 +1,84 @@
-import React, {Component} from 'react';
-/*
-import QRCodeScanner from 'react-native-qrcode-scanner';
-import {MainView, ButtonView, StyledButton, TextHeadMiddle} from "./styles";
+'use strict';
+import React, {PureComponent} from 'react';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {RNCamera} from 'react-native-camera';
 
-class Index extends Component {
+const PendingView = () => (
+  <View
+    style={{
+      flex: 1,
+      backgroundColor: 'lightgreen',
+      justifyContent: 'center',
+      alignItems: 'center',
+    }}
+  >
+    <Text>Waiting</Text>
+  </View>
+);
+
+class ExampleApp extends PureComponent {
   render() {
     return (
-      <MainView>
-        <TextHeadMiddle>
-          adasd
-        </TextHeadMiddle>
-      </MainView>
+      <View style={styles.container}>
+        <RNCamera
+          style={styles.preview}
+          type={RNCamera.Constants.Type.back}
+          flashMode={RNCamera.Constants.FlashMode.on}
+          androidCameraPermissionOptions={{
+            title: 'Permission to use camera',
+            message: 'We need your permission to use your camera',
+            buttonPositive: 'Ok',
+            buttonNegative: 'Cancel',
+          }}
+          androidRecordAudioPermissionOptions={{
+            title: 'Permission to use audio recording',
+            message: 'We need your permission to use your audio',
+            buttonPositive: 'Ok',
+            buttonNegative: 'Cancel',
+          }}
+        >
+          {({camera, status, recordAudioPermissionStatus}) => {
+            if (status !== 'READY') return <PendingView/>;
+            return (
+              <View style={{flex: 0, flexDirection: 'row', justifyContent: 'center'}}>
+                <TouchableOpacity onPress={() => this.takePicture(camera)} style={styles.capture}>
+                  <Text style={{fontSize: 14}}> SNAP </Text>
+                </TouchableOpacity>
+              </View>
+            );
+          }}
+        </RNCamera>
+      </View>
     );
   }
-}
 
-export default Index;*/
-
-import {
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  Linking,
-} from 'react-native';
-
-import QRCodeScanner from 'react-native-qrcode-scanner';
-
-class ScanScreen extends Component {
-  onSuccess = (e) => {
-    Linking
-      .openURL(e.data)
-      .catch(err => console.error('An error occured', err));
-  }
-
-  render() {
-    return (
-      <QRCodeScanner
-        onRead={this.onSuccess}
-        topContent={
-          <Text style={styles.centerText}>
-            Go to <Text style={styles.textBold}>wikipedia.org/wiki/QR_code</Text> on your computer and scan the QR code.
-          </Text>
-        }
-        bottomContent={
-          <TouchableOpacity style={styles.buttonTouchable}>
-            <Text style={styles.buttonText}>OK. Got it!</Text>
-          </TouchableOpacity>
-        }
-      />
-    );
-  }
+  takePicture = async function (camera) {
+    const options = {quality: 0.5, base64: true};
+    const data = await camera.takePictureAsync(options);
+    //  eslint-disable-next-line
+    console.log(data.uri);
+  };
 }
 
 const styles = StyleSheet.create({
-  centerText: {
+  container: {
     flex: 1,
-    fontSize: 18,
-    padding: 32,
-    color: '#777',
+    flexDirection: 'column',
+    backgroundColor: 'black',
   },
-  textBold: {
-    fontWeight: '500',
-    color: '#000',
+  preview: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    alignItems: 'center',
   },
-  buttonText: {
-    fontSize: 21,
-    color: 'rgb(0,122,255)',
-  },
-  buttonTouchable: {
-    padding: 16,
+  capture: {
+    flex: 0,
+    backgroundColor: '#fff',
+    borderRadius: 5,
+    padding: 15,
+    paddingHorizontal: 20,
+    alignSelf: 'center',
+    margin: 20,
   },
 });
-
-export default ScanScreen
+export default ExampleApp
