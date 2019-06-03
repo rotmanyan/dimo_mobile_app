@@ -1,11 +1,10 @@
 import {actionTypes} from './actions';
-import {token} from '../baseUrl';
 
 const initialState = {
   userNumber: '',
   userEmail: '',
-  isAuthenticated: !!token,
-  token: null,
+  isAuthenticated: false,
+  token: '',
   isResetPassword: false,
   status: '',
   message: ''
@@ -21,6 +20,7 @@ export const signUser = (state = initialState, {type, payload}) => {
     case actionTypes.SIGN_USER_SUCCESS:
       return {
         ...state,
+        token: payload,
         // userEmail: payload.data.session.email,
         // isAuthenticated: true,
         // token: payload.data.session.jwt,
@@ -30,10 +30,9 @@ export const signUser = (state = initialState, {type, payload}) => {
       return {
         ...state,
         userEmail: '',
-        // isAuthenticated: false,
+        isAuthenticated: false,
         token: null,
         status: 'error',
-        // message: payload.message
       };
     default:
       return {...state}

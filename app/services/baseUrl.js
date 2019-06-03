@@ -1,8 +1,7 @@
-import AsyncStorage from '@react-native-community/async-storage'
 
 // main const
-export const baseUrl = process.env.REACT_APP_SERVER_ORIGIN;
-export const token = AsyncStorage.getItem('token').then(storage => storage)
+// export const baseUrl = process.env.REACT_APP_SERVER_ORIGIN;
+export const baseUrl = 'https://dimo.cash:9000/api/'
 
 // user - login, registration, profile
 export const urlSign = baseUrl + 'v1/client/signin'

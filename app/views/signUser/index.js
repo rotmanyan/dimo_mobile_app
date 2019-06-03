@@ -20,7 +20,7 @@ import {
 
 class SignUser extends Component {
   state = {
-    value: '+255',
+    value: '+255721234566',
     storage: '',
     photos: []
   }
@@ -39,7 +39,7 @@ class SignUser extends Component {
         ref={input => {
           if (input !== null) {
             let a = this.state.value.split(' ').join('')
-            input.focus()
+            // input.focus()
 
             if (a.length >= 13) {
               input.blur()
@@ -56,7 +56,7 @@ class SignUser extends Component {
   }
 
   render() {
-    const {translate} = this.props
+    const {translate, sign} = this.props
     return (
       <MainView>
         <ViewHead>
@@ -83,7 +83,10 @@ class SignUser extends Component {
           <StyledButton
             title={translate.next}
             color='#fff'
-            onPress={() => alert('We are create more...')}
+            onPress={() => {
+              console.log(this.state.value.trim());
+              sign(this.state.value.trim())
+            }}
           />
         </ButtonView>
       </MainView>

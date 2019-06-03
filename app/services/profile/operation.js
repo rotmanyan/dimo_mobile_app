@@ -9,13 +9,15 @@ import AsyncStorage from "@react-native-community/async-storage";
 
 export const signUser = credential => (dispatch, getState) => {
   dispatch(signUserRequest())
-  console.log(getState());
   // const actualToken = getState().profile.token || token;
   // const headerDefault = {Authorization: `Bearer ${actualToken}`};
-
+  // +255 721 234 566
   const options = {
     method: 'POST',
-    data: {number: credential},
+    data: {
+      phone: credential,
+      password: 'Qwerty123'
+    },
     url: urlSign
   }
 
@@ -23,8 +25,9 @@ export const signUser = credential => (dispatch, getState) => {
 
   axios(options)
     .then(response => {
-      AsyncStorage.setItem('token', response.data)
-      dispatch(signUserSuccess(response))
+      let data = response.data.data.token
+      AsyncStorage.setItem('token', data)
+      dispatch(signUserSuccess(data))
     })
-    .catch(shit => dispatch(signUserError(shit)))
+    .catch(error => dispatch(signUserError(error)))
 }
