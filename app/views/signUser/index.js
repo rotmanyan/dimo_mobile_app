@@ -15,7 +15,7 @@ import {
   ViewBottom,
   ImageBg
 } from './styles'
-import {CameraRoll, ScrollView, View, Image} from "react-native";
+// import {CameraRoll, ScrollView, View, Image} from "react-native";
 
 class SignUser extends Component {
   state = {
@@ -25,13 +25,14 @@ class SignUser extends Component {
   }
 
   componentDidMount() {
-    console.log(CameraRoll, 'CameraRoll');
+    // console.log(CameraRoll, 'CameraRoll');
     let language = 'en'
     getLanguages()
       .then(languages => language = languages[0].split('-')[0])
       .then(() => this.props.set(language))
   }
 
+/*
   _handleButtonPress = () => {
     CameraRoll.getPhotos({
       first: 20,
@@ -44,6 +45,7 @@ class SignUser extends Component {
         //Error Loading Images
       });
   };
+*/
 
   writeInput = () => {
     return (
@@ -81,20 +83,7 @@ class SignUser extends Component {
         <TextHeadMiddle>
           {translate.please_enter_your_number}
         </TextHeadMiddle>
-        <View>
-          {this.state.photos.map((p, i) => {
-            return (
-              <Image
-                key={i}
-                style={{
-                  width: 300,
-                  height: 100,
-                }}
-                source={{uri: p.node.image.uri}}
-              />
-            );
-          })}
-        </View>
+
         <PhoneView>
           {this.writeInput()}
         </PhoneView>
@@ -107,7 +96,7 @@ class SignUser extends Component {
             // onPress={e => console.log(e, 'event button')}
             title={translate.next}
             color='#fff'
-            onPress={this._handleButtonPress}
+            onPress={()=> alert('We are create more...')}
           />
         </ButtonView>
       </MainView>
