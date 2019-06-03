@@ -9,6 +9,16 @@ export const MainView = styled.View`
   justify-content: center;
 `
 
+//logo
+export const ViewLogo = styled.View`
+`
+
+export const ImageLogo = styled.Image`
+  width: 128px;
+  height: 90px;
+`
+
+
 //image
 export const ViewHead = styled.View`
   position: absolute;

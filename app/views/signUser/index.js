@@ -13,7 +13,9 @@ import {
   MainView,
   ViewHead,
   ViewBottom,
-  ImageBg
+  ImageBg,
+  ViewLogo,
+  ImageLogo
 } from './styles'
 
 class SignUser extends Component {
@@ -63,6 +65,9 @@ class SignUser extends Component {
         <ViewBottom>
           <ImageBg source={require('../../assets/backgrounds/bottom.png')}/>
         </ViewBottom>
+        <ViewLogo>
+          <ImageLogo source={require('../../assets/backgrounds/logo.png')}/>
+        </ViewLogo>
         <TextHeadMiddle>
           {translate.please_enter_your_number}
         </TextHeadMiddle>
