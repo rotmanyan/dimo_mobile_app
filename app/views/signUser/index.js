@@ -81,7 +81,6 @@ class SignUser extends Component {
         </TextHeadMiddle>
         <ButtonView>
           <StyledButton
-            // onPress={e => console.log(e, 'event button')}
             title={translate.next}
             color='#fff'
             onPress={() => alert('We are create more...')}

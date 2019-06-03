@@ -3,6 +3,7 @@ package com.dimo;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import org.reactnative.camera.RNCameraPackage;
 import com.AlexanderZaytsev.RNI18n.RNI18nPackage;
 import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
 import com.lugg.ReactNativeConfig.ReactNativeConfigPackage;
@@ -26,6 +27,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new RNCameraPackage(),
             new RNI18nPackage(),
             new AsyncStoragePackage(),
             new ReactNativeConfigPackage()

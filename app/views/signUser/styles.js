@@ -3,14 +3,18 @@ import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-nativ
 import styled from 'styled-components/native'
 
 export const MainView = styled.View`
+  padding: 50px 0;
   flex: 5;
   background-color: #3878FF;
-  align-items: center;
   justify-content: center;
 `
 
 //logo
 export const ViewLogo = styled.View`
+  min-height: 90px;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
 `
 
 export const ImageLogo = styled.Image`
