@@ -2,11 +2,9 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {getLanguages} from 'react-native-i18n'
 import PhoneInput from 'react-native-phone-input'
-import en from '../../i18n/locales/en'
-import ru from '../../i18n/locales/ru'
-import pl from '../../i18n/locales/pl'
 import {signUser} from '../../services/profile/operation'
-
+import * as selectorLang from '../../services/i18n/selectors'
+import {setLocalization} from "../../services/i18n/actions";
 import {
   TextHeadMiddle,
   StyledButton,
@@ -17,49 +15,61 @@ import {
   ViewBottom,
   ImageBg
 } from './styles'
+import {CameraRoll, ScrollView, View, Image} from "react-native";
 
 class SignUser extends Component {
   state = {
     value: '+255',
     storage: '',
-    language: 'ru',
+    photos: []
   }
 
   componentDidMount() {
-    getLanguages().then(languages => {
-      let language = languages[0].split('-')[0]
-      this.setState({language})
-    })
+    console.log(CameraRoll, 'CameraRoll');
+    let language = 'en'
+    getLanguages()
+      .then(languages => language = languages[0].split('-')[0])
+      .then(() => this.props.set(language))
   }
 
-  writeButton = () => {
-    switch (this.state.language) {
-      case 'ru':
-        return <StyledButton
-          onPress={() => {
-            this.props.sign()
-          }}
-          title={ru.next}
-          color='#fff'/>
-      case 'pl':
-        return <StyledButton
-          onPress={() => this.setState({language: 'en'})}
-          title={pl.next}
-          color='#fff'/>
-      case 'en':
-        return <StyledButton
-          onPress={() => this.setState({language: 'ru'})}
-          title={en.next}
-          color='#fff'/>
-      default:
-        return <StyledButton
-          onPress={() => this.setState({language: 'ru'})}
-          title={en.next}
-          color='#fff'/>
-    }
+  _handleButtonPress = () => {
+    CameraRoll.getPhotos({
+      first: 20,
+      assetType: 'Photos',
+    })
+      .then(r => {
+        this.setState({photos: r.edges});
+      })
+      .catch((err) => {
+        //Error Loading Images
+      });
+  };
+
+  writeInput = () => {
+    return (
+      <PhoneInput
+        initialCountry='tz'
+        ref={input => {
+          if (input !== null) {
+            let a = this.state.value.split(' ').join('')
+            input.focus()
+
+            if (a.length >= 13) {
+              input.blur()
+            }
+          }
+        }}
+        autoFormat={true}
+        flagStyle={{borderRadius: 12.5, width: 25, height: 25}}
+        confirmText='Confirm'
+        cancelText='Cancel'
+        onChangePhoneNumber={value => this.setState({value})}
+      />
+    )
   }
 
   render() {
+    const {translate} = this.props
     return (
       <MainView>
         <ViewHead>
@@ -69,42 +79,48 @@ class SignUser extends Component {
           <ImageBg source={require('../../assets/backgrounds/bottom.png')}/>
         </ViewBottom>
         <TextHeadMiddle>
-          Please enter your number
+          {translate.please_enter_your_number}
         </TextHeadMiddle>
-
+        <View>
+          {this.state.photos.map((p, i) => {
+            return (
+              <Image
+                key={i}
+                style={{
+                  width: 300,
+                  height: 100,
+                }}
+                source={{uri: p.node.image.uri}}
+              />
+            );
+          })}
+        </View>
         <PhoneView>
-          <PhoneInput
-            initialCountry='tz'
-            ref={input => {
-              if (input !== null) {
-                let a = this.state.value.split(' ').join('')
-                input.focus()
-
-                if (a.length >= 13) {
-                  input.blur()
-                }
-              }
-            }}
-            autoFormat={true}
-            flagStyle={{borderRadius: 12.5, width: 25, height: 25}}
-            confirmText='Confirm'
-            cancelText='Cancel'
-            onChangePhoneNumber={value => this.setState({value})}
-          />
+          {this.writeInput()}
         </PhoneView>
 
         <TextHeadMiddle>
-          By clicking 'Next' you confirm that you have read and understand the Dimo Privacy Policy
-          and Terms and Conditions, and agree to its
+          {translate.by_clicking_next}
         </TextHeadMiddle>
         <ButtonView>
-          {this.writeButton()}
+          <StyledButton
+            // onPress={e => console.log(e, 'event button')}
+            title={translate.next}
+            color='#fff'
+            onPress={this._handleButtonPress}
+          />
         </ButtonView>
       </MainView>
     )
   }
 }
 
-const MDTP = {sign: signUser}
+const MSTP = state => ({
+  translate: selectorLang.translate(state),
+})
+const MDTP = {
+  sign: signUser,
+  set: setLocalization
+}
 
-export default connect(null, MDTP)(SignUser)
+export default connect(MSTP, MDTP)(SignUser)
