@@ -856,6 +856,9 @@
 						DevelopmentTeam = 84FSUH8ZG8;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
+							com.apple.DataProtection = {
+								enabled = 1;
+							};
 							com.apple.InterAppAudio = {
 								enabled = 1;
 							};
