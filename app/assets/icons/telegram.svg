@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.1 (78136) - https://sketchapp.com -->
+    <title>A8DAFD30-AB0B-46F6-A6AE-A265FF63B3C2</title>
+    <desc>Created with sketchtool.</desc>
+    <defs>
+        <path d="M13.5997,20.0001 L11.8937,14.0271 L15.7337,8.2671 L9.9737,12.1061 L3.9997,10.4001 L19.9997,4.0001 L13.5997,20.0001 Z M21.4137,2.5861 C21.0327,2.2041 20.5207,2.0001 19.9997,2.0001 C19.7497,2.0001 19.4977,2.0471 19.2567,2.1431 L3.2567,8.5431 C2.4627,8.8611 1.9587,9.6481 2.0027,10.5021 C2.0457,11.3561 2.6277,12.0881 3.4507,12.3231 L9.8487,14.1511 L11.6767,20.5491 C11.9127,21.3721 12.6437,21.9541 13.4977,21.9981 C13.5327,21.9991 13.5667,22.0001 13.6007,22.0001 C14.4137,22.0001 15.1527,21.5051 15.4567,20.7431 L21.8577,4.7431 C22.1547,4.0001 21.9807,3.1511 21.4137,2.5861 L21.4137,2.5861 Z" id="path-1"></path>
+    </defs>
+    <g id="Mobile" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="3.1.-Wallet:-Top-up" transform="translate(-98.000000, -602.000000)">
+            <g id="UI-/-Components-/-Bottom_bar" transform="translate(0.000000, 584.000000)">
+                <g id="UI-/-Bottom-bar-/-Send-/-Disable" transform="translate(84.000000, 8.000000)">
+                    <g id="UI-/-Icons-/-24_profile-Copy" transform="translate(12.000000, 8.000000)">
+                        <mask id="mask-2" fill="white">
+                            <use xlink:href="#path-1"></use>
+                        </mask>
+                        <use id="Fill-1" fill="#000000" xlink:href="#path-1"></use>
+                        <rect id="Rectangle" fill="#90A5C2" mask="url(#mask-2)" x="0" y="0" width="24" height="24"></rect>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
