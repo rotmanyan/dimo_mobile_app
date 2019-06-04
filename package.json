@@ -22,6 +22,7 @@
     "react-native-qrcode-scanner": "^1.2.1",
     "react-native-responsive-screen": "^1.2.2",
     "react-native-share": "^1.2.1",
+    "react-native-svg": "^9.4.0",
     "react-redux": "^7.0.3",
     "redux": "^4.0.1",
     "redux-logger": "^3.0.6",
