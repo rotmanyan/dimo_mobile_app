@@ -9,20 +9,22 @@ export const View = styled.View`
   justify-content: space-between;
   background-color: #fff;
   align-items: center;
-  padding: 0 24px;
+  padding: 0 24px 50px;
 `
 
 //button
 export const Button = styled.TouchableOpacity`
-  height: 56px;
+  padding: 5px;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
   align-content: center;
-  padding: 5px 0;
+`
+
+export const TextGrey = styled.Text`
   color: #90a5c2;
 `
 
-export const Image = styled.Image`
-`
-
-export const Text = styled.Text`
-  color: #90a5c2;
+export const TextBlue = styled.Text`
+  color: #3878FF;
 `
