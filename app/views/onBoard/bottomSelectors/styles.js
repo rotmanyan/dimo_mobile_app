@@ -4,7 +4,7 @@ export const MainView = styled.View`
   justify-content: flex-end;
 `
 
-export const View = styled.View`
+export const Viewv = styled.View`
   flex-direction: row;
   justify-content: space-between;
   background-color: #fff;
@@ -14,6 +14,13 @@ export const View = styled.View`
 
 //button
 export const Button = styled.TouchableOpacity`
+  padding: 5px;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  align-content: center;
+`
+export const Buttonx = styled.Button`
   padding: 5px;
   justify-content: center;
   text-align: center;
