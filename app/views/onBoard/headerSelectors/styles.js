@@ -1,11 +1,10 @@
 import styled from 'styled-components/native'
 
 export const MainView = styled.View`
-  shadow-color: rgba(0,0,0,0.7);
-  shadow-opacity: 0.1;
-  shadow-radius: 9;
-  shadow-offset: 0 -5px;
   flex: 1;
+  align-items: center;
+  flex-direction: row;
+  background-color: #3878FF;
 `
 
 export const View = styled.View`
@@ -13,7 +12,6 @@ export const View = styled.View`
   justify-content: space-between;
   background-color: #fff;
   align-items: center;
-  padding: 0 24px 50px;
 `
 
 //button
@@ -33,7 +31,7 @@ export const TextBlue = styled.Text`
   color: #3878FF;
 `
 
-export const Image = styled.Image`
-  height: 250px;
-  width: 250px;
+export const Text = styled.Text`
+  color: #ffffff;
+  font-weight: 700;
 `

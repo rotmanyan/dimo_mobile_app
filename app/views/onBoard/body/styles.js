@@ -1,7 +1,7 @@
 import styled from 'styled-components/native'
 
 export const MainView = styled.View`
-  flex: 1;
+  flex: 8;
 `
 
 export const View = styled.View`

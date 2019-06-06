@@ -8,7 +8,7 @@ class BottomSelectors extends Component {
     selectors: ['Chat', 'Telegram', 'Wallet', 'Active', 'Profile'],
     color: '#90a5c2',
     click: true,
-    image: null
+    image: []
   }
 
   changeColor = () => this.setState({color: this.state.click ? '#3878FF' : '#90a5c2', click: !this.state.click})
@@ -17,7 +17,7 @@ class BottomSelectors extends Component {
     console.log('123123123');
     // openSelectDialog(config, successCallback, errorCallback);
     ImagePickerIOS.openSelectDialog({}, imageUri => {
-      this.setState({image: imageUri});
+      this.setState({image: [...this.state.image, imageUri]});
     }, error => console.log(error, 'error'));
   }
 
@@ -28,7 +28,7 @@ class BottomSelectors extends Component {
     return (
       <MainView>
         <View>
-          <Image source={{uri: image}}/>
+          {image.map((el, key) => <Image key={key} source={{uri: el}}/>)}
           <Button onPress={this.changeColor}>
             <SvgUri
               width="24"
@@ -36,42 +36,43 @@ class BottomSelectors extends Component {
               source={require('../../../assets/icons/Chat.svg')}
             />
             {/*<TextBlue>{selectors[0]}</TextBlue>*/}
+
           </Button>
 
           <Button>
-            {/*      <SvgUri
+            <SvgUri
               width="24"
               height='24'
               source={require('../../../assets/icons/Telegram.svg')}
-            />*/}
+            />
             {/*<TextBlue>{selectors[1]}</TextBlue>*/}
           </Button>
           <View>
             <Button onPress={() => this.pickImage()}>
-              {/*          <SvgUri
+              <SvgUri
                 fill={color}
                 width="24"
                 height='24'
                 source={require('../../../assets/icons/Wallet.svg')}
-              />*/}
+              />
               <TextBlue>{selectors[2]}</TextBlue>
             </Button>
           </View>
-          <Button onPress={() => this.pickImage()}>
-            {/*  <SvgUri
+          <Button>
+            <SvgUri
               width="24"
               height='24'
               source={require('../../../assets/icons/Activity.svg')}
-            />*/}
+            />
             <TextBlue>{selectors[3]}</TextBlue>
           </Button>
 
           <Button>
-            {/* <SvgUri
+            <SvgUri
               width="24"
               height='24'
               source={require('../../../assets/icons/Profile.svg')}
-            />*/}
+            />
             {/*<TextBlue>{selectors[4]}</TextBlue>*/}
           </Button>
         </View>

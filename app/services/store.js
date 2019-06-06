@@ -4,10 +4,12 @@ import {createLogger} from 'redux-logger'
 // import reviewJWT from './middlewares/reviewJWT'
 import {signUser} from "./profile/reducer";
 import {i18n} from "./i18n/reducer";
+import {kyc} from "./kyc/reducer";
 
 const rootReducer = combineReducers({
   profile: signUser,
-  localization: i18n
+  localization: i18n,
+  kyc
 })
 
 const loggerMiddleware = createLogger({

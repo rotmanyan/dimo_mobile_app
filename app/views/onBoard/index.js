@@ -1,16 +1,15 @@
 import React, {Component} from 'react';
 
-import {MainView, ButtonView, StyledButton, TextHeadMiddle} from "./styles";
+import {MainView} from "./styles";
 import BottomSelectors from "./bottomSelectors";
 import Body from "./body";
+import HeaderSelectors from "./headerSelectors";
 
 class OnBoard extends Component {
   render() {
     return (
       <MainView>
-     {/*   <TextHeadMiddle>
-          On board
-        </TextHeadMiddle>*/}
+        <HeaderSelectors/>
         <Body/>
         <BottomSelectors/>
       </MainView>
