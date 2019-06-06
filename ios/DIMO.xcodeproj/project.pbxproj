@@ -41,6 +41,7 @@
 		65E2A6B683BC44189766D1A8 /* libRNI18n.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C9EB2092829440BAACAE726 /* libRNI18n.a */; };
 		67263998C87E442599AC152D /* libReactNativeConfig.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 02ED344AD69B46ACB85E20A0 /* libReactNativeConfig.a */; };
 		6D792035438F491FBC92D323 /* libRNCAsyncStorage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCC80C447AF47F59199E348 /* libRNCAsyncStorage.a */; };
+		7A45C70E22A925E400633586 /* libRNSVG.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A45C70B22A925D500633586 /* libRNSVG.a */; };
 		7AF81F56229C057700CBFB6B /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AF81F55229C057700CBFB6B /* AudioToolbox.framework */; };
 		7AF81F58229C058000CBFB6B /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AF81F57229C058000CBFB6B /* ExternalAccessory.framework */; };
 		7AF81F5A229C059D00CBFB6B /* Images-2.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7AF81F59229C059D00CBFB6B /* Images-2.xcassets */; };
@@ -304,6 +305,20 @@
 			remoteGlobalIDString = 6476C4051EEAA69700B10F51;
 			remoteInfo = "RNI18n-tvOS";
 		};
+		7A45C70A22A925D500633586 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7A45C70522A925D500633586 /* RNSVG.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0CF68AC11AF0540F00FF9E5C;
+			remoteInfo = RNSVG;
+		};
+		7A45C70C22A925D500633586 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7A45C70522A925D500633586 /* RNSVG.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 94DDAC5C1F3D024300EED511;
+			remoteInfo = "RNSVG-tvOS";
+		};
 		7A9B09C4229C16C200C22C5E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 44239BD8646840EB86AF6BEB /* ReactNativeConfig.xcodeproj */;
@@ -403,6 +418,7 @@
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		7A3C8571229FE7EE007C0053 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		7A3C8572229FE7F4007C0053 /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		7A45C70522A925D500633586 /* RNSVG.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNSVG.xcodeproj; path = "../node_modules/react-native-svg/ios/RNSVG.xcodeproj"; sourceTree = "<group>"; };
 		7AF81F54229C057700CBFB6B /* DIMO.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = DIMO.entitlements; path = DIMO/DIMO.entitlements; sourceTree = "<group>"; };
 		7AF81F55229C057700CBFB6B /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		7AF81F57229C058000CBFB6B /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
@@ -428,6 +444,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7A45C70E22A925E400633586 /* libRNSVG.a in Frameworks */,
 				CE11530A22A861EA00C99F45 /* libRCTCameraRoll.a in Frameworks */,
 				ED297163215061F000B7C4FE /* JavaScriptCore.framework in Frameworks */,
 				ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */,
@@ -644,6 +661,15 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		7A45C70622A925D500633586 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7A45C70B22A925D500633586 /* libRNSVG.a */,
+				7A45C70D22A925D500633586 /* libRNSVG-tvOS.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		7A9B099A229C16C100C22C5E /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
@@ -668,6 +694,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				7A45C70522A925D500633586 /* RNSVG.xcodeproj */,
 				CE11530422A861CF00C99F45 /* RCTCameraRoll.xcodeproj */,
 				5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
@@ -930,6 +957,10 @@
 					ProductGroup = 7A3C8567229FD7E5007C0053 /* Products */;
 					ProjectRef = 77D3979EA2544CD1A8C45802 /* RNI18n.xcodeproj */;
 				},
+				{
+					ProductGroup = 7A45C70622A925D500633586 /* Products */;
+					ProjectRef = 7A45C70522A925D500633586 /* RNSVG.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -1178,6 +1209,20 @@
 			fileType = archive.ar;
 			path = "libRNI18n-tvOS.a";
 			remoteRef = 7A3C856D229FD7E5007C0053 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		7A45C70B22A925D500633586 /* libRNSVG.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNSVG.a;
+			remoteRef = 7A45C70A22A925D500633586 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		7A45C70D22A925D500633586 /* libRNSVG-tvOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libRNSVG-tvOS.a";
+			remoteRef = 7A45C70C22A925D500633586 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		7A9B09C5229C16C200C22C5E /* libReactNativeConfig.a */ = {

@@ -30,11 +30,11 @@ class BottomSelectors extends Component {
         <View>
           <Image source={{uri: image}}/>
           <Button onPress={this.changeColor}>
-            {/*            <SvgUri
+            <SvgUri
               width="24"
               height='24'
               source={require('../../../assets/icons/Chat.svg')}
-            />*/}
+            />
             {/*<TextBlue>{selectors[0]}</TextBlue>*/}
           </Button>
 
