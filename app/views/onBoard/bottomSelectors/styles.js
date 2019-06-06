@@ -4,7 +4,7 @@ export const MainView = styled.View`
   justify-content: flex-end;
 `
 
-export const Viewv = styled.View`
+export const View = styled.View`
   flex-direction: row;
   justify-content: space-between;
   background-color: #fff;
@@ -20,13 +20,6 @@ export const Button = styled.TouchableOpacity`
   align-items: center;
   align-content: center;
 `
-export const Buttonx = styled.Button`
-  padding: 5px;
-  justify-content: center;
-  text-align: center;
-  align-items: center;
-  align-content: center;
-`
 
 export const TextGrey = styled.Text`
   color: #90a5c2;
@@ -34,4 +27,9 @@ export const TextGrey = styled.Text`
 
 export const TextBlue = styled.Text`
   color: #3878FF;
+`
+
+export const Image = styled.Image`
+  height: 250px;
+  width: 250px;
 `

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import {MainView, Viewv, Button, TextBlue, Buttonx} from "./styles";
-import {ImagePickerIOS, View, Image} from 'react-native';
+import {MainView, View, Button, TextBlue, Image} from "./styles";
+import {ImagePickerIOS} from 'react-native';
 import SvgUri from 'react-native-svg-uri';
 
 class BottomSelectors extends Component {
@@ -27,61 +27,54 @@ class BottomSelectors extends Component {
 
     return (
       <MainView>
-        <Viewv>
-
+        <View>
+          <Image source={{uri: image}}/>
           <Button onPress={this.changeColor}>
-            {/*<SvgUri*/}
-            {/*width="24"*/}
-            {/*height='24'*/}
-            {/*source={require('../../../assets/icons/Chat.svg')}*/}
-            {/*/>*/}
-            {/*<TextBlue>{selectors[0]}</Text>*/}
+            {/*            <SvgUri
+              width="24"
+              height='24'
+              source={require('../../../assets/icons/Chat.svg')}
+            />*/}
+            {/*<TextBlue>{selectors[0]}</TextBlue>*/}
           </Button>
 
           <Button>
-            {/*<SvgUri*/}
-            {/*width="24"*/}
-            {/*height='24'*/}
-            {/*source={require('../../../assets/icons/Telegram.svg')}*/}
-            {/*/>*/}
-            {/*<TextBlue>{selectors[1]}</Text>*/}
-          </Button>
-          <Buttonx onPress={() => this.pickImage()} title='asdasda'/>
-          <Image source={{uri: image}}/>
-          <View>
-            <Button>
-              {/*            <SvgUri
-              style={{
-                textAlign: 'center',
-                margin: 'auto',
-                border: '2px solid palevioletred'
-              }}
-              fill={color}
+            {/*      <SvgUri
               width="24"
               height='24'
-              source={require('../../../assets/icons/Wallet.svg')}
+              source={require('../../../assets/icons/Telegram.svg')}
             />*/}
+            {/*<TextBlue>{selectors[1]}</TextBlue>*/}
+          </Button>
+          <View>
+            <Button onPress={() => this.pickImage()}>
+              {/*          <SvgUri
+                fill={color}
+                width="24"
+                height='24'
+                source={require('../../../assets/icons/Wallet.svg')}
+              />*/}
               <TextBlue>{selectors[2]}</TextBlue>
             </Button>
           </View>
-          <Button>
-            {/*<SvgUri*/}
-            {/*width="24"*/}
-            {/*height='24'*/}
-            {/*source={require('../../../assets/icons/Activity.svg')}*/}
-            {/*/>*/}
-            {/*<TextBlue>{selectors[3]}</Text>*/}
+          <Button onPress={() => this.pickImage()}>
+            {/*  <SvgUri
+              width="24"
+              height='24'
+              source={require('../../../assets/icons/Activity.svg')}
+            />*/}
+            <TextBlue>{selectors[3]}</TextBlue>
           </Button>
 
           <Button>
-            {/*<SvgUri*/}
-            {/*width="24"*/}
-            {/*height='24'*/}
-            {/*source={require('../../../assets/icons/Profile.svg')}*/}
-            {/*/>*/}
-            {/*<TextBlue>{selectors[4]}</Text>*/}
+            {/* <SvgUri
+              width="24"
+              height='24'
+              source={require('../../../assets/icons/Profile.svg')}
+            />*/}
+            {/*<TextBlue>{selectors[4]}</TextBlue>*/}
           </Button>
-        </Viewv>
+        </View>
       </MainView>
     );
   }
