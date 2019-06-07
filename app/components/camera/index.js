@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {MainView, Button, Text, Image, CamStyle} from './styles'
-import {CameraKitCamera} from 'react-native-camera-kit'
+import {CameraKitCamera, CameraKitGalleryView} from 'react-native-camera-kit'
 
 class Camera extends Component {
   state = {
@@ -9,14 +9,35 @@ class Camera extends Component {
   }
 
   componentDidMount() {
-
+    CameraKitCamera
+      .checkDeviceCameraAuthorizationStatus()
+      .then(data => data
+        ? console.log(data, 'status')
+        : CameraKitCamera
+          .requestDeviceCameraAuthorization(true)
+          .then(data => console.log(data, 'status 1'))
+      )
   }
 
   capture = () => {
     const {url} = this.state
     !!url
       ? this.setState({url: ''})
-      : this.camera.capture(true).then(data => this.setState({url: data.uri}))
+      : this.camera.capture(false)
+        .then(data => this.setState({url: data.uri}))
+  }
+
+  changeCamera = () => {
+    const {url} = this.state
+    !!url
+      ? this.setState({url: ''})
+      : this.camera.changeCamera().then(data => console.log(data, 'changeCamera'))
+  }
+  onFlash = () => {
+    const {url} = this.state
+    !!url
+      ? this.setState({url: ''})
+      : this.camera.setFlashMode().then(data => console.log(data, 'onFlash'))
   }
 
   render() {
@@ -28,14 +49,25 @@ class Camera extends Component {
             Capture
           </Text>
         </Button>
+        <Button onPress={this.changeCamera}>
+          <Text>
+            Change camera
+          </Text>
+        </Button>
+        <Button onPress={this.onFlash}>
+          <Text>
+            Flash on
+          </Text>
+        </Button>
         {!!url
           ? <Image source={{uri: url}}/>
           : <CameraKitCamera
             ref={cam => this.camera = cam}
             style={CamStyle}
             cameraOptions={{
-              focusMode: 'on',               // off/on(default)
-              ratioOverlayColor: 'transparent' // optional
+              zoomMode: 'on',
+              focusMode: 'on',
+              // ratioOverlayColor: 'transparent' // optional
             }}
             onReadQRCode={(event) => console.log(event.nativeEvent.qrcodeStringValue)} // optional
 
