@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {MainView} from "./styles";
-import Camera from "./camera";
+import Camera from "../../../components/camera";
 
 class Body extends Component {
   render() {

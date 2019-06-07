@@ -8,8 +8,8 @@ import {StyledView} from './stylesApp'
 export const App = () => (
   <StyledView>
     {/*<SignUser/>*/}
-    {/*<OnBoard/>*/}
+    <OnBoard/>
     {/*<ScanScreen/>*/}
-    <ExampleApp/>
+    {/*<ExampleApp/>*/}
   </StyledView>
 )
