@@ -9,14 +9,7 @@ class Camera extends Component {
   }
 
   componentDidMount() {
-    CameraKitCamera
-      .checkDeviceCameraAuthorizationStatus()
-      .then(data => data
-        ? console.log(data, 'status')
-        : CameraKitCamera
-          .requestDeviceCameraAuthorization(true)
-          .then(data => console.log(data, 'status 1'))
-      )
+
   }
 
   capture = () => {
@@ -59,19 +52,17 @@ class Camera extends Component {
             Flash on
           </Text>
         </Button>
-        {!!url
-          ? <Image source={{uri: url}}/>
-          : <CameraKitCamera
-            ref={cam => this.camera = cam}
-            style={CamStyle}
-            cameraOptions={{
-              zoomMode: 'on',
-              focusMode: 'on',
-              // ratioOverlayColor: 'transparent' // optional
-            }}
-            onReadQRCode={(event) => console.log(event.nativeEvent.qrcodeStringValue)} // optional
-
-          />}
+        <CameraKitGalleryView
+          ref={gallery => this.gallery = gallery}
+          style={{flex: 1, marginTop: 20}}
+          minimumInteritemSpacing={10}
+          minimumLineSpacing={10}
+          columnCount={3}
+          onTapImage={event => {
+            console.log(event, 'event');
+            // event.nativeEvent.selected - ALL selected images ids
+          }}
+        />
       </MainView>
     );
   }
