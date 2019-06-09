@@ -41,6 +41,8 @@
 	<string></string>
 	<key>NSCameraUsageDescription</key>
 	<string></string>
+	<key>NSContactsUsageDescription</key>
+	<string></string>
 	<key>NSMainNibFile</key>
 	<string>LaunchScreen</string>
 	<key>NSPhotoLibraryUsageDescription</key>

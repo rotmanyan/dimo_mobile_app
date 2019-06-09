@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {MainView, Button, Text, Image, CamStyle} from './styles'
 import {CameraKitCamera, CameraKitGalleryView} from 'react-native-camera-kit'
+import Contacts from 'react-native-contacts';
 
 class Camera extends Component {
   state = {
@@ -9,7 +10,14 @@ class Camera extends Component {
   }
 
   componentDidMount() {
-
+    console.log(Contacts, 'Contacts');
+    /*    Contacts.getAll((err, contacts) => {
+          console.log(err, 'contacts');
+          console.log(contacts, 'contacts');
+          if (err) {
+            throw err;
+          }
+        })*/
   }
 
   capture = () => {
@@ -59,7 +67,7 @@ class Camera extends Component {
           minimumLineSpacing={10}
           columnCount={3}
           onTapImage={event => {
-            console.log(event, 'event');
+            console.log(event.nativeEvent, 'event');
             // event.nativeEvent.selected - ALL selected images ids
           }}
         />
