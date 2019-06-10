@@ -23,13 +23,17 @@ class BottomSelectors extends Component {
 
   render() {
     const {selectors, color, image} = this.state
-    console.log(this.state, 'state');
+    const {step} = this.props
 
+    console.log(this.state, 'state');
     return (
       <MainView>
         <View>
           {image.map((el, key) => <Image key={key} source={{uri: el}}/>)}
-          <Button onPress={this.changeColor}>
+          <Button onPress={() => {
+            this.changeColor()
+            step('sign')
+          }}>
             <SvgUri
               width="24"
               height='24'

@@ -1,15 +1,14 @@
-import React from 'react';
-import SignUser from './app/views/signUser'
-import OnBoard from './app/views/onBoard'
-import ScanScreen from './app/views/testCamera'
-import ExampleApp from './app/views/testContacts'
+import React, {Component} from 'react';
 import {StyledView} from './stylesApp'
+import Start from "./app/views/start";
 
-export const App = () => (
-  <StyledView>
-    {/*<SignUser/>*/}
-    <OnBoard/>
-    {/*<ScanScreen/>*/}
-    {/*<ExampleApp/>*/}
-  </StyledView>
-)
+class App extends Component {
+  render() {
+    return (
+      <StyledView>
+        <Start/>
+      </StyledView>
+    );
+  }
+}
+export default App

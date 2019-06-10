@@ -1,5 +1,6 @@
-import React, {Component} from 'react';
 /*
+import React, {Component} from 'react';
+/!*
 import QRCodeScanner from 'react-native-qrcode-scanner';
 import {MainView, ButtonView, StyledButton, TextHeadMiddle} from "./styles";
 
@@ -15,7 +16,7 @@ class Index extends Component {
   }
 }
 
-export default Index;*/
+export default Index;*!/
 
 import {
   StyleSheet,
@@ -72,4 +73,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ScanScreen
+export default ScanScreen*/

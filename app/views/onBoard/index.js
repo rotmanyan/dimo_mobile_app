@@ -11,7 +11,7 @@ class OnBoard extends Component {
       <MainView>
         <HeaderSelectors/>
         <Body/>
-        <BottomSelectors/>
+        <BottomSelectors step={this.props.step}/>
       </MainView>
     );
   }

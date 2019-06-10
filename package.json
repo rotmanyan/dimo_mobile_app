@@ -23,7 +23,7 @@
     "react-native-navigation": "^2.21.0",
     "react-native-permissions": "^1.1.1",
     "react-native-phone-input": "^0.2.2",
-    "react-native-qrcode-scanner": "^1.2.1",
+    "react-native-qrcode": "^0.2.7",
     "react-native-responsive-screen": "^1.2.2",
     "react-native-share": "^1.2.1",
     "react-native-svg": "^9.4.0",
