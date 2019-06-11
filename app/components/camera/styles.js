@@ -5,9 +5,13 @@ export const MainView = styled.View`
 `
 
 export const Button = styled.TouchableOpacity`
+  padding: 10px;
+  background-color: #0a8cff;
 `
 
 export const Text = styled.Text`
+  text-align: center;
+  color: #ffffff;
 `
 
 export const Image = styled.Image`

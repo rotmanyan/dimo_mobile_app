@@ -1,14 +1,5 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {StyledView} from './stylesApp'
 import Start from "./app/views/start";
 
-class App extends Component {
-  render() {
-    return (
-      <StyledView>
-        <Start/>
-      </StyledView>
-    );
-  }
-}
-export default App
+export const App = () => <StyledView><Start/></StyledView>

@@ -1,14 +1,11 @@
 import React, {Component} from 'react';
 import {MainView, Button, Text, Image, CamStyle} from './styles'
 import {CameraKitCamera, CameraKitCameraScreen} from 'react-native-camera-kit'
-import QRCode from 'react-native-qrcode';
-
 
 class Camera extends Component {
   state = {
     status: false,
     url: '',
-    text: 'Hello Kira Abramov'
   }
 
   componentDidMount() {
@@ -55,19 +52,13 @@ class Camera extends Component {
         <Button onPress={this.capture}>
           <Text>Capture</Text>
         </Button>
-        {/*       <Button onPress={this.changeCamera}>
-          <Text>Change camera</Text>
-        </Button>*/}
-        {/*        <Button onPress={this.onFlash}>
-          <Text>Flash on</Text>
-        </Button>*/}
         {!!url
           ? <Image source={{uri: url}}/>
-          : <QRCode
-            value={this.state.text}
-            size={200}
-            bgColor='purple'
-            fgColor='white'/>}
+          : <CameraKitCamera
+            ref={cam => this.camera = cam}
+            style={CamStyle}
+            cameraOptions={{focusMode: 'on'}}
+          />}
       </MainView>
     );
   }

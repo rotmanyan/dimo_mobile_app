@@ -15,6 +15,7 @@ class Start extends Component {
   }
 
   render() {
+    const {step} = this.state
     return (
       <MainView>
         {step === 'sign'
