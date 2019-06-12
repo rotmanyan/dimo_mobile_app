@@ -23,7 +23,7 @@ class BottomSelectors extends Component {
 
   render() {
     const {selectors, color, image} = this.state
-    const {step} = this.props
+    const {changeStep} = this.props
 
     console.log(this.state, 'state');
     return (
@@ -31,8 +31,8 @@ class BottomSelectors extends Component {
         <View>
           {image.map((el, key) => <Image key={key} source={{uri: el}}/>)}
           <Button onPress={() => {
-            this.changeColor()
-            step('sign')
+            // this.changeColor()
+            changeStep('chat')
           }}>
             <SvgUri
               width="24"
@@ -43,7 +43,10 @@ class BottomSelectors extends Component {
 
           </Button>
 
-          <Button>
+          <Button onPress={() => {
+            // this.changeColor()
+            changeStep('send')
+          }}>
             <SvgUri
               width="24"
               height='24'
@@ -62,7 +65,10 @@ class BottomSelectors extends Component {
               <TextBlue>{selectors[2]}</TextBlue>
             </Button>
           </View>
-          <Button>
+          <Button onPress={() => {
+            // this.changeColor()
+            changeStep('activity')
+          }}>
             <SvgUri
               width="24"
               height='24'
@@ -71,7 +77,10 @@ class BottomSelectors extends Component {
             <TextBlue>{selectors[3]}</TextBlue>
           </Button>
 
-          <Button>
+          <Button onPress={() => {
+            // this.changeColor()
+            changeStep('profile')
+          }}>
             <SvgUri
               width="24"
               height='24'

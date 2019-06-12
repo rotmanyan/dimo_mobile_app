@@ -1,10 +1,8 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {getLanguages} from 'react-native-i18n'
 import PhoneInput from 'react-native-phone-input'
 import {signUser} from '../../services/profile/operation'
 import * as selectorLang from '../../services/i18n/selectors'
-import {setLocalization} from "../../services/i18n/actions";
 import {
   TextHeadMiddle,
   StyledButton,
@@ -23,13 +21,6 @@ class SignUser extends Component {
     value: '+255721234566',
     storage: '',
     photos: []
-  }
-
-  componentDidMount() {
-    let language = 'en'
-    getLanguages()
-      .then(languages => language = languages[0].split('-')[0])
-      .then(() => this.props.set(language))
   }
 
   writeInput = () => {
@@ -77,6 +68,10 @@ class SignUser extends Component {
         </PhoneView>
 
         <TextHeadMiddle>
+          {translate.or_login_via_social_networks}
+        </TextHeadMiddle>
+
+        <TextHeadMiddle>
           {translate.by_clicking_next}
         </TextHeadMiddle>
         <ButtonView>
@@ -100,7 +95,6 @@ const MSTP = state => ({
 })
 const MDTP = {
   sign: signUser,
-  set: setLocalization
 }
 
 export default connect(MSTP, MDTP)(SignUser)

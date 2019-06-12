@@ -5,8 +5,6 @@ const initialState = {
   userEmail: '',
   isAuthenticated: false,
   token: '',
-  isResetPassword: false,
-  status: '',
   message: ''
 };
 
@@ -21,10 +19,7 @@ export const signUser = (state = initialState, {type, payload}) => {
       return {
         ...state,
         token: payload,
-        // userEmail: payload.data.session.email,
-        // isAuthenticated: true,
-        // token: payload.data.session.jwt,
-        status: 'good',
+        isAuthenticated: true,
       };
     case actionTypes.SIGN_USER_ERROR:
       return {
@@ -32,7 +27,6 @@ export const signUser = (state = initialState, {type, payload}) => {
         userEmail: '',
         isAuthenticated: false,
         token: null,
-        status: 'error',
       };
     default:
       return {...state}

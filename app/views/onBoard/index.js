@@ -9,12 +9,16 @@ class OnBoard extends Component {
   render() {
     return (
       <MainView>
-        <HeaderSelectors/>
-        <Body/>
-        <BottomSelectors step={this.props.step}/>
+        <HeaderSelectors step={this.props.step}/>
+        <Body step={this.props.step}/>
+        <BottomSelectors changeStep={this.props.changeStep} step={this.props.step}/>
       </MainView>
     );
   }
 }
+
+const MSTP = state => ({
+  // step: state.profile.step
+})
 
 export default OnBoard

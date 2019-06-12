@@ -4,6 +4,7 @@ import SvgUri from 'react-native-svg-uri';
 
 class HeaderSelectors extends Component {
   render() {
+    const {step} = this.props
     return (
       <MainView>
         <Button>
@@ -14,7 +15,7 @@ class HeaderSelectors extends Component {
           />
         </Button>
         <Text>
-          KYC
+          {step.toUpperCase()}
         </Text>
       </MainView>
     );
