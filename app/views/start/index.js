@@ -8,11 +8,12 @@ import SignUser from '../signUser'
 import Kyc from '../kyc'
 import {setLocalizationRequest, setLocalizationSuccess} from "../../services/i18n/actions";
 import {getLanguages} from "react-native-i18n";
+import OnBoard from "../onBoard";
 
 class Start extends Component {
   state = {
     token: '',
-    step: ''
+    step: 'kyc'
   }
 
   componentDidMount() {
@@ -32,12 +33,11 @@ class Start extends Component {
     if (!!this.props.localization)
       switch (this.state.token) {
         case 'success':
-          return <Kyc step={this.state.step} changeStep={this.changeStep}/>
+          return <OnBoard step={this.state.step} changeStep={this.changeStep}/>
         case 'null':
         default:
           return <SignUser step={this.state.step} changeStep={this.changeStep}/>
-      }
-    return <ViewWait>
+      } else return <ViewWait>
       <TextWait>
         Loading...
       </TextWait>

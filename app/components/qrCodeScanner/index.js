@@ -1,16 +1,16 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {MainView, SubView, Button, TextOne, TextTwo, QRtext, Linking} from './styles';
+// import {Linking} from "react-native";
+import {MainView, SubView, Button, TextOne, TextTwo, QRtext} from './styles';
 import {CameraKitCameraScreen} from 'react-native-camera-kit'
 
-class Camera extends Component {
+class CodeScan extends Component {
   state = {
     QR_Code_Value: '',
     Start_Scanner: true
   }
-
   openLink_in_browser = () => {
-    Linking.openURL(this.state.QR_Code_Value);
+    console.log('aslfhalsjhfkjaskljashjk')
   }
 
   onQR_Code_Scan_Done = (QR_Code) => {
@@ -28,7 +28,7 @@ class Camera extends Component {
       const {QR_Code_Value} = this.state
       return (
         <MainView>
-          <TextOne>React Native Scan QR Code Example</TextOne>
+          <TextOne>QR Code Scanner</TextOne>
           <QRtext>{QR_Code_Value ? 'Scanned QR Code: ' + QR_Code_Value : ''}</QRtext>
 
           {QR_Code_Value.includes("http")
@@ -64,4 +64,4 @@ class Camera extends Component {
 const MSTP = state => ({})
 const MDTP = {}
 
-export default connect(MSTP, MDTP)(Camera)
+export default connect(MSTP, MDTP)(CodeScan)

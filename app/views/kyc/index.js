@@ -7,6 +7,8 @@ import {
   Text,
   // Image
 } from "./styles";
+import Camera from "../../components/camera";
+
 // import Camera from "../../components/camera";
 
 class Kyc extends Component {
@@ -16,28 +18,29 @@ class Kyc extends Component {
     docArr: ['Passport', 'Certificate of birthday', 'Driver\' license']
   }
 
-/*  head = () => <View>
-    {this.state.headSteps.map((el, key) => <Text key={key}>
-        {el}
-      </Text>
-    )}
-  </View>
-
-
-  body = () => {
-    switch (this.state.kycStep) {
-    }
-
-    return <View>
-      <Text>
-        Account verification
-      </Text>
+  /*  head = () => <View>
+      {this.state.headSteps.map((el, key) => <Text key={key}>
+          {el}
+        </Text>
+      )}
     </View>
-  }*/
+
+
+    body = () => {
+      switch (this.state.kycStep) {
+      }
+
+      return <View>
+        <Text>
+          Account verification
+        </Text>
+      </View>
+    }*/
 
   render() {
     return (
       <MainView>
+        <Camera/>
         {/*{this.head()}*/}
         {/*{this.body()}*/}
         <Text>

@@ -26,8 +26,6 @@ export const TextTwo = styled.Text`
   font-size: 14px;
   color: #ffffff;
 `
-export const Linking = styled.Linking`
-`
 
 export const Button = styled.TouchableOpacity`
   background-color: #2979ff;

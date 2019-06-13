@@ -27,15 +27,13 @@ class Camera extends Component {
       : this.camera.capture(false)
         .then(data => this.setState({url: data.uri}))
   }
-  /*
 
-    changeCamera = () => {
-      const {url} = this.state
-      !!url
-        ? this.setState({url: ''})
-        : this.camera.changeCamera().then(data => console.log(data, 'changeCamera'))
-    }
-  */
+  changeCamera = () => {
+    const {url} = this.state
+    !!url
+      ? this.setState({url: ''})
+      : this.camera.changeCamera().then(data => console.log(data, 'changeCamera'))
+  }
 
   /*  onFlash = () => {
       const {url} = this.state
@@ -50,7 +48,7 @@ class Camera extends Component {
     return (
       <MainView>
         <Button onPress={this.capture}>
-          <Text>Capture</Text>
+          <Text>{!!url ? 'Delete' : 'Capture'}</Text>
         </Button>
         {!!url
           ? <Image source={{uri: url}}/>
