@@ -3,18 +3,15 @@ import {MainView} from "./styles";
 import Camera from "../../../components/camera";
 import Profile from "../../profile";
 import Chat from "../../chat";
-import Kyc from "../../kyc";
 
 class Body extends Component {
   write = () => {
     switch (this.props.step) {
-      case 'profile':
-        return <Profile/>
       case 'chat':
         return <Chat/>
-      case 'kyc':
+      case 'profile':
       default:
-        return <Kyc/>
+        return <Profile/>
     }
   }
 

@@ -50,6 +50,10 @@ export const ImageBg = styled.Image`
   width: 100%;
 `
 
+export const ViewSvg = styled.View`
+
+`
+
 //button
 export const ButtonView = styled.View`
   background-color: #4EDBD0;

@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import PhoneInput from 'react-native-phone-input'
+import SvgUri from 'react-native-svg-uri';
 import {signUser} from '../../services/profile/operation'
 import * as selectorLang from '../../services/i18n/selectors'
 import {
@@ -13,7 +14,8 @@ import {
   ViewBottom,
   ImageBg,
   ViewLogo,
-  ImageLogo
+  ImageLogo,
+  ViewSvg
 } from './styles'
 
 class SignUser extends Component {
@@ -47,7 +49,7 @@ class SignUser extends Component {
   }
 
   render() {
-    const {translate, sign, step} = this.props
+    const {translate, sign, changeStep} = this.props
     return (
       <MainView>
         <ViewHead>
@@ -71,6 +73,24 @@ class SignUser extends Component {
           {translate.or_login_via_social_networks}
         </TextHeadMiddle>
 
+        <ViewSvg>
+          <SvgUri
+            width="22"
+            height='22'
+            source={require('../../../assets/icons/Chat.svg')}
+          />
+          <SvgUri
+            width="22"
+            height='22'
+            source={require('../../../assets/icons/Chat.svg')}
+          />
+          <SvgUri
+            width="22"
+            height='22'
+            source={require('../../../assets/icons/Chat.svg')}
+          />
+        </ViewSvg>
+
         <TextHeadMiddle>
           {translate.by_clicking_next}
         </TextHeadMiddle>
@@ -81,7 +101,7 @@ class SignUser extends Component {
             onPress={() => {
               console.log(this.state.value.trim());
               sign(this.state.value.trim())
-              step('onBoard')
+              changeStep('onBoard')
             }}
           />
         </ButtonView>

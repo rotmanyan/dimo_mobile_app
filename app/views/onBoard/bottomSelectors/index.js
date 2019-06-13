@@ -11,8 +11,6 @@ class BottomSelectors extends Component {
     image: []
   }
 
-  changeColor = () => this.setState({color: this.state.click ? '#3878FF' : '#90a5c2', click: !this.state.click})
-
   pickImage() {
     console.log('123123123');
     // openSelectDialog(config, successCallback, errorCallback);
@@ -31,7 +29,6 @@ class BottomSelectors extends Component {
         <View>
           {image.map((el, key) => <Image key={key} source={{uri: el}}/>)}
           <Button onPress={() => {
-            // this.changeColor()
             changeStep('chat')
           }}>
             <SvgUri

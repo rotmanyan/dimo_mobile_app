@@ -5,6 +5,7 @@ import {MainView, ViewWait, TextWait} from './styles'
 
 import SignUser from '../signUser'
 import OnBoard from '../onBoard'
+import Kyc from '../kyc'
 import {setLocalization} from "../../services/i18n/actions";
 import {getLanguages} from "react-native-i18n";
 
@@ -27,21 +28,19 @@ class Start extends Component {
   changeStep = data => this.setState({step: data})
 
   write = () => {
-    if (!this.props.isAuthenticated)
-      switch (this.state.token) {
-        case 'wait':
-          return <ViewWait>
-            <TextWait>
-              Loading...
-            </TextWait>
-          </ViewWait>
-        case 'success':
-          return <OnBoard step={this.state.step} changeStep={this.changeStep}/>
-        case 'null':
-        default:
-          return <SignUser step={this.state.step} changeStep={this.changeStep}/>
-      }
-    return <SignUser changeStep={this.changeStep}/>
+    switch (this.state.token) {
+      case 'wait':
+        return <ViewWait>
+          <TextWait>
+            Loading...
+          </TextWait>
+        </ViewWait>
+      case 'success':
+        return <Kyc step={this.state.step} changeStep={this.changeStep}/>
+      case 'null':
+      default:
+        return <SignUser step={this.state.step} changeStep={this.changeStep}/>
+    }
   }
 
   render() {

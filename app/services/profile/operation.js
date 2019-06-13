@@ -4,7 +4,7 @@ import {
   signUserSuccess,
   signUserError
 } from './actions'
-import {urlSign, token} from '../baseUrl'
+import {urlSign} from '../baseUrl'
 import AsyncStorage from "@react-native-community/async-storage";
 
 export const signUser = credential => (dispatch, getState) => {
