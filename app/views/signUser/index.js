@@ -72,24 +72,27 @@ class SignUser extends Component {
         <TextHeadMiddle>
           {translate.or_login_via_social_networks}
         </TextHeadMiddle>
-
         <ViewSvg>
-          <SvgUri
-            width="22"
-            height='22'
-            source={require('../../../assets/icons/Chat.svg')}
-          />
-          <SvgUri
-            width="22"
-            height='22'
-            source={require('../../../assets/icons/Chat.svg')}
-          />
-          <SvgUri
-            width="22"
-            height='22'
-            source={require('../../../assets/icons/Chat.svg')}
-          />
+
         </ViewSvg>
+        {/*
+
+          <SvgUri
+            width="22"
+            height='22'
+            source={require('../../../assets/icons/Chat.svg')}
+          />
+          <SvgUri
+            width="22"
+            height='22'
+            source={require('../../../assets/icons/Chat.svg')}
+          />
+          <SvgUri
+            width="22"
+            height='22'
+            source={require('../../../assets/icons/Chat.svg')}
+          />
+  */}
 
         <TextHeadMiddle>
           {translate.by_clicking_next}
