@@ -4,22 +4,23 @@ import AsyncStorage from '@react-native-community/async-storage'
 import {MainView, ViewWait, TextWait} from './styles'
 
 import SignUser from '../signUser'
-import OnBoard from '../onBoard'
+// import OnBoard from '../onBoard'
 import Kyc from '../kyc'
-import {setLocalization} from "../../services/i18n/actions";
+import {setLocalizationRequest, setLocalizationSuccess} from "../../services/i18n/actions";
 import {getLanguages} from "react-native-i18n";
 
 class Start extends Component {
   state = {
-    token: 'wait',
+    token: '',
     step: ''
   }
 
   componentDidMount() {
-    const {set} = this.props
+    const {setLocalizationRequest, setLocalizationSuccess} = this.props
 
+    setLocalizationRequest()
     getLanguages()
-      .then(data => set(data[0].split('-')[0]))
+      .then(data => setLocalizationSuccess(data[0].split('-')[0]))
 
     AsyncStorage.getItem('token')
       .then(token => this.setState({token: !!token ? 'success' : null}))
@@ -28,19 +29,19 @@ class Start extends Component {
   changeStep = data => this.setState({step: data})
 
   write = () => {
-    switch (this.state.token) {
-      case 'wait':
-        return <ViewWait>
-          <TextWait>
-            Loading...
-          </TextWait>
-        </ViewWait>
-      case 'success':
-        return <Kyc step={this.state.step} changeStep={this.changeStep}/>
-      case 'null':
-      default:
-        return <SignUser step={this.state.step} changeStep={this.changeStep}/>
-    }
+    if (!!this.props.localization)
+      switch (this.state.token) {
+        case 'success':
+          return <Kyc step={this.state.step} changeStep={this.changeStep}/>
+        case 'null':
+        default:
+          return <SignUser step={this.state.step} changeStep={this.changeStep}/>
+      }
+    return <ViewWait>
+      <TextWait>
+        Loading...
+      </TextWait>
+    </ViewWait>
   }
 
   render() {
@@ -51,11 +52,13 @@ class Start extends Component {
 }
 
 const MSTP = state => ({
-  isAuthenticated: state.profile.isAuthenticated
+  isAuthenticated: state.profile.isAuthenticated,
+  localization: state.localization.language
 })
 
 const MDTP = {
-  set: setLocalization
+  setLocalizationRequest,
+  setLocalizationSuccess
 }
 
 export default connect(MSTP, MDTP)(Start)

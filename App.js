@@ -1,5 +1,8 @@
 import React from 'react';
+import {connect} from "react-redux";
 import {StyledView} from './stylesApp'
 import Start from "./app/views/start";
 
-export const App = () => <StyledView><Start/></StyledView>
+const App = () => <StyledView><Start/></StyledView>
+
+export default connect()(App)

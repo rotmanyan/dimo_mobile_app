@@ -50,8 +50,18 @@ export const ImageBg = styled.Image`
   width: 100%;
 `
 
+//svg
 export const ViewSvg = styled.View`
+  flex-direction: row;
+  margin: auto;
+`
 
+export const svgStyle = {
+  marginRight: '12%'
+}
+
+export const ButtonSvg = styled.TouchableHighlight`
+  margin-right: 12%;
 `
 
 //button

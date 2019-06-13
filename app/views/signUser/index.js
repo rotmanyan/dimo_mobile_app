@@ -15,7 +15,9 @@ import {
   ImageBg,
   ViewLogo,
   ImageLogo,
-  ViewSvg
+  ViewSvg,
+  ButtonSvg,
+  svgStyle
 } from './styles'
 
 class SignUser extends Component {
@@ -73,7 +75,23 @@ class SignUser extends Component {
           {translate.or_login_via_social_networks}
         </TextHeadMiddle>
         <ViewSvg>
-
+          <SvgUri
+            width="22"
+            height='22'
+            source={require('../../assets/icons/Google.svg')}
+            style={svgStyle}
+          />
+          <SvgUri
+            width="22"
+            height='22'
+            source={require('../../assets/icons/facebook.svg')}
+            style={svgStyle}
+          />
+          <SvgUri
+            width="22"
+            height='22'
+            source={require('../../assets/icons/Twitter.svg')}
+          />
         </ViewSvg>
         {/*
 
