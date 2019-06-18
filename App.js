@@ -1,12 +1,12 @@
 import React from 'react'
 import {Provider} from 'react-redux'
 import {createAppContainer, createStackNavigator} from 'react-navigation';
+import Start from "./app/views/start";
 import store from './app/services/store'
 
 // Create our stack navigator
 let RootStack = createStackNavigator({
-  Counter: CounterContainer,
-  StaticCounter: StaticCounterContainer,
+  Counter: Start,
 });
 
 // And the app container
@@ -21,14 +21,3 @@ export default class App extends React.Component {
     )
   }
 }
-
-
-/*
-import {connect} from "react-redux";
-import {StyledView} from './stylesApp'
-import Start from "./app/views/start";
-
-const App = () => <StyledView><Start/></StyledView>
-
-export default connect()(App)
-*/
