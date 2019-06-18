@@ -2,51 +2,30 @@ import React, {Component} from 'react';
 
 import {
   MainView,
-  View,
-  // Button,
-  Text,
-  // Image
+  Text
 } from "./styles";
 import Camera from "../../components/camera";
 
-// import Camera from "../../components/camera";
 
 class Kyc extends Component {
-  state = {
-    kycStep: 'proof',
-    headSteps: ['Proof of identify', 'Selfie', 'Status'],
-    docArr: ['Passport', 'Certificate of birthday', 'Driver\' license']
-  }
-
-  /*  head = () => <View>
-      {this.state.headSteps.map((el, key) => <Text key={key}>
-          {el}
-        </Text>
-      )}
-    </View>
-
-
-    body = () => {
-      switch (this.state.kycStep) {
-      }
-
-      return <View>
-        <Text>
-          Account verification
-        </Text>
-      </View>
-    }*/
+  static navigationOptions = {
+    title: 'KYC',
+    headerStyle: {
+      backgroundColor: '#f4511e',
+    },
+    headerTintColor: '#fff',
+    headerTitleStyle: {
+      fontWeight: '300',
+    },
+  };
 
   render() {
     return (
       <MainView>
-        <Camera/>
-        {/*{this.head()}*/}
-        {/*{this.body()}*/}
         <Text>
-          {/*<Camera/>*/}
           It's Kyc
         </Text>
+        <Camera/>
       </MainView>
     );
   }

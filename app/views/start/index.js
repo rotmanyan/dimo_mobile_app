@@ -17,6 +17,7 @@ class Start extends Component {
   }
 
   componentDidMount() {
+
     console.log(this.props, 'this properties');
     const {setLocalizationRequest, setLocalizationSuccess} = this.props
 

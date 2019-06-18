@@ -11,3 +11,11 @@ export const MainView = styled.View`
 export const Text = styled.Text`
   color: #90a5c2;
 `
+
+export const View = styled.View`
+
+`
+
+export const Button = styled.TouchableOpacity`
+  color: #90a5c2;
+`
