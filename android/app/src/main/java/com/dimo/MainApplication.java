@@ -3,6 +3,7 @@ package com.dimo;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 import fr.snapp.imagebase64.RNImgToBase64Package;
 import cl.json.RNSharePackage;
 import com.RNFetchBlob.RNFetchBlobPackage;
@@ -32,6 +33,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new RNGestureHandlerPackage(),
             new RNImgToBase64Package(),
             new RNSharePackage(),
             new RNFetchBlobPackage(),

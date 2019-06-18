@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import {NavigationEvents} from 'react-navigation';
+
 import {
   MainView,
   // View,
@@ -14,6 +16,12 @@ class Chat extends Component {
         <Text>
           It's Chat
         </Text>
+        <NavigationEvents
+          onWillFocus={payload => console.log('will focus', payload)}
+          onDidFocus={payload => console.log('did focus', payload)}
+          onWillBlur={payload => console.log('will blur', payload)}
+          onDidBlur={payload => console.log('did blur', payload)}
+        />
       </MainView>
     );
   }

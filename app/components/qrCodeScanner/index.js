@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
+// import {connect} from 'react-redux';
+import {createStackNavigator, createAppContainer} from "react-navigation"
 // import {Linking} from "react-native";
 import {MainView, SubView, Button, TextOne, TextTwo, QRtext} from './styles';
 import {CameraKitCameraScreen} from 'react-native-camera-kit'
@@ -24,6 +25,7 @@ class CodeScan extends Component {
   }
 
   render() {
+    console.log(this.props, 'oorrorororo');
     if (!this.state.Start_Scanner) {
       const {QR_Code_Value} = this.state
       return (
@@ -61,7 +63,10 @@ class CodeScan extends Component {
   }
 }
 
-const MSTP = state => ({})
-const MDTP = {}
+const AppNavigator = createStackNavigator({
+  Home: {
+    screen: CodeScan
+  }
+});
 
-export default connect(MSTP, MDTP)(CodeScan)
+export default createAppContainer(AppNavigator);
