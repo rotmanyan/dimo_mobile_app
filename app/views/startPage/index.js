@@ -40,7 +40,7 @@ const ChatStack = createStackNavigator({
     PersonalChat
   },
   {
-    initialRouteName: 'PersonalChat'
+    initialRouteName: 'Chat'
   }
 )
 
@@ -69,7 +69,8 @@ const ActivityStack = createStackNavigator({
 );
 
 const ProfileStack = createStackNavigator({
-    Profile
+    Profile,
+    Kyc
   },
   {
     initialRouteName: 'Profile'
@@ -87,7 +88,7 @@ const Navigation = createAppContainer(
       Profile: ProfileStack
     },
     {
-      initialRouteName: 'Chat',
+      initialRouteName: 'Profile',
       tabBarOptions: {
         activeTintColor: '#3878FF',
         inactiveTintColor: '#90a5c2',

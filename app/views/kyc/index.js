@@ -5,7 +5,6 @@ import {
   Text
 } from "./styles";
 import Camera from "../../components/camera";
-import {Button, View} from "../chat/styles";
 
 
 class Kyc extends Component {
@@ -28,13 +27,13 @@ class Kyc extends Component {
           It's Kyc
         </Text>
         <Camera/>
-        <View>
+   {/*     <View>
           <Button onPress={() => this.props.navigation.navigate('Chat')}>
             <Text>
               CLICK
             </Text>
           </Button>
-        </View>
+        </View>*/}
       </MainView>
     );
   }
