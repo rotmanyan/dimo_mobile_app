@@ -112,7 +112,7 @@ class StartPage extends Component {
       .then(token => this.setState({token: !!token ? 'success' : null}))
   }
 
-  write = () => this.state.value === 'success'
+  write = () => this.state.value !== 'success'
     ? <SignUser step={this.state.value} changeStep={this.changeStep}/>
     : <Navigation/>
 
