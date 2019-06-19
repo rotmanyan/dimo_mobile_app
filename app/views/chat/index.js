@@ -14,6 +14,7 @@ import {
   EmptyImage, EmptyText, EmptyView
 } from "./styles";
 import {svgStyle, ViewSvg} from "../signUser/styles";
+import PersonalChat from "../../components/personalChat";
 
 /*class LogoTitle extends Component {
   render() {
@@ -37,56 +38,68 @@ class Chat extends Component {
     headerTitleStyle: {
       color: '#ffffff',
     },
-  };
+  }
+
+  state = {
+    contactName: ''
+  }
+
+  changeContactName = contactName => this.setState({contactName})
 
   render() {
+    console.log(this.state, ' contactName contactName contactName')
     return (
-      <MainView>
-        <BlockUser onPress={() => this.props.navigation.navigate('PersonalChat')}>
+      <>
+        {this.state.contactName !== 'Support'
+          ? <PersonalChat/>
+          : <MainView>
+            <BlockUser onPress={() => this.changeContactName('Support')}>
 
-          <BlockUserView>
-            <AvatarUser source={require('../../assets/images/oval58.png')}/>
+              <BlockUserView>
+                <AvatarUser source={require('../../assets/images/oval58.png')}/>
 
-            <ViewUserText>
-              <UserTextBold>
-                Support
-              </UserTextBold>
-              <UserText>
-                Last seen 3 hours ago
-              </UserText>
-            </ViewUserText>
+                <ViewUserText>
+                  <UserTextBold>
+                    Support
+                  </UserTextBold>
+                  <UserText>
+                    Last seen 3 hours ago
+                  </UserText>
+                </ViewUserText>
 
-            <SvgUserView>
-              <SvgUri
-                width="22"
-                height='22'
-                source={require('../../assets/icons/chat_bubble_outline.svg')}
-              />
-            </SvgUserView>
-          </BlockUserView>
-        </BlockUser>
+                <SvgUserView>
+                  <SvgUri
+                    width="22"
+                    height='22'
+                    source={require('../../assets/icons/chat_bubble_outline.svg')}
+                  />
+                </SvgUserView>
+              </BlockUserView>
+            </BlockUser>
 
-        <EmptyBox>
-          <EmptyView>
-            <EmptyText>
-              - Empty contacts -
-            </EmptyText>
-            <SvgUri
-              width="102"
-              height='102'
-              source={require('../../assets/icons/group2.svg')}
-              style={{margin: 16}}
-            />
-            <EmptyText>
-              Tell your friend about
-            </EmptyText>
-            <EmptyText>
-              DIMO
-            </EmptyText>
-          </EmptyView>
-        </EmptyBox>
-      </MainView>
-    );
+            <EmptyBox>
+              <EmptyView>
+                <EmptyText>
+                  - Empty contacts -
+                </EmptyText>
+                <SvgUri
+                  width="102"
+                  height='102'
+                  source={require('../../assets/icons/group2.svg')}
+                  style={{margin: 16}}
+                />
+                <EmptyText>
+                  Tell your friend about
+                </EmptyText>
+                <EmptyText>
+                  DIMO
+                </EmptyText>
+              </EmptyView>
+            </EmptyBox>
+          </MainView>
+        }
+      </>
+    )
   }
 }
 
