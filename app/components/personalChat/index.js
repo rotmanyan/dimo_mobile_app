@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {MainView, BodyView, MessageGreen} from './styles'
+import {MainView, BodyView, MessageGreen, MessageText, MessageGreenTime} from './styles'
 
 class PersonalChat extends Component {
   static navigationOptions = {
@@ -16,7 +16,15 @@ class PersonalChat extends Component {
     return (
       <MainView>
         <BodyView>
+          <MessageGreen>
+            <MessageText>
+              Can you send it for me?
+              Well, yes, why not?
+            </MessageText>
+            <MessageGreenTime>
 
+            </MessageGreenTime>
+          </MessageGreen>
         </BodyView>
       </MainView>
     )
