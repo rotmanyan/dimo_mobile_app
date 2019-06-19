@@ -14,12 +14,15 @@ import {
   ViewBottom,
   ImageBg
 } from './styles'
+import {CameraKitCamera} from "react-native-camera-kit";
+import PhoneInput from "../signUser";
 
 let timerSend;
 
 class SignUserCode extends Component {
   state = {
-    timer: 59
+    timer: 59,
+    value: ''
   }
 
   componentDidMount(): void {
@@ -32,7 +35,7 @@ class SignUserCode extends Component {
 
   render() {
     const {changeStep, changeState, viewValue} = this.props
-    const {timer} = this.state
+    const {timer, value} = this.state
     return (
       <MainView>
         <ViewHead>
@@ -46,7 +49,19 @@ class SignUserCode extends Component {
 
         <NumberMiddle>{viewValue}</NumberMiddle>
 
-        <InputForm placeholder="Insert the 6-digit code"/>
+        <InputForm
+          ref={input => {
+            if (input !== null) {
+              input.focus()
+              if (value.length >= 6) {
+                input.blur()
+              }
+            }
+          }}
+          value={value}
+          onChange={e => {
+            this.setState({value: e.nativeEvent.text})
+          }} placeholder="Insert the 6-digit code"/>
         {timer > 0
           ? <SendCount>
             Send again: {timer}

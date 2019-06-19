@@ -84,19 +84,19 @@ class Profile extends Component {
           <Text>
             E-mail
           </Text>
-          <Input placeholder='Enter your username'/>
+          <Input placeholder='Enter your e-mail'/>
           <Text>
             Mobile number
           </Text>
-          <Input placeholder='Enter your username'/>
+          <Input placeholder='Enter your mobile number'/>
           <Text>
             Country
           </Text>
-          <Input placeholder='Enter your username'/>
+          <Input placeholder='Enter your country'/>
           <Text>
             Address
           </Text>
-          <Input placeholder='Enter your username'/>
+          <Input placeholder='Enter your address'/>
           <Text>
             Username
           </Text>
