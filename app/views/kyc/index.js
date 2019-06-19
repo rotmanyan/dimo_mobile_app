@@ -4,20 +4,21 @@ import {
   MainView,
   Text
 } from "./styles";
-import Camera from "../../components/camera";
 
 
 class Kyc extends Component {
   static navigationOptions = {
-    title: 'KYC',
+    headerTitle: 'KYC',
     headerStyle: {
-      backgroundColor: '#f4511e',
+      backgroundColor: '#3878FF',
     },
-    headerTintColor: '#fff',
     headerTitleStyle: {
-      fontWeight: '300',
+      color: '#ffffff',
     },
-  };
+  }
+
+  state = {
+  }
 
   render() {
     return (
@@ -26,14 +27,6 @@ class Kyc extends Component {
         <Text>
           It's Kyc
         </Text>
-        <Camera/>
-   {/*     <View>
-          <Button onPress={() => this.props.navigation.navigate('Chat')}>
-            <Text>
-              CLICK
-            </Text>
-          </Button>
-        </View>*/}
       </MainView>
     );
   }

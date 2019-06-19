@@ -12,6 +12,7 @@ import Kyc from "../kyc";
 import Chat from "../chat";
 import Profile from "../profile";
 import Camera from "../../components/camera";
+import Activity from "../activity";
 import SignUser from "../signUser";
 import PersonalChat from "../../components/personalChat";
 
@@ -61,10 +62,10 @@ const WalletStack = createStackNavigator({
 );
 
 const ActivityStack = createStackNavigator({
-    Chat
+    Activity
   },
   {
-    initialRouteName: 'Chat'
+    initialRouteName: 'Activity'
   }
 );
 
