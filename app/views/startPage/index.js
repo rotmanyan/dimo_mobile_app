@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
+import AsyncStorage from "@react-native-community/async-storage";
 import {connect} from 'react-redux'
-import {View, Text} from 'react-native'
 import {getLanguages} from "react-native-i18n";
 import {setLocalizationRequest, setLocalizationSuccess} from '../../services/i18n/actions'
 import {
@@ -95,16 +95,20 @@ const Navigation = createAppContainer(
 
 class StartPage extends Component {
   state = {
-    value: ''
+    value: '',
+    token: ''
   }
   changeStep = value => this.setState({value})
 
   componentDidMount() {
     getLanguages()
       .then(data => setLocalizationSuccess(data[0].split('-')[0]))
+
+    AsyncStorage.getItem('token')
+      .then(token => this.setState({token: !!token ? 'success' : null}))
   }
 
-  write = () => this.state.value
+  write = () => this.state.value === 'success'
     ? <Navigation/>
     : <SignUser step={this.state.value} changeStep={this.changeStep}/>
 
@@ -117,7 +121,7 @@ class StartPage extends Component {
 
 const MSTP = state => ({
   isAuthenticated: state.profile.isAuthenticated,
-  localization: state.localization.language
+  localization: state.localization.language,
 })
 
 const MDTP = {

@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import PhoneInput from 'react-native-phone-input'
 import SvgUri from 'react-native-svg-uri';
 import {signUser} from '../../services/profile/operation'
+import SignUserCode from '../signUserCode'
 import * as selectorLang from '../../services/selectors'
 import {
   TextHeadMiddle,
@@ -23,8 +24,10 @@ import {
 class SignUser extends Component {
   state = {
     value: '+255721234566',
+    viewValue: '',
     storage: '',
-    photos: []
+    photos: [],
+    step: 'one'
   }
 
   writeInput = () => {
@@ -33,7 +36,7 @@ class SignUser extends Component {
         initialCountry='tz'
         ref={input => {
           if (input !== null) {
-            let a = this.state.value.split(' ').join('')
+            let a = this.state.viewValue.split(' ').join('')
             // input.focus()
 
             if (a.length >= 13) {
@@ -45,15 +48,17 @@ class SignUser extends Component {
         flagStyle={{borderRadius: 12.5, width: 25, height: 25}}
         confirmText='Confirm'
         cancelText='Cancel'
-        onChangePhoneNumber={value => this.setState({value})}
+        // onChangePhoneNumber={value => this.setState({value})}
+        onChangePhoneNumber={viewValue => this.setState({viewValue})}
       />
     )
   }
 
-  render() {
+  writeBody = () => {
     const {translate, sign} = this.props
+
     return (
-      <MainView>
+      <>
         <ViewHead>
           <ImageBg source={require('../../assets/backgrounds/Top.png')}/>
         </ViewHead>
@@ -122,9 +127,26 @@ class SignUser extends Component {
             onPress={() => {
               console.log(this.state.value.trim());
               sign(this.state.value.trim())
+              this.setState({step: 'two'})
             }}
           />
         </ButtonView>
+      </>
+    )
+  }
+
+  render() {
+    const {translate, sign, changeStep} = this.props
+    const {step, viewValue} = this.state
+    return (
+      <MainView>
+        {step === 'one'
+          ? this.writeBody()
+          : step === 'two'
+            ? <SignUserCode viewValue={viewValue} changeState={() => this.setState({step: 'one'})}
+                            changeStep={changeStep}/>
+            : null
+        }
       </MainView>
     )
   }
