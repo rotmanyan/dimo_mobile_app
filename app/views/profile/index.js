@@ -8,6 +8,7 @@ import {
   InputWhite,
   TextLimit,
   TextNumber,
+  TextNumberRight,
   ImageUser, ViewUser, TextUser, TariffUserView, TariffUserText,
   YellowButtonView, YellowButton, YellowText, YellowButtonText,
   HeadBlock,
@@ -68,9 +69,9 @@ class Profile extends Component {
               <TextLimit>
                 Withdraw Limit:
               </TextLimit>
-              <TextNumber>
+              <TextNumberRight>
                 10.000.000
-              </TextNumber>
+              </TextNumberRight>
             </RightBlock>
           </HeadBlock>
 

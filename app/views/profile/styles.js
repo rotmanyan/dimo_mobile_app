@@ -8,11 +8,15 @@ export const TopView = styled.View`
   flex: 2;
   background-color: #fff;
   padding: 8px 8px 18px;
+    shadow-color: rgba(0,0,0,0.7);
+  shadow-opacity: 0.7;
+  shadow-radius: 2;
+  shadow-offset: 0 2px;
 `
 
 export const BottomView = styled.ScrollView`
   flex: 3;
-  background-color: #BFC9D9;
+  background-color: #e9edf2;
   padding: 8px 16px 0;
 `
 
@@ -64,7 +68,13 @@ export const YellowText = styled.Text`
 `
 
 export const YellowButtonView = styled.View`
-
+  border-radius: 24px;	
+  background-color: #FFFFFF;
+  padding: 8px 12px;
+  shadow-color: rgba(0,0,0,0.7);
+  shadow-opacity: 0.7;
+  shadow-radius: 2;
+  shadow-offset: 0 2px;
 `
 
 export const YellowButton = styled.TouchableOpacity`
@@ -72,13 +82,17 @@ export const YellowButton = styled.TouchableOpacity`
 `
 
 export const YellowButtonText = styled.Text`
-
+  color: #4C6180;	
+  font-size: 14px;	
+  letter-spacing: 1.35px;
+	line-height: 19px;
+	text-align: center;
 `
 
 export const HeadBlock = styled.View`
-padding-top: 16px;
-justify-content: space-between;
-flex-direction: row;
+  padding-top: 16px;
+  justify-content: space-between;
+  flex-direction: row;
 `
 
 export const LeftBlock = styled.View`
@@ -99,6 +113,12 @@ export const TextLimit = styled.Text`
 export const TextNumber = styled.Text`
   font-size: 16px;
   color: #1D2531;
+`
+
+export const TextNumberRight = styled.Text`
+  font-size: 16px;
+  color: #1D2531;
+  text-align: right;
 `
 
 export const ViewUser = styled.View`
@@ -133,4 +153,8 @@ export const TariffUserText = styled.Text`
   font-size: 12px;	
   letter-spacing: 0.09px;
 	line-height: 16px;
+`
+
+export const ViewBlueButton = styled.View`
+
 `
