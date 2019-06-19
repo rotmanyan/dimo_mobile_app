@@ -100,7 +100,9 @@ class App extends React.Component {
   changeStep = value => this.setState({value})
 
   componentDidMount() {
-
+    getLanguages()
+      .then(data => console.log(data[0].split('-')[0]))
+    // .then(data => setLocalizationSuccess(data[0].split('-')[0]))
   }
 
 

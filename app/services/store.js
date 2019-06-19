@@ -5,14 +5,12 @@ import {createLogger} from 'redux-logger'
 import {signUser} from "./profile/reducer";
 import {i18n} from "./i18n/reducer";
 import {kyc} from "./kyc/reducer";
-import {stepByStep} from "./step/reducer";
 
 
 const rootReducer = combineReducers({
   profile: signUser,
   localization: i18n,
   kyc,
-  step: stepByStep
 })
 
 const loggerMiddleware = createLogger({

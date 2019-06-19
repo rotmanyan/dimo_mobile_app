@@ -1,1 +1,0 @@
-export const step = state => state.step
