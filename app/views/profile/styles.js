@@ -8,7 +8,7 @@ export const TopView = styled.View`
   flex: 2;
   background-color: #fff;
   padding: 8px 8px 18px;
-    shadow-color: rgba(0,0,0,0.7);
+  shadow-color: rgba(0,0,0,0.7);
   shadow-opacity: 0.7;
   shadow-radius: 2;
   shadow-offset: 0 2px;
@@ -87,6 +87,7 @@ export const YellowButtonText = styled.Text`
   letter-spacing: 1.35px;
 	line-height: 19px;
 	text-align: center;
+	text-transform: uppercase;
 `
 
 export const HeadBlock = styled.View`
@@ -156,5 +157,25 @@ export const TariffUserText = styled.Text`
 `
 
 export const ViewBlueButton = styled.View`
+  margin: 24px auto 30px;
+  border-radius: 24px;	
+  background-color: #3878FF;
+  shadow-color: rgba(0,0,0,0.7);
+  shadow-opacity: 0.7;
+  shadow-radius: 2;
+  shadow-offset: 0 2px;
+  	width: 150px;
+  	padding: 11px 44px;
+`
 
+export const BlueButton = styled.TouchableOpacity`
+
+`
+
+export const BlueButtonText = styled.Text`
+text-align: center;
+color: #ffffff;
+font-size: 14px;
+line-height: 19px;
+letter-spacing: 1.35px;
 `

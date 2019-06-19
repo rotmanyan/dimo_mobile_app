@@ -15,7 +15,10 @@ import {
   LeftBlock,
   CenterBlock,
   RightBlock,
-  YellowBlock
+  YellowBlock,
+  ViewBlueButton,
+  BlueButton,
+  BlueButtonText
 } from "./styles";
 
 class Profile extends Component {
@@ -38,7 +41,7 @@ class Profile extends Component {
               Account wit limited abilities
             </YellowText>
             <YellowButtonView>
-              <YellowButton>
+              <YellowButton onPress={()=> console.log('123123')}>
                 <YellowButtonText>
                   Complete KYC
                 </YellowButtonText>
@@ -98,6 +101,13 @@ class Profile extends Component {
             Username
           </Text>
           <InputWhite placeholder='Enter your username'/>
+          <ViewBlueButton>
+            <BlueButton>
+              <BlueButtonText>
+                SUBMIT
+              </BlueButtonText>
+            </BlueButton>
+          </ViewBlueButton>
         </BottomView>
       </MainView>
     );
