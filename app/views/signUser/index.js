@@ -51,7 +51,7 @@ class SignUser extends Component {
   }
 
   render() {
-    const {translate, sign, changeStep} = this.props
+    const {translate, sign} = this.props
     return (
       <MainView>
         <ViewHead>
@@ -122,7 +122,6 @@ class SignUser extends Component {
             onPress={() => {
               console.log(this.state.value.trim());
               sign(this.state.value.trim())
-              changeStep('onBoard')
             }}
           />
         </ButtonView>

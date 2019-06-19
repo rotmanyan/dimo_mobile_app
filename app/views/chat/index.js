@@ -5,10 +5,28 @@ import {
   View,
   Button,
   Text,
-  // Image
+  Image,
+  ViewLogo
 } from "./styles";
 
+class LogoTitle extends Component {
+  render() {
+    return (
+      <ViewLogo>
+        <Image
+          source={require('../../assets/backgrounds/logo.png')}
+          style={{width: 30, height: 30}}
+        />
+      </ViewLogo>
+    );
+  }
+}
+
 class Chat extends Component {
+  static navigationOptions = {
+    headerTitle: 'Chat',
+  };
+
   render() {
     return (
       <MainView>
@@ -16,7 +34,11 @@ class Chat extends Component {
           It's Chat
         </Text>
         <View>
-          <Button/>
+          <Button onPress={() => this.props.navigation.navigate('Kyc')}>
+            <Text>
+              CLICK
+            </Text>
+          </Button>
         </View>
       </MainView>
     );

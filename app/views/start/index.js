@@ -12,8 +12,7 @@ import OnBoard from "../onBoard";
 
 class Start extends Component {
   state = {
-    token: '',
-    step: 'kyc'
+    token: ''
   }
 
   componentDidMount() {

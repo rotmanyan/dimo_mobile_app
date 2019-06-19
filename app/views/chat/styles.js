@@ -19,3 +19,12 @@ export const View = styled.View`
 export const Button = styled.TouchableOpacity`
   color: #90a5c2;
 `
+
+export const Image = styled.Image`
+`
+
+export const ViewLogo = styled.View`
+  justify-content: space-between;
+  flex: 1;
+  align-items: center;
+`
