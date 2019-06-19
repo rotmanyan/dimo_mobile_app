@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import PhoneInput from 'react-native-phone-input'
 import SvgUri from 'react-native-svg-uri';
 import {signUser} from '../../services/profile/operation'
-import * as selectorLang from '../../services/i18n/selectors'
+import * as selectorLang from '../../services/selectors'
 import {
   TextHeadMiddle,
   StyledButton,

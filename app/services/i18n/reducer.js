@@ -4,8 +4,8 @@ import ru from '../../i18n/locales/ru'
 import pl from '../../i18n/locales/pl'
 
 const initialState = {
-  language: '',
-  translate: null
+  language: 'en',
+  translate: en
 }
 
 export const i18n = (state = initialState, {type, payload}) => {
