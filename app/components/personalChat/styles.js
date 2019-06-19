@@ -21,14 +21,22 @@ padding: 15px 21.5px;
 `
 
 export const MessageGreen = styled.View`
+  margin-left: auto;
   background-color: #effedd;
   min-width: 141px;
   max-width: 260px;
   padding: 9px 12px;
-  align-items: center;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  flex-direction: row;
 `
 
 export const MessageGreenTime = styled.Text`
+	font-size: 13px;
+	letter-spacing: -0.1px;	
+	line-height: 16px;
+	color: #69C35F;
 `
 
 export const MessageText = styled.Text`

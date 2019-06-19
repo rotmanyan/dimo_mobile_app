@@ -12,9 +12,35 @@ class PersonalChat extends Component {
     },
   }
 
-  state = {}
+  state = {
+    messagesFromMe: [
+      {text: 'Can you send it for me? Well, yes, why not?', time: '5:41 PM'},
+      {text: 'Can you send it for me? Well, yes, why not?', time: '5:41 PM'}
+    ],
+    messagesForMe: [
+      {text: 'Thanks!', time: '5:42 PM'},
+    ]
+  }
 
   componentDidMount() {
+  }
+
+  writeFromMe = () => {
+    const {messagesFromMe} = this.state
+    return (
+      messagesFromMe.map((el, id) => {
+        return (
+          <MessageGreen key={id}>
+            <MessageText>
+              {el.text}
+            </MessageText>
+            <MessageGreenTime>
+              {el.time}
+            </MessageGreenTime>
+          </MessageGreen>
+        )
+      })
+    )
   }
 
   render() {
@@ -22,15 +48,7 @@ class PersonalChat extends Component {
     return (
       <MainView>
         <BodyView>
-          <MessageGreen>
-            <MessageText>
-              Can you send it for me?
-              Well, yes, why not?
-            </MessageText>
-            <MessageGreenTime>
-
-            </MessageGreenTime>
-          </MessageGreen>
+          {this.writeFromMe()}
         </BodyView>
       </MainView>
     )
