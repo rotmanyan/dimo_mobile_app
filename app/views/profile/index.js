@@ -41,7 +41,7 @@ class Profile extends Component {
               Account wit limited abilities
             </YellowText>
             <YellowButtonView>
-              <YellowButton>
+              <YellowButton onPress={()=> console.log('123123')}>
                 <YellowButtonText>
                   Complete KYC
                 </YellowButtonText>
