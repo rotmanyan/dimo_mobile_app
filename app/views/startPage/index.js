@@ -85,7 +85,7 @@ const Navigation = createAppContainer(
       Profile: ProfileStack
     },
     {
-      initialRouteName: 'Profile',
+      initialRouteName: 'Chat',
       tabBarOptions: {
         activeTintColor: '#3878FF',
         inactiveTintColor: '#90a5c2',
