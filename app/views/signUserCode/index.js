@@ -1,57 +1,77 @@
 import React, {Component} from 'react'
 import {
-    TextHeadMiddle,
-    MainView,
-    ButtonPanelView,
-    BackButtonView,
-    NextButtonView,
-    BackButton,
-    NextButton,
-    NumberMiddle,
-    InputForm,
-    SendCount,
-    ViewHead,
-    ViewBottom,
-    ImageBg
+  TextHeadMiddle,
+  MainView,
+  ButtonPanelView,
+  BackButtonView,
+  NextButtonView,
+  BackButton,
+  NextButton,
+  NumberMiddle,
+  InputForm,
+  SendCount,
+  ViewHead,
+  ViewBottom,
+  ImageBg
 } from './styles'
 
+let timerSend;
+
 class SignUserCode extends Component {
-    render() {
-        const {changeStep, changeState, viewValue} = this.props
-        return (
-            <MainView>
-                <ViewHead>
-                    <ImageBg source={require('../../assets/backgrounds/Top.png')}/>
-                </ViewHead>
-                <ViewBottom>
-                    <ImageBg source={require('../../assets/backgrounds/bottom.png')}/>
-                </ViewBottom>
+  state = {
+    timer: 59
+  }
 
-                <TextHeadMiddle>We just sent to you a code to number</TextHeadMiddle>
+  componentDidMount(): void {
+    timerSend = setInterval(() => this.setState({timer: this.state.timer - 1}), 1000)
+  }
 
-                <NumberMiddle>+255 534 45 33</NumberMiddle>
+  componentWillUnmount(): void {
+    clearInterval(timerSend)
+  }
 
-                <InputForm placeholder="Insert the 6-digit code"/>
-                <SendCount>
-                    Send again: 59
-                </SendCount>
-                <ButtonPanelView>
-                    <BackButtonView onPress={() => changeState()}>
-                        <BackButton>
-                            Back
-                        </BackButton>
-                    </BackButtonView>
+  render() {
+    const {changeStep, changeState, viewValue} = this.props
+    const {timer} = this.state
+    return (
+      <MainView>
+        <ViewHead>
+          <ImageBg source={require('../../assets/backgrounds/Top.png')}/>
+        </ViewHead>
+        <ViewBottom>
+          <ImageBg source={require('../../assets/backgrounds/bottom.png')}/>
+        </ViewBottom>
 
-                    <NextButtonView onPress={() => changeStep('success')}>
-                        <NextButton>
-                            Next
-                        </NextButton>
-                    </NextButtonView>
-                </ButtonPanelView>
+        <TextHeadMiddle>We just sent to you a code to number</TextHeadMiddle>
 
-            </MainView>
-        )
-    }
+        <NumberMiddle>{viewValue}</NumberMiddle>
+
+        <InputForm placeholder="Insert the 6-digit code"/>
+        {timer > 0
+          ? <SendCount>
+            Send again: {timer}
+          </SendCount>
+          : <SendCount>
+            Click to send again
+          </SendCount>
+        }
+        <ButtonPanelView>
+          <BackButtonView onPress={() => changeState()}>
+            <BackButton>
+              Back
+            </BackButton>
+          </BackButtonView>
+
+          <NextButtonView onPress={() => changeStep('success')}>
+            <NextButton>
+              Next
+            </NextButton>
+          </NextButtonView>
+        </ButtonPanelView>
+
+      </MainView>
+    )
+  }
 }
 
 export default SignUserCode
