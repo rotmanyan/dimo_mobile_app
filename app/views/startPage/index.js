@@ -13,6 +13,7 @@ import Chat from "../chat";
 import Profile from "../profile";
 import Camera from "../../components/camera";
 import SignUser from "../signUser";
+import PersonalChat from "../../components/personalChat";
 
 // Create our stack navigator
 let HomeStack = createStackNavigator({
@@ -35,7 +36,8 @@ let HomeStack = createStackNavigator({
 )
 
 const ChatStack = createStackNavigator({
-    Chat
+    Chat,
+    PersonalChat
   },
   {
     initialRouteName: 'Chat'
@@ -67,7 +69,8 @@ const ActivityStack = createStackNavigator({
 );
 
 const ProfileStack = createStackNavigator({
-    Profile
+    Profile,
+    Kyc
   },
   {
     initialRouteName: 'Profile'
