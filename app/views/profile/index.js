@@ -1,19 +1,103 @@
 import React, {Component} from 'react';
 import {
   MainView,
-  // View,
-  // Button,
+  TopView,
+  BottomView,
   Text,
-  // Image
+  Input,
+  InputWhite,
+  TextLimit,
+  TextNumber,
+  ImageUser, ViewUser, TextUser, TariffUserView, TariffUserText,
+  YellowButtonView, YellowButton, YellowText, YellowButtonText,
+  HeadBlock,
+  LeftBlock,
+  CenterBlock,
+  RightBlock,
+  YellowBlock
 } from "./styles";
 
 class Profile extends Component {
+  static navigationOptions = {
+    headerTitle: 'Profile',
+    headerStyle: {
+      backgroundColor: '#3878FF',
+    },
+    headerTitleStyle: {
+      color: '#ffffff',
+    },
+  };
+
   render() {
     return (
       <MainView>
-        <Text>
-          It's Profile
-        </Text>
+        <TopView>
+          <YellowBlock>
+            <YellowText>
+              Account wit limited abilities
+            </YellowText>
+            <YellowButtonView>
+              <YellowButton>
+                <YellowButtonText>
+                  Complete KYC
+                </YellowButtonText>
+              </YellowButton>
+            </YellowButtonView>
+          </YellowBlock>
+          <HeadBlock>
+            <LeftBlock>
+              <TextLimit>
+                Daily Limits:
+              </TextLimit>
+              <TextNumber>
+                10.000
+              </TextNumber>
+            </LeftBlock>
+
+            <CenterBlock>
+              <ViewUser>
+                <ImageUser source={require('../../assets/images/ignat.png')}/>
+              </ViewUser>
+              <TextUser>John Doe</TextUser>
+              <TariffUserView>
+                <TariffUserText>Business Account</TariffUserText>
+              </TariffUserView>
+            </CenterBlock>
+
+            <RightBlock>
+              <TextLimit>
+                Withdraw Limit:
+              </TextLimit>
+              <TextNumber>
+                10.000.000
+              </TextNumber>
+            </RightBlock>
+          </HeadBlock>
+
+
+        </TopView>
+        <BottomView>
+          <Text>
+            E-mail
+          </Text>
+          <Input placeholder='Enter your username'/>
+          <Text>
+            Mobile number
+          </Text>
+          <Input placeholder='Enter your username'/>
+          <Text>
+            Country
+          </Text>
+          <Input placeholder='Enter your username'/>
+          <Text>
+            Address
+          </Text>
+          <Input placeholder='Enter your username'/>
+          <Text>
+            Username
+          </Text>
+          <InputWhite placeholder='Enter your username'/>
+        </BottomView>
       </MainView>
     );
   }

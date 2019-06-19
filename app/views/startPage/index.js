@@ -85,6 +85,7 @@ const Navigation = createAppContainer(
       Profile: ProfileStack
     },
     {
+      initialRouteName: 'Profile',
       tabBarOptions: {
         activeTintColor: '#3878FF',
         inactiveTintColor: '#90a5c2',
@@ -109,9 +110,8 @@ class StartPage extends Component {
   }
 
   write = () => this.state.value === 'success'
-    ? <Navigation/>
-    : <SignUser step={this.state.value} changeStep={this.changeStep}/>
-
+    ? <SignUser step={this.state.value} changeStep={this.changeStep}/>
+    : <Navigation/>
 
   render() {
     console.log(this.state, 'changeStep changeStep changeStep');
