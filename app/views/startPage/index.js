@@ -37,10 +37,10 @@ let HomeStack = createStackNavigator({
 
 const ChatStack = createStackNavigator({
     Chat,
-    PersonalChat: PersonalChat
+    PersonalChat
   },
   {
-    initialRouteName: 'Chat'
+    initialRouteName: 'PersonalChat'
   }
 )
 

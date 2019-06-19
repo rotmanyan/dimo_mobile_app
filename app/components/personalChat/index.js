@@ -4,6 +4,12 @@ import {MainView, BodyView, MessageGreen, MessageText, MessageGreenTime} from '.
 class PersonalChat extends Component {
   static navigationOptions = {
     headerTitle: 'Support',
+    headerStyle: {
+      backgroundColor: '#3878FF',
+    },
+    headerTitleStyle: {
+      color: '#ffffff',
+    },
   }
 
   state = {}
