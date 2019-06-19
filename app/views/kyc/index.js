@@ -42,12 +42,13 @@ class Kyc extends Component {
     console.log('123123123');
     // openSelectDialog(config, successCallback, errorCallback);
     ImagePickerIOS.openSelectDialog({}, imageUri => {
-      this.setState({image: [...this.state.image, imageUri]});
+      this.setState({images: [...this.state.images, imageUri]});
     }, error => console.log(error, 'error'));
   }
 
   render() {
     const {images, step, isFirst} = this.state
+    console.log(images, 'images');
     return (
       <>
         {isFirst
@@ -99,7 +100,7 @@ class Kyc extends Component {
                       <UploadImageTextFooter>Upload or take a picture</UploadImageTextFooter>
                     </UploadImageTextBox>
                   </UploadImage>
-                  {!images.length
+                  {images.length === 2
                     ? <ButtonProceedBlue onPress={() => this.props.navigation.navigate('Profile')}>
                       <ButtonProceedText>
                         PROCEED
