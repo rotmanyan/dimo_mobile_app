@@ -24,9 +24,14 @@ class LogoTitle extends Component {
 
 class Chat extends Component {
   static navigationOptions = {
-    headerTitle: 'Chat',
+    headerTitle: 'Contacts',
+    headerStyle: {
+      backgroundColor: '#3878FF',
+    },
+    headerTitleStyle: {
+      color: '#ffffff',
+    },
   };
-
   render() {
     return (
       <MainView>
