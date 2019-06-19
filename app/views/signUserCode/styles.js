@@ -1,28 +1,88 @@
-import {StyleSheet} from 'react-native'
 import styled from 'styled-components/native'
 
 export const MainView = styled.View`
-  padding: 50px 0;
+width: 100%;
+height: 100%;
+  padding: 32px 0;
   flex: 5;
-  background-color: #3878FF;
-  justify-content: center;
-`
-
-//logo
-export const ViewLogo = styled.View`
-  min-height: 90px;
-  width: 100%;
-  justify-content: center;
+  background-color: rgba(17,29,85,0.78);
   align-items: center;
+  margin: auto;
+  justify-content: center;
 `
 
-export const ImageLogo = styled.Image`
-  width: 128px;
-  height: 90px;
+//button
+export const ButtonPanelView = styled.View`
+  flex:1;
+  flex-direction: row;
+  width: 240px;
+  justify-content: space-between;
+  margin-top: auto;
 `
 
+export const BackButtonView = styled.TouchableOpacity`
+  height: 40px;
+  width: 104px;
+  background-color: transparent;
+  border-radius: 50px;
+    align-items: center;
+   justify-content: center;
+     border: 1px solid #FFFFFF;
+`
+export const NextButtonView = styled.TouchableOpacity`
+  border-radius: 50px;
+  width: 104px;
+  height: 40px;
+  background-color: #4EDBD0;  
+  align-items: center;
+  justify-content: center;
+`
 
-//image
+export const BackButton = styled.Text`
+color: #fff;
+font-size: 14px;
+`
+
+export const NextButton = styled.Text`
+color: #fff;
+font-size: 14px;
+`
+
+export const TextHeadMiddle = styled.Text`
+flex:1;
+  color: #fff;
+  text-align: center;
+  max-width: 296px;
+  margin: auto;
+  margin-bottom: 5px;
+  font-size: 18px;
+  font-weight: 700;
+`
+export const NumberMiddle = styled.Text`
+flex:1;
+  color: #fff;
+  line-height: 35px;
+  text-align: center;
+  max-width: 296px;
+  margin: 0 auto 16px auto;
+  font-size: 26px;
+  font-weight: 700;
+`
+
+export const InputForm = styled.TextInput`
+  flex:1;
+  width: 300px;
+  border-radius: 18px;
+  max-height: 40px;
+  background-color: #fff;
+  padding: 10px 0 10px 18px;
+  margin-bottom: 16px;
+`
+export const SendCount = styled.Text`
+  flex:1;
+  font-size: 16px;
+  color: #fff;
+`
 export const ViewHead = styled.View`
   position: absolute;
   top: 0;
@@ -47,48 +107,4 @@ export const ImageBg = styled.Image`
   min-height: 20%;
   max-height: 280px;
   width: 100%;
-`
-
-//svg
-export const ViewSvg = styled.View`
-  flex-direction: row;
-  margin: auto;
-`
-
-export const svgStyle = {
-  marginRight: '12%'
-}
-
-export const ButtonSvg = styled.TouchableHighlight`
-  margin-right: 12%;
-`
-
-//button
-export const ButtonView = styled.View`
-  background-color: #4EDBD0;
-  border-radius: 50px;
-  width: 156px;
-  height: 40px;
-  margin: auto;
-`
-
-export const StyledButton = styled.Button`
-  color: #fff;
-  font-size: 150px;
-`
-
-//all
-export const PhoneView = styled.View`
-  background-color: #fff;
-  padding: 10px;
-  width: 296px;
-  margin: auto;
-  border-radius: 50px;
-`
-
-export const TextHeadMiddle = styled.Text`
-  color: #fff;
-  text-align: center;
-  max-width: 296px;
-  margin: auto;
 `
