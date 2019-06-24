@@ -1,6 +1,6 @@
 import styled from 'styled-components/native'
 
-export const MainView = styled.View`
+export const MainView = styled.ScrollView`
   flex: 1;
   background-color: #e9edf2;
 `
@@ -18,6 +18,7 @@ align-items: center;
 export const AvatarUser = styled.Image`
 height: 40px;
 width: 40px;
+border-radius: 20px;
 `
 export const ViewUserText = styled.View`
 margin: 0 auto 0 12px;

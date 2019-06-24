@@ -86,8 +86,10 @@ class Chat extends Component {
                 <BlockUser onPress={() => this.props.navigation.navigate('PersonalChat')} key={key}>
 
                   <BlockUserView>
-                    <AvatarUser source={require('../../assets/images/oval58.png')}/>
-
+                    {el.thumbnailPath
+                      ? <AvatarUser source={{uri: el.thumbnailPath}}/>
+                      : <AvatarUser source={require('../../assets/images/oval58.png')}/>
+                    }
                     <ViewUserText>
                       <UserTextBold>
                         {el.givenName}
@@ -108,7 +110,7 @@ class Chat extends Component {
                 </BlockUser>)
               : <EmptyBox onPress={() => {
                 Vibration.vibrate()
-                Contacts.getAll((error, data) => this.setState({arrayContacts: [data[0], data[1], data[2]]}))
+                Contacts.getAll((error, data) => this.setState({arrayContacts: data}))
               }}>
                 <EmptyView>
                   <EmptyText>
