@@ -16,6 +16,7 @@ import {
   ViewLogo,
   ImageLogo,
 } from './styles'
+import EnterPassword from "../../components/enterPassword";
 
 class SignUser extends Component {
   state = {
@@ -89,9 +90,15 @@ class SignUser extends Component {
     )
   }
 
+  /*
+    render() {
+      if (!this.props.userNumber) return <MainView>{this.writeBody()}</MainView>
+      else if (!!this.props.userNumber) return <SignUserCode/>
+    }*/
   render() {
-    if (!this.props.userNumber) return <MainView>{this.writeBody()}</MainView>
-    else if (!!this.props.userNumber) return <SignUserCode/>
+    return (
+      <EnterPassword/>
+    );
   }
 }
 

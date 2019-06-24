@@ -49,15 +49,15 @@ font-size: 14px;
 `
 
 export const TextHeadMiddle = styled.Text`
-flex:1;
+  flex:1;
   color: #fff;
   text-align: center;
   max-width: 296px;
-  margin: auto;
-  margin-bottom: 5px;
+  margin: auto auto 5px;
   font-size: 18px;
   font-weight: 700;
 `
+
 export const NumberMiddle = styled.Text`
 flex:1;
   color: #fff;
@@ -78,6 +78,7 @@ export const InputForm = styled.TextInput`
   padding: 10px 0 10px 18px;
   margin-bottom: 16px;
 `
+
 export const SendCount = styled.Text`
   flex:1;
   font-size: 16px;

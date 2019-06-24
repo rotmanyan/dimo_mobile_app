@@ -1,11 +1,22 @@
 import React, {Component} from 'react';
-import {MainView, ImageBg, ViewBottom, ViewHead} from './styles'
-import {InputForm} from "../../views/signUserCode/styles";
+import {
+  MainView,
+  ImageBg,
+  ViewBottom,
+  ViewHead,
+  ButtonPanelView,
+  InputForm,
+  NextButton,
+  NextButtonView,
+  SendCount,
+  SendCountText
+} from './styles'
 
 class EnterPassword extends Component {
   state = {value: ''}
 
   render() {
+    const {value} = this.state
     return (
       <MainView>
         <ViewHead>
@@ -27,6 +38,18 @@ class EnterPassword extends Component {
           onChange={e => {
             this.setState({value: e.nativeEvent.text})
           }} placeholder="Enter your password"/>
+        <SendCount>
+          <SendCountText>
+            I've forgotten my password
+          </SendCountText>
+        </SendCount>
+        <ButtonPanelView>
+          <NextButtonView onPress={() => console.log('success')}>
+            <NextButton>
+              Next
+            </NextButton>
+          </NextButtonView>
+        </ButtonPanelView>
       </MainView>
     )
   }

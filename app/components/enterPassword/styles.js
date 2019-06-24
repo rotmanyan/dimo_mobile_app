@@ -41,3 +41,43 @@ export const ImageBg = styled.Image`
   max-height: 280px;
   width: 100%;
 `
+
+export const ButtonPanelView = styled.View`
+  flex:1;
+  width: 240px;
+  justify-content: flex-end;
+  margin-top: auto;
+`
+
+export const NextButtonView = styled.TouchableOpacity`
+  border-radius: 50px;
+  height: 40px;
+  background-color: #4EDBD0;  
+  align-items: center;
+  justify-content: center;
+`
+
+export const NextButton = styled.Text`
+color: #fff;
+font-size: 14px;
+`
+
+export const InputForm = styled.TextInput`
+  flex:1;
+  width: 300px;
+  border-radius: 18px;
+  max-height: 40px;
+  background-color: #fff;
+  padding: 10px 0 10px 18px;
+  margin-bottom: 16px;
+`
+
+export const SendCount = styled.TouchableOpacity`
+  flex:1;
+`
+
+export const SendCountText = styled.Text`
+  text-decoration: underline #fff;
+  font-size: 16px;
+  color: #ffffff;
+`
