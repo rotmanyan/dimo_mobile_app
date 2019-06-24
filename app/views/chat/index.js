@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import {Vibration} from 'react-native'
+import Contacts from 'react-native-contacts'
 import SvgUri from 'react-native-svg-uri';
 
 import {
@@ -40,12 +42,15 @@ class Chat extends Component {
   }
 
   state = {
-    contactName: ''
+    contactName: '',
+    arrayContacts: []
   }
 
   changeContactName = contactName => this.setState({contactName})
 
   render() {
+    const {arrayContacts} = this.state
+    console.log(Vibration, 'Vibration');
     console.log(this.state, ' contactName contactName contactName')
     return (
       <>
@@ -75,25 +80,55 @@ class Chat extends Component {
             </BlockUserView>
           </BlockUser>
 
-          <EmptyBox>
-            <EmptyView>
-              <EmptyText>
-                - Empty contacts -
-              </EmptyText>
-              <SvgUri
-                width="102"
-                height='102'
-                source={require('../../assets/icons/group2.svg')}
-                style={{margin: 16}}
-              />
-              <EmptyText>
-                Tell your friend about
-              </EmptyText>
-              <EmptyText>
-                DIMO
-              </EmptyText>
-            </EmptyView>
-          </EmptyBox>
+          {
+            arrayContacts.length > 0
+              ? arrayContacts.map((el, key) =>
+                <BlockUser onPress={() => this.props.navigation.navigate('PersonalChat')} key={key}>
+
+                  <BlockUserView>
+                    <AvatarUser source={require('../../assets/images/oval58.png')}/>
+
+                    <ViewUserText>
+                      <UserTextBold>
+                        {el.givenName}
+                      </UserTextBold>
+                      <UserText>
+                        Last seen 3 hours ago
+                      </UserText>
+                    </ViewUserText>
+
+                    <SvgUserView>
+                      <SvgUri
+                        width="22"
+                        height='22'
+                        source={require('../../assets/icons/chat_bubble_outline.svg')}
+                      />
+                    </SvgUserView>
+                  </BlockUserView>
+                </BlockUser>)
+              : <EmptyBox onPress={() => {
+                Vibration.vibrate()
+                Contacts.getAll((error, data) => this.setState({arrayContacts: [data[0], data[1], data[2]]}))
+              }}>
+                <EmptyView>
+                  <EmptyText>
+                    - Empty contacts -
+                  </EmptyText>
+                  <SvgUri
+                    width="102"
+                    height='102'
+                    source={require('../../assets/icons/group2.svg')}
+                    style={{margin: 16}}
+                  />
+                  <EmptyText>
+                    Tell your friend about
+                  </EmptyText>
+                  <EmptyText>
+                    DIMO
+                  </EmptyText>
+                </EmptyView>
+              </EmptyBox>
+          }
         </MainView>
       </>
     )

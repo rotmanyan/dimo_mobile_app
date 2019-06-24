@@ -10,7 +10,7 @@ const initialState = {
 };
 */
 const initialState = {
-  token: '',
+  token: 'cfh872wn9ce3',
   userNumber: '',
 }
 

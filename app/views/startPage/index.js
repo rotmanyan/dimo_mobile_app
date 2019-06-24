@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Text} from 'react-native';
 import AsyncStorage from "@react-native-community/async-storage";
 import {connect} from 'react-redux'
 import {getLanguages} from "react-native-i18n";
@@ -6,7 +7,7 @@ import {setLocalizationRequest, setLocalizationSuccess} from '../../services/i18
 import {
   createAppContainer,
   createStackNavigator,
-  createBottomTabNavigator
+  createBottomTabNavigator,
 } from 'react-navigation';
 import Kyc from "../kyc";
 import Chat from "../chat";
@@ -100,35 +101,33 @@ const Navigation = createAppContainer(
 
 class StartPage extends Component {
   state = {
-    value: '',
-    token: ''
+    isAuthenticated: false
   }
-  changeStep = value => this.setState({value})
 
   componentDidMount() {
     getLanguages()
       .then(data => setLocalizationSuccess(data[0].split('-')[0]))
 
     AsyncStorage.getItem('token')
-      .then(token => this.setState({token: !!token ? 'success' : null}))
+      .then(token => {
+        if (token || this.props.token) this.setState({isAuthenticated: true})
+      })
   }
 
-  write = () => this.state.value !== 'success'
-    ? <SignUser step={this.state.value}/>
-    : <Navigation/>
-
   writeBoard = () => {
-    if (0) return <Navigation/>
-    if (1) return <SignUser/>
+    if (1) return <Navigation/>
+    // if (1) return <RootNavigator/>
+    if (0) return <SignUser/>
   }
 
   render() {
+    console.log(this.state, 'state');
     return this.writeBoard()
   }
 }
 
 const MSTP = state => ({
-  isAuthenticated: state.profile.isAuthenticated,
+  token: state.profile.token,
   localization: state.localization.language,
 })
 
