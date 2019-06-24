@@ -21,7 +21,6 @@ export const ImageLogo = styled.Image`
   height: 90px;
 `
 
-
 //image
 export const ViewHead = styled.View`
   position: absolute;

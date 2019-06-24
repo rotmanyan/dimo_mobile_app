@@ -114,12 +114,16 @@ class StartPage extends Component {
   }
 
   write = () => this.state.value !== 'success'
-    ? <SignUser step={this.state.value} changeStep={this.changeStep}/>
+    ? <SignUser step={this.state.value}/>
     : <Navigation/>
 
+  writeBoard = () => {
+    if (0) return <Navigation/>
+    if (1) return <SignUser/>
+  }
+
   render() {
-    console.log(this.state, 'changeStep changeStep changeStep');
-    return this.write()
+    return this.writeBoard()
   }
 }
 

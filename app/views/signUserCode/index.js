@@ -1,4 +1,6 @@
 import React, {Component} from 'react'
+import {connect} from "react-redux";
+import {clearUser} from "../../services/profile/actions";
 import {
   TextHeadMiddle,
   MainView,
@@ -14,8 +16,6 @@ import {
   ViewBottom,
   ImageBg
 } from './styles'
-import {CameraKitCamera} from "react-native-camera-kit";
-import PhoneInput from "../signUser";
 
 let timerSend;
 
@@ -34,7 +34,8 @@ class SignUserCode extends Component {
   }
 
   render() {
-    const {changeStep, changeState, viewValue} = this.props
+    const {clearUser, userNumber} = this.props
+    console.log(this.props, 'props logger');
     const {timer, value} = this.state
     return (
       <MainView>
@@ -47,7 +48,7 @@ class SignUserCode extends Component {
 
         <TextHeadMiddle>We just sent to you a code to number</TextHeadMiddle>
 
-        <NumberMiddle>{viewValue}</NumberMiddle>
+        <NumberMiddle>{userNumber}</NumberMiddle>
 
         <InputForm
           ref={input => {
@@ -71,13 +72,13 @@ class SignUserCode extends Component {
           </SendCount>
         }
         <ButtonPanelView>
-          <BackButtonView onPress={() => changeState()}>
+          <BackButtonView onPress={clearUser}>
             <BackButton>
               Back
             </BackButton>
           </BackButtonView>
 
-          <NextButtonView onPress={() => changeStep('success')}>
+          <NextButtonView onPress={() => console.log('success')}>
             <NextButton>
               Next
             </NextButton>
@@ -89,4 +90,11 @@ class SignUserCode extends Component {
   }
 }
 
-export default SignUserCode
+const MSTP = state => ({
+  userNumber: state.profile.userNumber
+})
+const MDTP = {
+  clearUser
+}
+
+export default connect(MSTP, MDTP)(SignUserCode)
