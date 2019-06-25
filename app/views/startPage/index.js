@@ -95,12 +95,23 @@ const Navigation = createAppContainer(
         activeTintColor: '#3878FF',
         inactiveTintColor: '#90a5c2',
       },
+      defaultNavigationOptions: {
+        headerStyle: {
+          backgroundColor: '#3878FF',
+        },
+        headerTintColor: '#fff',
+        headerTitleStyle: {
+          fontWeight: 'bold',
+          color: '#fff'
+        },
+      },
     }
   )
 );
 
 class StartPage extends Component {
   state = {
+    isLoading: true,
     isAuthenticated: false
   }
 
@@ -110,19 +121,19 @@ class StartPage extends Component {
 
     AsyncStorage.getItem('token')
       .then(token => {
-        if (token || this.props.token) this.setState({isAuthenticated: true})
+        if (token || this.props.token) this.setState({isAuthenticated: true}, () => this.setState({isLoading: false}))
       })
   }
 
-  writeBoard = () => {
-    if (1) return <Navigation/>
-    // if (1) return <RootNavigator/>
-    if (0) return <SignUser/>
-  }
-
   render() {
-    console.log(this.state, 'state');
-    return this.writeBoard()
+    if (this.state.isLoading) {
+      return <Text
+        style={{textAlign: 'center', fontSize: 48, paddingTop: '20%'}}>Loading
+        ...</Text>
+    } else if (this.state.isAuthenticated) {
+      return <Navigation/>
+    }
+    else return <SignUser/>
   }
 }
 

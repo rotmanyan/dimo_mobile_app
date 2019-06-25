@@ -1,7 +1,7 @@
 import styled from 'styled-components/native'
 
 export const MainView = styled.ScrollView`
-  flex: 1;
+  flex: 5;
   background-color: #e9edf2;
 `
 
@@ -32,7 +32,7 @@ export const SvgUserView = styled.View`
 `
 
 export const EmptyBox = styled.TouchableOpacity`
-flex: 1;
+margin-top: 50%;
 `
 export const EmptyView = styled.View`
 margin: auto;

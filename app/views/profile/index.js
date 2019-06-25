@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux'
 import {
   MainView,
   TopView,
@@ -114,4 +115,8 @@ class Profile extends Component {
   }
 }
 
-export default Profile;
+const MSTP = state = ({})
+
+const MDTP = {}
+
+export default connect(MSTP, MDTP)(Profile)
