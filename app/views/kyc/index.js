@@ -32,22 +32,22 @@ class Kyc extends Component {
       <MainView>
         <HeadView>
           <StepView>
-            <StepNumberView style={step === 1 ? activeStep : {}}>
-              <StepNumberText style={step === 1 ? activeText : {}}>
+            <StepNumberView style={step === 1 || step === 2 || step === 3 ? activeStep : {}}>
+              <StepNumberText style={step === 1 || step === 2 || step === 3 ? activeText : {}}>
                 1
               </StepNumberText>
             </StepNumberView>
-            <StepText style={step === 1 ? activeText : {}}>
+            <StepText style={step === 1 || step === 2 || step === 3 ? activeText : {}}>
               Proof of identify
             </StepText>
           </StepView>
           <StepView>
-            <StepNumberView style={step === 2 ? activeStep : {}}>
-              <StepNumberText style={step === 2 ? activeText : {}}>
+            <StepNumberView style={step === 2 || step === 3 ? activeStep : {}}>
+              <StepNumberText style={step === 2 || step === 3 ? activeText : {}}>
                 2
               </StepNumberText>
             </StepNumberView>
-            <StepText style={step === 2 ? activeText : {}}>
+            <StepText style={step === 2 || step === 3 ? activeText : {}}>
               Selfie
             </StepText>
           </StepView>
@@ -66,7 +66,8 @@ class Kyc extends Component {
           {step === 1
             ? <ProofIdentify changeStep={() => this.setState({step: this.state.step + 1})}/>
             : step === 2
-              ? <Selfie changeStep={() => this.setState({step: this.state.step + 1})}/>
+              ? <Selfie send={() => this.props.navigation.navigate('Profile')}
+                        changeStep={() => this.setState({step: this.state.step + 1})}/>
               : <Status send={() => this.props.navigation.navigate('Profile')}/>
           }
         </BodyView>

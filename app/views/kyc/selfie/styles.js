@@ -10,6 +10,17 @@ export const UploadImageBox = styled.View`
   shadow-offset: 0 -5px;
 `
 
+export const PopupBox = styled.View`
+  background-color: #ffffff;
+  padding-bottom: 19px;
+  border-radius: 8px;
+  shadow-color: rgba(0,0,0,0.7);
+  shadow-opacity: 0.1;
+  shadow-radius: 9;
+  shadow-offset: 0 -5px;
+  overflow: hidden;
+`
+
 export const TitleText = styled.Text`
   text-transform: uppercase;
   font-size: 20px;
@@ -29,7 +40,94 @@ export const FieldBox = styled.View`
   margin: 16px 0;
 `
 export const ItemField = styled.View`
+flex-direction: row;
+margin-bottom: 4px;
 `
 export const TextField = styled.Text`
   margin-left: 4px;
+`
+
+export const SvgView = styled.View`
+height: 32px;
+width: 32px;
+background-color: #b9c5d7;
+border-radius: 50px;
+justify-content: center;
+align-items: center;
+`
+
+export const UploadImageTextBox = styled.View`
+width: 50%;
+margin-left: 8px;
+`
+
+export const UploadImageTextHead = styled.Text`
+  text-transform: uppercase;
+  font-size: 12px;
+	letter-spacing: 0.09px;
+	line-height: 14px;
+  color: #4C6180;
+`
+
+export const UploadImageTextFooter = styled.Text`
+color: #4C6180;
+	font-size: 11px;	
+	letter-spacing: 0.08px;	
+	line-height: 14px;	
+`
+
+
+export const UploadImage = styled.TouchableOpacity`
+  margin-bottom: 8px;
+  border: 1px solid #D2D9E5;	border-radius: 28px;
+  padding: 12px;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+`
+
+export const HeadBlue = styled.View`
+  background-color: #3878FF;
+  height: 64px;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+`
+
+export const RectangleSvgView = styled.View`
+  background-color: #fff;
+  height: 32px;
+  width: 32px;
+  border-radius: 16px;
+  align-items: center;
+  justify-content: center;
+  margin-right: 12px;
+`
+
+export const HeadBlueTitleText = styled.Text`
+	color: #fff;
+	font-size: 12px;	
+	letter-spacing: 0.09px;	
+	line-height: 14px;
+	text-transform: uppercase;
+`
+
+export const HeadBlueText = styled.Text`
+  margin: 16px 24px 13px;
+	color: #000;
+`
+
+export const BlueButton = styled.TouchableOpacity`
+	height: 34px;
+	width: 96px;
+	border-radius: 24px;
+	background-color: #3878FF;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+`
+
+export const BlueButtonText = styled.Text`
+  color: #fff;
+  text-transform: uppercase;
 `

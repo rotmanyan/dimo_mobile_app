@@ -1,20 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="13px" height="10px" viewBox="0 0 13 10" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: sketchtool 55 (78076) - https://sketchapp.com -->
-    <title>79E0E7F7-EDC6-43A0-B490-E60C2A58A311</title>
-    <desc>Created with sketchtool.</desc>
-    <defs>
-        <path d="M9.9139,14.7427 L16.3639,8.2927 C16.7549,7.9027 17.3879,7.9027 17.7779,8.2927 C18.1689,8.6827 18.1689,9.3167 17.7779,9.7077 L10.7069,16.7777 C10.4899,16.9957 10.1979,17.0677 9.9139,17.0677 C9.6299,17.0677 9.3389,16.9957 9.1209,16.7777 L6.2929,13.9497 C5.9019,13.5587 5.9019,12.9267 6.2929,12.5357 C6.6839,12.1447 7.3159,12.1447 7.7069,12.5357 L9.9139,14.7427 Z" id="path-1"></path>
-    </defs>
-    <g id="Mobile" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="7.2.-KYC---Selfie" transform="translate(-38.000000, -317.000000)">
-            <g id="UI/Icons/24-upload" transform="translate(32.000000, 309.000000)">
-                <mask id="mask-2" fill="white">
-                    <use xlink:href="#path-1"></use>
-                </mask>
-                <use id="Fill-1" fill="#000000" xlink:href="#path-1"></use>
-                <rect id="Rectangle" fill="#3878FF" mask="url(#mask-2)" x="0" y="0" width="24" height="24"></rect>
-            </g>
-        </g>
-    </g>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg fill="#3878FF" width="24px" height="24px" viewBox="6 6 12 12" version="1.1" xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink">
+    <path d="M9.9139,14.7427 L16.3639,8.2927 C16.7549,7.9027 17.3879,7.9027 17.7779,8.2927 C18.1689,8.6827 18.1689,9.3167 17.7779,9.7077 L10.7069,16.7777 C10.4899,16.9957 10.1979,17.0677 9.9139,17.0677 C9.6299,17.0677 9.3389,16.9957 9.1209,16.7777 L6.2929,13.9497 C5.9019,13.5587 5.9019,12.9267 6.2929,12.5357 C6.6839,12.1447 7.3159,12.1447 7.7069,12.5357 L9.9139,14.7427 Z"
+          id="path-1"/>
 </svg>
