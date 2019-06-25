@@ -4,6 +4,7 @@ import styled from 'styled-components/native'
 // start View Background
 export const MainView = styled.View`
   flex: 1;
+  background-color: #3878FF;
 `
 
 export const ViewHead = styled.View`
@@ -34,6 +35,20 @@ export const ImageBg = styled.Image`
 // end View Background
 
 // start Button and Input
+export const BodyScrollView = styled.ScrollView`
+padding-top: 10%;
+`
+
+export const BodyView = styled.View`
+flex: 1;
+justify-content: center;
+align-items: center;
+`
+
+export const InputBoxView = styled.View`
+  flex: 1;
+`
+
 export const ButtonPanelView = styled.View`
   flex:1;
   width: 240px;

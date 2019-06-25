@@ -9,7 +9,10 @@ import {
   ButtonPanelView,
   NextButtonView,
   NextButton,
-  InputForm
+  InputForm,
+  BodyScrollView,
+  BodyView,
+  InputBoxView
 } from './styles'
 
 class RegistrationUser extends Component {
@@ -29,24 +32,34 @@ class RegistrationUser extends Component {
         <ViewBottom>
           <ImageBg source={require('../../assets/backgrounds/bottom.png')}/>
         </ViewBottom>
-        <InputForm
-          ref={input => {
-            if (input !== null) {
-              input.focus()
-            }
-          }}
-          value={password}
-          onChange={e => this.setState({password: e.nativeEvent.text})}
-          placeholder="Password"
-          type='password'
-        />
-        <ButtonPanelView>
-          <NextButtonView onPress={() => console.log('success')}>
-            <NextButton>
-              Next
-            </NextButton>
-          </NextButtonView>
-        </ButtonPanelView>
+        <BodyScrollView>
+          <BodyView>
+            <InputBoxView>
+              <InputForm
+                value={email}
+                onChange={e => this.setState({email: e.nativeEvent.text})}
+                placeholder="E-mail"
+              />
+              <InputForm
+                onChange={e => this.setState({password: e.nativeEvent.text})}
+                placeholder="Password"
+                value={password}
+              />
+              <InputForm
+                onChange={e => this.setState({confirmPassword: e.nativeEvent.text})}
+                placeholder="Re-enter password"
+                value={confirmPassword}
+              />
+            </InputBoxView>
+            <ButtonPanelView>
+              <NextButtonView onPress={() => console.log('success')}>
+                <NextButton>
+                  Next
+                </NextButton>
+              </NextButtonView>
+            </ButtonPanelView>
+          </BodyView>
+        </BodyScrollView>
       </MainView>
     )
   }

@@ -33,6 +33,7 @@ class SignUser extends Component {
         initialCountry='tz'
         ref={input => {
           if (input !== null) {
+            console.log(input.selectCountry());
             let a = value.split(' ').join('')
             input.focus()
 
@@ -48,6 +49,8 @@ class SignUser extends Component {
         cancelText='Cancel'
         value={value}
         onChangePhoneNumber={value => this.setState({value})}
+        isValidNumber
+        getFlag={a => console.log(a, 'getFlag')}
       />
     )
   }
@@ -90,8 +93,8 @@ class SignUser extends Component {
       </MainView>
     )
   }
-
-  /*render() {
+/*
+  render() {
     const {userNumber, success, isRegistered} = this.props
     if (1) {
       if (userNumber) {
@@ -107,9 +110,9 @@ class SignUser extends Component {
     }
   }*/
 
-  render() {
-    return <RegistrationUser/>
-  }
+    render() {
+      return <RegistrationUser/>
+    }
 }
 
 const MSTP = state => ({
