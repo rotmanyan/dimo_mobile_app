@@ -1,38 +1,34 @@
 import {actionTypes} from './actions';
 
-/*
 const initialState = {
-  userNumber: '',
-  userEmail: '',
-  isAuthenticated: false,
   token: '',
-  message: '',
-};
-*/
-const initialState = {
-  token: 'cfh872wn9ce3',
   userNumber: '',
+  success: false,
+  isRegistered: null
 }
 
 export const signUser = (state = initialState, {type, payload}) => {
   switch (type) {
-    case actionTypes.SIGN_USER_REQUEST:
-      return {
-        ...state,
-      };
-    case actionTypes.SIGN_USER_SUCCESS:
+    case actionTypes.SIGN_USER_VERIFY_PHONE_SUCCESS:
       return {
         ...state,
         userNumber: payload
       };
+    case actionTypes.SIGN_USER_MOBILE_CONFIRM_SUCCESS:
+      console.log(payload, 'payload123123123123');
+      return {
+        ...state,
+        success: payload.success,
+        isRegistered: payload.isRegistered
+      }
     case actionTypes.CLEAR_USER:
-      console.log(state);
       return {
         ...state,
         token: '',
         userNumber: ''
       }
-    case actionTypes.SIGN_USER_ERROR:
+    case actionTypes.SIGN_USER_VERIFY_PHONE_ERROR:
+    case actionTypes.SIGN_USER_MOBILE_CONFIRM_ERROR:
     default:
       return {...state}
   }

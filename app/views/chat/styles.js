@@ -34,6 +34,7 @@ export const SvgUserView = styled.View`
 export const EmptyBox = styled.TouchableOpacity`
 margin-top: 50%;
 `
+
 export const EmptyView = styled.View`
 margin: auto;
 text-align: center;

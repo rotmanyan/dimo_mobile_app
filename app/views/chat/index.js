@@ -17,7 +17,7 @@ import {
 } from "./styles";
 import {svgStyle, ViewSvg} from "../signUser/styles";
 
-/*class LogoTitle extends Component {
+class LogoTitle extends Component {
   render() {
     return (
       <ViewLogo>
@@ -28,7 +28,7 @@ import {svgStyle, ViewSvg} from "../signUser/styles";
       </ViewLogo>
     );
   }
-}*/
+}
 
 class Chat extends Component {
   static navigationOptions = {

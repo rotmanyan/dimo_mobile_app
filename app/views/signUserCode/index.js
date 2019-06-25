@@ -16,6 +16,7 @@ import {
   ViewBottom,
   ImageBg
 } from './styles'
+import {signUserMobileConfirm} from "../../services/profile/operation";
 
 let timerSend;
 
@@ -34,7 +35,7 @@ class SignUserCode extends Component {
   }
 
   render() {
-    const {clearUser, userNumber} = this.props
+    const {back, next, userNumber} = this.props
     console.log(this.props, 'props logger');
     const {timer, value} = this.state
     return (
@@ -72,13 +73,13 @@ class SignUserCode extends Component {
           </SendCount>
         }
         <ButtonPanelView>
-          <BackButtonView onPress={clearUser}>
+          <BackButtonView onPress={back}>
             <BackButton>
               Back
             </BackButton>
           </BackButtonView>
 
-          <NextButtonView onPress={() => console.log('success')}>
+          <NextButtonView onPress={() => value.length === 4 && next(value)}>
             <NextButton>
               Next
             </NextButton>
@@ -94,7 +95,8 @@ const MSTP = state => ({
   userNumber: state.profile.userNumber
 })
 const MDTP = {
-  clearUser
+  back: clearUser,
+  next: signUserMobileConfirm
 }
 
 export default connect(MSTP, MDTP)(SignUserCode)

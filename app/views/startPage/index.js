@@ -17,26 +17,6 @@ import Activity from "../activity";
 import SignUser from "../signUser";
 import PersonalChat from "../../components/personalChat";
 
-// Create our stack navigator
-let HomeStack = createStackNavigator({
-    Kyc: Kyc,
-    Chat: Chat,
-    Profile: Profile
-  },
-  {
-    initialRouteName: 'Kyc',
-    defaultNavigationOptions: {
-      headerStyle: {
-        backgroundColor: '#f4511e',
-      },
-      headerTintColor: '#fff',
-      headerTitleStyle: {
-        fontWeight: 'bold',
-      },
-    },
-  }
-)
-
 const ChatStack = createStackNavigator({
     Chat,
     PersonalChat
@@ -78,6 +58,17 @@ const ProfileStack = createStackNavigator({
     initialRouteName: 'Profile'
   }
 );
+
+ProfileStack.navigationOptions = ({navigation}) => {
+  let tabBarVisible = true;
+  if (navigation.state.index > 0) {
+    tabBarVisible = false;
+  }
+
+  return {
+    tabBarVisible,
+  };
+}
 
 // And the app container
 const Navigation = createAppContainer(
@@ -121,19 +112,21 @@ class StartPage extends Component {
 
     AsyncStorage.getItem('token')
       .then(token => {
-        if (token || this.props.token) this.setState({isAuthenticated: true}, () => this.setState({isLoading: false}))
+        if (token || this.props.token) setTimeout(() => this.setState({isAuthenticated: true}, () => this.setState({isLoading: false})), 1000)
+        else setTimeout(() => this.setState({isLoading: false}), 1000)
       })
   }
 
   render() {
+    console.log(this.state.isAuthenticated, 'this.state.isAuthenticated');
     if (this.state.isLoading) {
       return <Text
-        style={{textAlign: 'center', fontSize: 48, paddingTop: '20%'}}>Loading
-        ...</Text>
-    } else if (this.state.isAuthenticated) {
-      return <Navigation/>
-    }
-    else return <SignUser/>
+        style={{textAlign: 'center', fontSize: 48, paddingTop: '20%'}}>
+        Loading ...
+      </Text>
+    } else return this.state.isAuthenticated
+      ? <Navigation/>
+      : <SignUser/>
   }
 }
 

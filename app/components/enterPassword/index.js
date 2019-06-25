@@ -11,12 +11,15 @@ import {
   SendCount,
   SendCountText
 } from './styles'
+import {connect} from "react-redux";
+import {signUserIn} from "../../services/profile/operation";
 
 class EnterPassword extends Component {
   state = {value: ''}
 
   render() {
     const {value} = this.state
+    const {next} = this.props
     return (
       <MainView>
         <ViewHead>
@@ -29,7 +32,7 @@ class EnterPassword extends Component {
           ref={input => {
             if (input !== null) {
               input.focus()
-              if (value.length >= 6) {
+              if (value.length >= 4) {
                 input.blur()
               }
             }
@@ -44,7 +47,7 @@ class EnterPassword extends Component {
           </SendCountText>
         </SendCount>
         <ButtonPanelView>
-          <NextButtonView onPress={() => console.log('success')}>
+          <NextButtonView onPress={() => next(value)}>
             <NextButton>
               Next
             </NextButton>
@@ -55,4 +58,8 @@ class EnterPassword extends Component {
   }
 }
 
-export default EnterPassword
+const MDTP = {
+  next: signUserIn
+}
+
+export default connect(null, MDTP)(EnterPassword)

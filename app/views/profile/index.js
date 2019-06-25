@@ -119,4 +119,4 @@ const MSTP = state = ({})
 
 const MDTP = {}
 
-export default connect(MSTP, MDTP)(Profile)
+export default connect(null, MDTP)(Profile)

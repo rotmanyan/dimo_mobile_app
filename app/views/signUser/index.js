@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import PhoneInput from 'react-native-phone-input'
-import {signUserVerifyphone} from '../../services/profile/operation'
+import {signUserVerifyPhone} from '../../services/profile/operation'
 import SignUserCode from '../signUserCode'
 import * as selectorLang from '../../services/selectors'
 import {
@@ -17,6 +17,7 @@ import {
   ImageLogo,
 } from './styles'
 import EnterPassword from "../../components/enterPassword";
+import RegistrationUser from "../../components/registrationUser";
 
 class SignUser extends Component {
   state = {
@@ -56,7 +57,7 @@ class SignUser extends Component {
     const {value} = this.state
 
     return (
-      <>
+      <MainView>
         <ViewHead>
           <ImageBg source={require('../../assets/backgrounds/Top.png')}/>
         </ViewHead>
@@ -86,28 +87,35 @@ class SignUser extends Component {
             }}
           />
         </ButtonView>
-      </>
+      </MainView>
     )
   }
 
-  /*
-    render() {
-      if (!this.props.userNumber) return <MainView>{this.writeBody()}</MainView>
-      else if (!!this.props.userNumber) return <SignUserCode/>
-    }*/
   render() {
-    return (
-      <EnterPassword/>
-    );
+    const {userNumber, success, isRegistered} = this.props
+    if (1) {
+      if (userNumber) {
+        if (success) {
+          if (isRegistered) {
+            return <EnterPassword/>
+          } else return <RegistrationUser/>
+        }
+        return <SignUserCode/>
+      } else if (!userNumber) {
+        return this.writeBody()
+      }
+    }
   }
 }
 
 const MSTP = state => ({
   translate: selectorLang.translate(state),
-  userNumber: state.profile.userNumber
+  userNumber: state.profile.userNumber,
+  success: state.profile.success,
+  isRegistered: state.profile.isRegistered
 })
 const MDTP = {
-  sign: signUserVerifyphone,
+  sign: signUserVerifyPhone,
 }
 
 export default connect(MSTP, MDTP)(SignUser)
