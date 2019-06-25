@@ -21,6 +21,7 @@ import {
   BlueButton,
   BlueButtonText
 } from "./styles";
+import {getUserProfile} from "../../services/profile/operation";
 
 class Profile extends Component {
   static navigationOptions = {
@@ -115,8 +116,12 @@ class Profile extends Component {
   }
 }
 
-const MSTP = state = ({})
+const MSTP = state = ({
 
-const MDTP = {}
+})
+
+const MDTP = {
+  getUserProfile
+}
 
 export default connect(null, MDTP)(Profile)

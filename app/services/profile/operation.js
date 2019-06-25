@@ -14,9 +14,13 @@ import {
 
   signUserInRequest,
   signUserInSuccess,
-  signUserInError
+  signUserInError,
+
+  getUserProfileRequest,
+  getUserProfileSuccess,
+  getUserProfileError
 } from './actions'
-import {urlVerifyphone, urlMobileconfirm, urlSignIn, urlSignUp} from '../baseUrl'
+import {urlVerifyphone, urlMobileconfirm, urlSignIn, urlSignUp, urlProfile} from '../baseUrl'
 import AsyncStorage from "@react-native-community/async-storage";
 
 export const signUserVerifyPhone = credential => (dispatch, getState) => {
@@ -101,3 +105,15 @@ export const signUserIn = credential => (dispatch, getState) => {
   axios(options)
 }
 
+export const getUserProfile = credential => (dispatch, getState) => {
+  dispatch(getUserProfileRequest())
+
+  const options = {
+    method: 'POST',
+    data: {
+      phone: '+380994425999',
+      password: credential
+    },
+    url: urlProfile
+  }
+}

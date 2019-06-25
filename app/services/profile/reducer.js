@@ -3,8 +3,15 @@ import {actionTypes} from './actions';
 const initialState = {
   token: '',
   userNumber: '',
+  userEmail: '',
+  userCountry: '',
+  userName: '',
+  userAddress: '',
+  userFullName: '',
+  dailyLimits: 0,
+  withdrawLimits: 0,
   success: false,
-  isRegistered: null
+  isRegistered: null,
 }
 
 export const signUser = (state = initialState, {type, payload}) => {
@@ -15,11 +22,14 @@ export const signUser = (state = initialState, {type, payload}) => {
         userNumber: payload
       };
     case actionTypes.SIGN_USER_MOBILE_CONFIRM_SUCCESS:
-      console.log(payload, 'payload123123123123');
       return {
         ...state,
         success: payload.success,
         isRegistered: payload.isRegistered
+      }
+    case actionTypes.GET_USER_PROFILE_SUCCESS:
+      return {
+        ...state
       }
     case actionTypes.CLEAR_USER:
       return {
@@ -27,6 +37,7 @@ export const signUser = (state = initialState, {type, payload}) => {
         token: '',
         userNumber: ''
       }
+    case actionTypes.GET_USER_PROFILE_ERROR:
     case actionTypes.SIGN_USER_VERIFY_PHONE_ERROR:
     case actionTypes.SIGN_USER_MOBILE_CONFIRM_ERROR:
     default:

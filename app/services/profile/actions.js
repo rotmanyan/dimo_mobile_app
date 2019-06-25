@@ -15,6 +15,10 @@ export const actionTypes = {
   'SIGN_USER_REGISTRATION_SUCCESS': 'SIGN_USER_REGISTRATION_SUCCESS',
   'SIGN_USER_REGISTRATION_ERROR': 'SIGN_USER_REGISTRATION_ERROR',
 
+  'GET_USER_PROFILE_REQUEST': 'GET_USER_PROFILE_REQUEST',
+  'GET_USER_PROFILE_SUCCESS': 'GET_USER_PROFILE_SUCCESS',
+  'GET_USER_PROFILE_ERROR': 'GET_USER_PROFILE_ERROR',
+
   'CLEAR_USER': 'CLEAR_USER'
 }
 
@@ -75,6 +79,22 @@ export const signUserInSuccess = data => ({
 
 export const signUserInError = error => ({
   type: actionTypes.SIGN_USER_LOGIN_ERROR,
+  payload: error
+})
+
+
+//GET_USER_PROFILE
+export const getUserProfileRequest = () => ({
+  type: actionTypes.GET_USER_PROFILE_REQUEST
+})
+
+export const getUserProfileSuccess = data => ({
+  type: actionTypes.GET_USER_PROFILE_SUCCESS,
+  payload: data
+})
+
+export const getUserProfileError = error => ({
+  type: actionTypes.GET_USER_PROFILE_ERROR,
   payload: error
 })
 
