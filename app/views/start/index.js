@@ -5,7 +5,7 @@ import {MainView, ViewWait, TextWait} from './styles'
 
 import SignUser from '../signUser'
 // import OnBoard from '../onBoard'
-import Kyc from '../kyc'
+import Kyc from '../kyc/index2'
 import {setLocalizationRequest, setLocalizationSuccess} from "../../services/i18n/actions";
 import {getLanguages} from "react-native-i18n";
 import OnBoard from "../onBoard";

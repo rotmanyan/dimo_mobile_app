@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {View, Text} from 'react-native'
 
-class FirstScreen extends Component {
+class Status extends Component {
   static navigationOptions = {
     headerTitle: 'KYC',
     headerStyle: {
@@ -23,4 +23,4 @@ class FirstScreen extends Component {
   }
 }
 
-export default FirstScreen;
+export default Status;

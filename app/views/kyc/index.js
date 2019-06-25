@@ -1,25 +1,15 @@
 import React, {Component} from 'react';
-import {ImagePickerIOS} from 'react-native';
-import SvgUri from 'react-native-svg-uri';
 import {
   MainView,
   HeadView,
   BodyView,
-  TextH1,
-  SelectorPassport,
-  UploadImageBox,
-  UploadImage,
-  UploadImageTextBox,
-  UploadImageTextHead,
-  UploadImageTextFooter,
-  ButtonProceedBlue,
-  ButtonProceedText,
-  ButtonProceedGrey,
-  SvgView, ImageOne, ImageOneView,
-  ContinueButton,
-  ContinueButtonText
-} from "./styles";
+  StepView, StepNumberView, StepNumberText, StepText,
+  activeText, activeStep,
 
+} from "./styles";
+import ProofIdentify from "./proofIdentify";
+import Selfie from "./selfie";
+import Status from "./status";
 
 class Kyc extends Component {
   static navigationOptions = {
@@ -33,97 +23,59 @@ class Kyc extends Component {
   }
 
   state = {
-    images: [],
-    step: 'proof',
-    isFirst: true
-  }
-
-  pickImage() {
-    console.log('123123123');
-    // openSelectDialog(config, successCallback, errorCallback);
-    ImagePickerIOS.openSelectDialog({}, imageUri => {
-      this.setState({images: [...this.state.images, imageUri]});
-    }, error => console.log(error, 'error'));
+    step: 1
   }
 
   render() {
-    const {images, step, isFirst} = this.state
-    console.log(images, 'images');
+    const step = this.state.step
     return (
-      <>
-        {isFirst
-          ? <ImageOneView>
-            <ImageOne source={require('../../assets/images/888.png')}/>
-            <ContinueButton onPress={() => {
-              this.setState({isFirst: !isFirst})
-            }}>
-              <ContinueButtonText>
-                CONTINUE
-              </ContinueButtonText>
-            </ContinueButton>
-          </ImageOneView>
-          : step === 'proof'
-            ? <MainView>
-              <HeadView>
-              </HeadView>
-              <BodyView>
-                <TextH1>Account verification</TextH1>
-                <SelectorPassport>
-
-                </SelectorPassport>
-
-                <UploadImageBox>
-                  <UploadImage onPress={() => this.pickImage()}>
-                    <SvgView>
-                      <SvgUri
-                        width="16"
-                        height='16'
-                        source={require('../../assets/icons/downloadImg.svg')}
-                      />
-                    </SvgView>
-                    <UploadImageTextBox>
-                      <UploadImageTextHead>ADD FRONT SIDE</UploadImageTextHead>
-                      <UploadImageTextFooter>Upload or take a picture</UploadImageTextFooter>
-                    </UploadImageTextBox>
-                  </UploadImage>
-
-                  <UploadImage onPress={() => this.pickImage()}>
-                    <SvgView>
-                      <SvgUri
-                        width="16"
-                        height='16'
-                        source={require('../../assets/icons/downloadImg.svg')}
-                      />
-                    </SvgView>
-                    <UploadImageTextBox>
-                      <UploadImageTextHead>ADD BACK SIDE</UploadImageTextHead>
-                      <UploadImageTextFooter>Upload or take a picture</UploadImageTextFooter>
-                    </UploadImageTextBox>
-                  </UploadImage>
-                  {images.length === 2
-                    ? <ButtonProceedBlue onPress={() => this.props.navigation.navigate('Profile')}>
-                      <ButtonProceedText>
-                        PROCEED
-                      </ButtonProceedText>
-                    </ButtonProceedBlue>
-                    : <ButtonProceedGrey>
-                      <ButtonProceedText>
-                        PROCEED
-                      </ButtonProceedText>
-                    </ButtonProceedGrey>}
-                </UploadImageBox>
-              </BodyView>
-            </MainView>
-            : step === 'selfie'
-              ? ''
-              : step === 'status'
-                ? ''
-                : ''
-
-        }
-      </>
+      <MainView>
+        <HeadView>
+          <StepView>
+            <StepNumberView style={step === 1 ? activeStep : {}}>
+              <StepNumberText style={step === 1 ? activeText : {}}>
+                1
+              </StepNumberText>
+            </StepNumberView>
+            <StepText style={step === 1 ? activeText : {}}>
+              Proof of identify
+            </StepText>
+          </StepView>
+          <StepView>
+            <StepNumberView style={step === 2 ? activeStep : {}}>
+              <StepNumberText style={step === 2 ? activeText : {}}>
+                2
+              </StepNumberText>
+            </StepNumberView>
+            <StepText style={step === 2 ? activeText : {}}>
+              Selfie
+            </StepText>
+          </StepView>
+          <StepView>
+            <StepNumberView style={step === 3 ? activeStep : {}}>
+              <StepNumberText style={step === 3 ? activeText : {}}>
+                3
+              </StepNumberText>
+            </StepNumberView>
+            <StepText style={step === 3 ? activeText : {}}>
+              Status
+            </StepText>
+          </StepView>
+        </HeadView>
+        <BodyView>
+          {step === 1
+            ? <ProofIdentify changeStep={() => this.setState({step: this.state.step + 1})}/>
+            : step === 2
+              ? <Selfie changeStep={() => this.setState({step: this.state.step + 1})}/>
+              : <Status send={() => this.props.navigation.navigate('Profile')}/>
+          }
+        </BodyView>
+      </MainView>
     )
   }
 }
+
+const MSTP = state => ({})
+const MDTP = {}
 
 export default Kyc

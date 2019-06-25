@@ -29,17 +29,12 @@ export const TextH1 = styled.Text`
 export const UploadImageBox = styled.View`
   background-color: #ffffff;
   padding: 16px 16px 19px;
-  border-radius: 8px;
-  shadow-color: rgba(0,0,0,0.7);
-  shadow-opacity: 0.1;
-  shadow-radius: 9;
-  shadow-offset: 0 -5px;
 `
 
 export const UploadImage = styled.TouchableOpacity`
   margin-bottom: 8px;
   border: 1px solid #D2D9E5;	border-radius: 28px;
-  padding: 12px;
+  padding: 12px 0;
   justify-content: center;
   flex-direction: row;
   align-items: center;
@@ -52,11 +47,6 @@ export const ButtonProceedGrey = styled.TouchableOpacity`
   padding: 11px 0;
   margin: 8px auto auto;
   font-weight: 700;
-  
-  shadow-color: rgba(0,0,0,1);
-  shadow-opacity: 0.19;
-  shadow-radius: 9;
-  shadow-offset: 0 5px;
 `
 export const ButtonProceedBlue = styled.TouchableOpacity`
   width: 150px;
@@ -65,11 +55,6 @@ export const ButtonProceedBlue = styled.TouchableOpacity`
   padding: 11px 0;
   margin: 8px auto auto;
   font-weight: 700;
-  
-  shadow-color: rgba(0,0,0,1);
-  shadow-opacity: 0.19;
-  shadow-radius: 9;
-  shadow-offset: 0 5px;
 `
 
 export const SelectorPassport = styled.View`
@@ -128,8 +113,4 @@ font-weight: 700;
 
 export const ImageOne = styled.Image`
 width: 100%;
-`
-
-export const UploadBackground = styled.Image`
-	background-color: #74E2BF;
 `

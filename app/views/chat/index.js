@@ -109,7 +109,7 @@ class Chat extends Component {
                   </BlockUserView>
                 </BlockUser>)
               : <EmptyBox onPress={() => {
-                Vibration.vibrate()
+                Vibration.vibrate(1000)
                 Contacts.getAll((error, data) => this.setState({arrayContacts: data}))
               }}>
                 <EmptyView>
