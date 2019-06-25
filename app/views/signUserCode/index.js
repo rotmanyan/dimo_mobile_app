@@ -36,7 +36,6 @@ class SignUserCode extends Component {
 
   render() {
     const {back, next, userNumber} = this.props
-    console.log(this.props, 'props logger');
     const {timer, value} = this.state
     return (
       <MainView>
@@ -55,12 +54,13 @@ class SignUserCode extends Component {
           ref={input => {
             if (input !== null) {
               input.focus()
-              if (value.length >= 6) {
+              if (value.length >= 4) {
                 input.blur()
               }
             }
           }}
           value={value}
+          maxLength={4}
           onChange={e => {
             this.setState({value: e.nativeEvent.text})
           }} placeholder="Insert the 6-digit code"/>

@@ -112,8 +112,8 @@ class StartPage extends Component {
 
     AsyncStorage.getItem('token')
       .then(token => {
-        if (token || this.props.token) setTimeout(() => this.setState({isAuthenticated: true}, () => this.setState({isLoading: false})), 1000)
-        else setTimeout(() => this.setState({isLoading: false}), 1000)
+        if (token || this.props.token) setTimeout(() => this.setState({isAuthenticated: true}, () => this.setState({isLoading: false})), 0)
+        else setTimeout(() => this.setState({isLoading: false}), 0)
       })
   }
 

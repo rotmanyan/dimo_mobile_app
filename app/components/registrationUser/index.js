@@ -1,22 +1,26 @@
 import React, {Component} from 'react';
-import {connect} from "react-redux";
+import {connect} from 'react-redux'
 import {signUserUp} from "../../services/profile/operation";
-import {MainView, Button, Text} from './styles'
 import {
-  ButtonPanelView,
-  ImageBg,
-  InputForm, NextButton, NextButtonView,
-  SendCount,
-  SendCountText,
+  MainView,
+  ViewHead,
   ViewBottom,
-  ViewHead
-} from "../enterPassword/styles";
-
+  ImageBg,
+  ButtonPanelView,
+  NextButtonView,
+  NextButton,
+  InputForm
+} from './styles'
 
 class RegistrationUser extends Component {
-  state = {}
+  state = {
+    email: '',
+    password: '',
+    confirmPassword: ''
+  }
 
   render() {
+    const {email, password, confirmPassword} = this.state
     return (
       <MainView>
         <ViewHead>
@@ -29,20 +33,13 @@ class RegistrationUser extends Component {
           ref={input => {
             if (input !== null) {
               input.focus()
-              if (value.length >= 6) {
-                input.blur()
-              }
             }
           }}
-          value={value}
-          onChange={e => {
-            this.setState({value: e.nativeEvent.text})
-          }} placeholder="Enter your password"/>
-        <SendCount>
-          <SendCountText>
-            I've forgotten my password
-          </SendCountText>
-        </SendCount>
+          value={password}
+          onChange={e => this.setState({password: e.nativeEvent.text})}
+          placeholder="Password"
+          type='password'
+        />
         <ButtonPanelView>
           <NextButtonView onPress={() => console.log('success')}>
             <NextButton>

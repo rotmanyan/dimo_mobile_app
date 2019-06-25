@@ -33,6 +33,20 @@ export const signUserVerifyPhoneError = error => ({
   payload: error
 })
 
+//SIGN_USER_MOBILE_CONFIRM
+export const signUserMobileConfirmRequest = () => ({
+  type: actionTypes.SIGN_USER_MOBILE_CONFIRM_REQUEST
+})
+
+export const signUserMobileConfirmSuccess = data => ({
+  type: actionTypes.SIGN_USER_MOBILE_CONFIRM_SUCCESS,
+  payload: data
+})
+
+export const signUserMobileConfirmError = error => ({
+  type: actionTypes.SIGN_USER_MOBILE_CONFIRM_ERROR,
+  payload: error
+})
 
 //SIGN_USER_UP - Registration
 export const signUserUpRequest = () => ({
