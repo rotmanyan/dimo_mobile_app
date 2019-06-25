@@ -116,4 +116,10 @@ export const getUserProfile = credential => (dispatch, getState) => {
     },
     url: urlProfile
   }
+
+  axios(options)
+    .then(res => {
+      dispatch(getUserProfileSuccess(res.data))
+    })
+    .catch(error => dispatch(getUserProfileError(error)))
 }

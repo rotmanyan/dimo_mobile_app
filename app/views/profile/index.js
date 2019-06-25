@@ -34,6 +34,11 @@ class Profile extends Component {
     },
   };
 
+  componentDidMount() {
+    this.props.getUserProfile()
+  }
+
+
   render() {
     return (
       <MainView>
@@ -116,9 +121,7 @@ class Profile extends Component {
   }
 }
 
-const MSTP = state = ({
-
-})
+const MSTP = state = ({})
 
 const MDTP = {
   getUserProfile
