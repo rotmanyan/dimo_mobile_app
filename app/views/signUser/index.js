@@ -93,7 +93,6 @@ class SignUser extends Component {
       </MainView>
     )
   }
-/*
   render() {
     const {userNumber, success, isRegistered} = this.props
     if (1) {
@@ -108,11 +107,11 @@ class SignUser extends Component {
         return this.writeBody()
       }
     }
-  }*/
+  }
 
-    render() {
+/*    render() {
       return <RegistrationUser/>
-    }
+    }*/
 }
 
 const MSTP = state => ({

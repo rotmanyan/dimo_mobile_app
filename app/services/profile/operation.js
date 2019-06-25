@@ -65,12 +65,14 @@ export const signUserMobileConfirm = credential => (dispatch, getState) => {
 }
 
 export const signUserUp = credential => (dispatch, getState) => {
+  const state = getState()
+  console.log(state.profile.userNumber, 'getState.profile.userNumber1qwewqeqweqwe123123');
   dispatch(signUserUpRequest())
 
   const options = {
     method: 'POST',
     data: {
-      phone: getState.profile.userNumber,
+      phone: '+380994425999',
       email: credential.email,
       password: credential.password
     },
@@ -78,6 +80,10 @@ export const signUserUp = credential => (dispatch, getState) => {
   }
 
   axios(options)
+    .then(response => {
+      dispatch(signUserUpSuccess(response.data))
+    })
+    .catch(error => dispatch(signUserUpError(error)))
 }
 
 export const signUserIn = credential => (dispatch, getState) => {
@@ -86,7 +92,7 @@ export const signUserIn = credential => (dispatch, getState) => {
   const options = {
     method: 'POST',
     data: {
-      phone: getState.profile.userNumber,
+      phone: '+380994425999',
       password: credential
     },
     url: urlSignIn

@@ -12,20 +12,65 @@ import {
   InputForm,
   BodyScrollView,
   BodyView,
-  InputBoxView
+  InputBoxView,
+  PlanView,
+  SelectedPlan,
+  NoSelectedPlan,
+  NoSelectedPlanText,
+  SelectedPlanText,
+  TextH1
 } from './styles'
 
 class RegistrationUser extends Component {
   state = {
     email: '',
     password: '',
-    confirmPassword: ''
+    confirmPassword: '',
+    selectors: [
+      {
+        tariff: 'personal',
+        selected: true
+      },
+      {
+        tariff: 'business',
+        selected: false
+      }],
+    selectedPlan: 'personal'
+  }
+
+  changeState = () => {
+    const {selectors, selectedPlan} = this.state
+
+    this.setState({
+      selectedPlan: selectedPlan === 'personal' ? 'business' : 'personal',
+      selectors: [{
+        tariff: 'personal',
+        selected: !selectors[0].selected
+      },
+        {
+          tariff: 'business',
+          selected: !selectors[1].selected
+        }]
+    })
+  }
+
+  next = () => {
+    const {next} = this.props
+    const {email, password, confirmPassword, selectedPlan} = this.state
+    password === confirmPassword && next({
+      email,
+      password,
+      tariff: selectedPlan
+    })
   }
 
   render() {
-    const {email, password, confirmPassword} = this.state
+    const {email, password, confirmPassword, selectors} = this.state
     return (
       <MainView>
+        <TextH1>
+          Sign Up
+        </TextH1>
         <ViewHead>
           <ImageBg source={require('../../assets/backgrounds/Top.png')}/>
         </ViewHead>
@@ -37,22 +82,40 @@ class RegistrationUser extends Component {
             <InputBoxView>
               <InputForm
                 value={email}
-                onChange={e => this.setState({email: e.nativeEvent.text})}
+                onChangeText={email => this.setState({email})}
                 placeholder="E-mail"
               />
               <InputForm
-                onChange={e => this.setState({password: e.nativeEvent.text})}
+                onChangeText={password => this.setState({password})}
                 placeholder="Password"
                 value={password}
               />
               <InputForm
-                onChange={e => this.setState({confirmPassword: e.nativeEvent.text})}
+                onChangeText={confirmPassword => this.setState({confirmPassword})}
                 placeholder="Re-enter password"
                 value={confirmPassword}
               />
             </InputBoxView>
+            <PlanView>
+              {selectors.map((el, key) => {
+                if (el.selected) return (
+                  <SelectedPlan key={key} onPress={this.changeState}>
+                    <SelectedPlanText>
+                      {el.tariff}
+                    </SelectedPlanText>
+                  </SelectedPlan>
+                )
+                else return (
+                  <NoSelectedPlan key={key} onPress={this.changeState}>
+                    <NoSelectedPlanText>
+                      {el.tariff}
+                    </NoSelectedPlanText>
+                  </NoSelectedPlan>
+                )
+              })}
+            </PlanView>
             <ButtonPanelView>
-              <NextButtonView onPress={() => console.log('success')}>
+              <NextButtonView onPress={this.next}>
                 <NextButton>
                   Next
                 </NextButton>

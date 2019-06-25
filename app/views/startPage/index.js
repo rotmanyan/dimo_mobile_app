@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Text} from 'react-native';
+import {ActivityIndicator} from 'react-native';
 import AsyncStorage from "@react-native-community/async-storage";
 import {connect} from 'react-redux'
 import {getLanguages} from "react-native-i18n";
@@ -112,18 +112,25 @@ class StartPage extends Component {
 
     AsyncStorage.getItem('token')
       .then(token => {
-        if (token || this.props.token) setTimeout(() => this.setState({isAuthenticated: true}, () => this.setState({isLoading: false})), 0)
-        else setTimeout(() => this.setState({isLoading: false}), 0)
+        if (token || this.props.token) setTimeout(() => this.setState({isAuthenticated: true}, () => this.setState({isLoading: false})), 15)
+        else setTimeout(() => this.setState({isLoading: false}), 15)
       })
   }
 
   render() {
     console.log(this.state.isAuthenticated, 'this.state.isAuthenticated');
     if (this.state.isLoading) {
-      return <Text
-        style={{textAlign: 'center', fontSize: 48, paddingTop: '20%'}}>
-        Loading ...
-      </Text>
+      return <ActivityIndicator
+        animating={this.state.isLoading}
+        color='#3878FF'
+        size="large"
+        style={{
+          flex: 1,
+          justifyContent: 'center',
+          alignItems: 'center',
+          height: 100
+        }}
+      />
     } else return this.state.isAuthenticated
       ? <Navigation/>
       : <SignUser/>

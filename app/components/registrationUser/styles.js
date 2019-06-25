@@ -80,9 +80,54 @@ export const InputForm = styled.TextInput`
 `
 // end Button and Input
 
+// start Plan
+export const PlanView = styled.View`
+  border: 1px solid #CFD7E3;
+  flex-direction: row;
+  margin-bottom: 24px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 25px;
+  overflow: hidden;
+`
 
-export const Text = styled.Text`
+export const NoSelectedPlan = styled.TouchableOpacity`
+background-color: transparent;
+padding: 10px;
+`
 
+export const SelectedPlan = styled.TouchableOpacity`
+  background-color: #ffffff;
+  padding: 10px;
+`
+
+export const NoSelectedPlanText = styled.Text`
+  text-align: center;
+  opacity: 0.7;
+  color: #FFFFFF;
+  text-transform: uppercase;
+  font-size: 12px;	
+  letter-spacing: 1.16px;	
+  line-height: 16px;
+`
+
+export const SelectedPlanText = styled.Text`
+  text-transform: uppercase;
+  color: #1F3C91;
+  font-size: 12px;	
+  letter-spacing: 1.16px;	
+  line-height: 16px;	
+  text-align: center;
+`
+//
+
+export const TextH1 = styled.Text`
+  color: #ffffff;
+	font-size: 21px;
+	letter-spacing: 0.14px;
+	line-height: 28px;
+	text-align: center;
+	margin-top: 56px;
 `
 
 export const Button = styled.TouchableOpacity`
