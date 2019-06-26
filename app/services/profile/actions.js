@@ -19,8 +19,13 @@ export const actionTypes = {
   'GET_USER_PROFILE_SUCCESS': 'GET_USER_PROFILE_SUCCESS',
   'GET_USER_PROFILE_ERROR': 'GET_USER_PROFILE_ERROR',
 
+  'UPDATE_USER_PROFILE_REQUEST': 'UPDATE_USER_PROFILE_REQUEST',
+  'UPDATE_USER_PROFILE_SUCCESS': 'UPDATE_USER_PROFILE_SUCCESS',
+  'UPDATE_USER_PROFILE_ERROR': 'UPDATE_USER_PROFILE_ERROR',
+
   'CLEAR_USER': 'CLEAR_USER'
 }
+
 
 // SIGN_USER_VERIFY_PHONE
 export const signUserVerifyPhoneRequest = () => ({
@@ -95,6 +100,22 @@ export const getUserProfileSuccess = data => ({
 
 export const getUserProfileError = error => ({
   type: actionTypes.GET_USER_PROFILE_ERROR,
+  payload: error
+})
+
+
+//UPDATE_USER_PROFILE
+export const updateUserProfileRequest = () => ({
+  type: actionTypes.UPDATE_USER_PROFILE_REQUEST
+})
+
+export const updateUserProfileSuccess = data => ({
+  type: actionTypes.UPDATE_USER_PROFILE_SUCCESS,
+  payload: data
+})
+
+export const updateUserProfileError = error => ({
+  type: actionTypes.UPDATE_USER_PROFILE_ERROR,
   payload: error
 })
 

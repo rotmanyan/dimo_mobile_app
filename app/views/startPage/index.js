@@ -71,6 +71,21 @@ ProfileStack.navigationOptions = ({navigation}) => {
   };
 }
 
+/*
+class LogoTitle extends Component {
+  render() {
+    return (
+      <ViewLogo>
+        <Image
+          source={require('../../assets/backgrounds/logo.png')}
+          style={{width: 30, height: 30}}
+        />
+      </ViewLogo>
+    );
+  }
+}
+*/
+
 // And the app container
 const Navigation = createAppContainer(
   createBottomTabNavigator(

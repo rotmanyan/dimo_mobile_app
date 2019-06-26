@@ -3,14 +3,12 @@ import SvgUri from "react-native-svg-uri";
 import {ImagePickerIOS} from "react-native";
 import {
   UploadImageBox, TitleText, SubTitleText,
-  FieldBox, ItemField, TextField,
+  FieldBox, ItemField, TextField, PopupBox,
   SvgView, UploadImage, UploadImageTextBox,
   UploadImageTextFooter, UploadImageTextHead,
-  PopupBox,
   HeadBlue, RectangleSvgView, HeadBlueText,
   BlueButton, BlueButtonText, HeadBlueTitleText
 } from './styles'
-
 
 class Selfie extends Component {
   static navigationOptions = {

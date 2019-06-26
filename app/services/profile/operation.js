@@ -18,9 +18,13 @@ import {
 
   getUserProfileRequest,
   getUserProfileSuccess,
-  getUserProfileError
+  getUserProfileError,
+
+  updateUserProfileRequest,
+  updateUserProfileSuccess,
+  updateUserProfileError
 } from './actions'
-import {urlVerifyphone, urlMobileconfirm, urlSignIn, urlSignUp, urlProfile} from '../baseUrl'
+import {urlVerifyphone, urlMobileconfirm, urlSignIn, urlSignUp, urlProfile, urlProfileUpdate, urlKyc} from '../baseUrl'
 import AsyncStorage from "@react-native-community/async-storage";
 
 export const signUserVerifyPhone = credential => (dispatch, getState) => {
@@ -133,5 +137,51 @@ export const getUserProfile = credential => (dispatch, getState) => {
           dispatch(getUserProfileSuccess(res.data.data))
         })
         .catch(error => dispatch(getUserProfileError(error)))
+    })
+}
+
+export const updateUserProfile = credential => (dispatch, getState) => {
+  dispatch(updateUserProfileRequest())
+  const actualToken = getState().profile.token;
+
+  AsyncStorage.getItem('token')
+    .then(data => token = data)
+    .then(token => {
+
+      const options = {
+        method: 'GET',
+        headers: {'x-access-token': actualToken || token},
+        data: {},
+        url: urlProfileUpdate
+      }
+
+      axios(options)
+        .then(res => {
+          dispatch(updateUserProfileSuccess(res.data.data))
+        })
+        .catch(error => dispatch(updateUserProfileError(error)))
+    })
+}
+
+export const sendKyc = credential => (dispatch, getState) => {
+  dispatch(updateUserProfileRequest())
+  const actualToken = getState().profile.token;
+
+  AsyncStorage.getItem('token')
+    .then(data => token = data)
+    .then(token => {
+
+      const options = {
+        method: 'GET',
+        headers: {'x-access-token': actualToken || token},
+        data: {},
+        url: urlProfile
+      }
+
+      axios(options)
+        .then(res => {
+          dispatch(updateUserProfileSuccess(res.data.data))
+        })
+        .catch(error => dispatch(updateUserProfileError(error)))
     })
 }
