@@ -50,8 +50,6 @@ class Chat extends Component {
 
   render() {
     const {arrayContacts} = this.state
-    console.log(Vibration, 'Vibration');
-    console.log(this.state, ' contactName contactName contactName')
     return (
       <>
         <MainView>

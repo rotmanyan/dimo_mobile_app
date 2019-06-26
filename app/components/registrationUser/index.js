@@ -35,7 +35,9 @@ class RegistrationUser extends Component {
         tariff: 'business',
         selected: false
       }],
-    selectedPlan: 'personal'
+    selectedPlan: 'personal',
+    passwordType: true,
+    confirmPasswordType: true,
   }
 
   changeState = () => {
@@ -56,7 +58,9 @@ class RegistrationUser extends Component {
 
   next = () => {
     const {next} = this.props
-    const {email, password, confirmPassword, selectedPlan} = this.state
+    const {
+      email, password, confirmPassword, selectedPlan
+    } = this.state
     password === confirmPassword && next({
       email,
       password,
@@ -65,7 +69,11 @@ class RegistrationUser extends Component {
   }
 
   render() {
-    const {email, password, confirmPassword, selectors} = this.state
+    const {
+      email, password, confirmPassword, selectors,
+      passwordType, confirmPasswordType
+    } = this.state
+
     return (
       <MainView>
         <TextH1>
@@ -84,16 +92,21 @@ class RegistrationUser extends Component {
                 value={email}
                 onChangeText={email => this.setState({email})}
                 placeholder="E-mail"
+                style={{textTransform: 'lowercase'}}
+                textContentType={'emailAddress'}
               />
+
               <InputForm
                 onChangeText={password => this.setState({password})}
                 placeholder="Password"
                 value={password}
+                secureTextEntry={passwordType}
               />
               <InputForm
                 onChangeText={confirmPassword => this.setState({confirmPassword})}
                 placeholder="Re-enter password"
                 value={confirmPassword}
+                secureTextEntry={confirmPasswordType}
               />
             </InputBoxView>
             <PlanView>

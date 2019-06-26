@@ -11,6 +11,7 @@ import {
 } from 'react-navigation';
 import Kyc from "../kyc";
 import Chat from "../chat";
+import Wallet from "../wallet";
 import Profile from "../profile";
 import Camera from "../../components/camera";
 import Activity from "../activity";
@@ -35,7 +36,7 @@ const SendStack = createStackNavigator({
 );
 
 const WalletStack = createStackNavigator({
-    Wallet: Chat
+    Wallet: Wallet
   },
   {
     initialRouteName: 'Wallet'
@@ -118,7 +119,6 @@ class StartPage extends Component {
   }
 
   render() {
-    console.log(this.state.isAuthenticated, 'this.state.isAuthenticated');
     if (this.state.isLoading) {
       return <ActivityIndicator
         animating={this.state.isLoading}
@@ -131,7 +131,7 @@ class StartPage extends Component {
           height: 100
         }}
       />
-    } else return !this.state.isAuthenticated
+    } else return this.state.isAuthenticated || this.props.token
       ? <Navigation/>
       : <SignUser/>
   }

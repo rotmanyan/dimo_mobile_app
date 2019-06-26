@@ -4,7 +4,7 @@ import styled from 'styled-components/native'
 // start View Background
 export const MainView = styled.View`
   flex: 1;
-  background-color: #3878FF;
+  background-color: rgba(17,29,85,0.78);
 `
 
 export const ViewHead = styled.View`

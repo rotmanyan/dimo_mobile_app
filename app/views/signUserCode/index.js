@@ -54,16 +54,16 @@ class SignUserCode extends Component {
           ref={input => {
             if (input !== null) {
               input.focus()
-              if (value.length >= 4) {
-                input.blur()
+              if (value.length === 4) {
+                next(value)
               }
             }
           }}
-          value={value}
           maxLength={4}
+          value={value}
           onChange={e => {
             this.setState({value: e.nativeEvent.text})
-          }} placeholder="Insert the 6-digit code"/>
+          }} placeholder="Insert the 4-digit code"/>
         {timer > 0
           ? <SendCount>
             Send again: {timer}

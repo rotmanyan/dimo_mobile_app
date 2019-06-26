@@ -57,6 +57,8 @@ export const signUserMobileConfirm = credential => (dispatch, getState) => {
     url: urlMobileconfirm
   }
 
+  console.log(options, 'options ax9os');
+
   axios(options)
     .then(data => {
       console.log(data, 'response ax9os');
@@ -70,13 +72,12 @@ export const signUserMobileConfirm = credential => (dispatch, getState) => {
 
 export const signUserUp = credential => (dispatch, getState) => {
   const state = getState()
-  console.log(state.profile.userNumber, 'getState.profile.userNumber1qwewqeqweqwe123123');
   dispatch(signUserUpRequest())
 
   const options = {
     method: 'POST',
     data: {
-      phone: '+380994425999',
+      phone: state.profile.userNumber,
       email: credential.email,
       password: credential.password
     },
@@ -85,34 +86,41 @@ export const signUserUp = credential => (dispatch, getState) => {
 
   axios(options)
     .then(response => {
-      dispatch(signUserUpSuccess(response.data))
+      AsyncStorage.setItem('token', response.data.data.token)
+      dispatch(signUserUpSuccess(response.data.data))
     })
     .catch(error => dispatch(signUserUpError(error)))
 }
 
 export const signUserIn = credential => (dispatch, getState) => {
   dispatch(signUserInRequest())
+  const state = getState()
 
   const options = {
     method: 'POST',
     data: {
-      phone: '+380994425999',
+      phone: state.profile.userNumber,
       password: credential
     },
     url: urlSignIn
   }
 
   axios(options)
+    .then(response => {
+      AsyncStorage.setItem('token', response.data.data.token)
+      dispatch(signUserInSuccess(response.data.data))
+    })
+    .catch(error => dispatch(signUserInError(error)))
 }
 
 export const getUserProfile = credential => (dispatch, getState) => {
   dispatch(getUserProfileRequest())
+  const state = getState()
 
   const options = {
     method: 'POST',
     data: {
-      phone: '+380994425999',
-      password: credential
+      phone: state.profile.token,
     },
     url: urlProfile
   }

@@ -27,6 +27,18 @@ export const signUser = (state = initialState, {type, payload}) => {
         success: payload.success,
         isRegistered: payload.isRegistered
       }
+    case actionTypes.SIGN_USER_REGISTRATION_SUCCESS:
+      console.log(payload, 'regist success');
+      return {
+        ...state,
+        token: payload.token
+      }
+    case actionTypes.SIGN_USER_LOGIN_SUCCESS:
+      console.log(payload, 'login success');
+      return {
+        ...state,
+        token: payload.token
+      }
     case actionTypes.GET_USER_PROFILE_SUCCESS:
       return {
         ...state

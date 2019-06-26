@@ -1,14 +1,12 @@
 import styled from 'styled-components/native'
 
 export const MainView = styled.View`
-width: 100%;
-height: 100%;
+  width: 100%;
+  height: 100%;
   padding: 32px 0;
-  flex: 5;
   background-color: rgba(17,29,85,0.78);
   align-items: center;
   margin: auto;
-  justify-content: center;
 `
 
 //button
@@ -25,9 +23,9 @@ export const BackButtonView = styled.TouchableOpacity`
   width: 104px;
   background-color: transparent;
   border-radius: 50px;
-    align-items: center;
-   justify-content: center;
-     border: 1px solid #FFFFFF;
+  align-items: center;
+  justify-content: center; 
+  border: 1px solid #FFFFFF;
 `
 export const NextButtonView = styled.TouchableOpacity`
   border-radius: 50px;

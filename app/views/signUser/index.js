@@ -21,19 +21,17 @@ import RegistrationUser from "../../components/registrationUser";
 
 class SignUser extends Component {
   state = {
-    value: '+380994425999',
+    value: '',
   }
 
   writeInput = () => {
     const {value} = this.state
-    // const {sign} = this.props
 
     return (
       <PhoneInput
         initialCountry='tz'
         ref={input => {
           if (input !== null) {
-            console.log(input.selectCountry());
             let a = value.split(' ').join('')
             input.focus()
 
@@ -93,6 +91,8 @@ class SignUser extends Component {
       </MainView>
     )
   }
+
+/*
   render() {
     const {userNumber, success, isRegistered} = this.props
     if (1) {
@@ -108,10 +108,11 @@ class SignUser extends Component {
       }
     }
   }
+*/
 
-/*    render() {
-      return <RegistrationUser/>
-    }*/
+  render() {
+    return <SignUserCode/>
+  }
 }
 
 const MSTP = state => ({

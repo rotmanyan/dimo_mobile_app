@@ -2,12 +2,10 @@ import styled from 'styled-components/native'
 
 export const MainView = styled.View`
   width: 100%;
-  height: 100%;
+  flex: 1;
   padding: 32px 0;
-  flex: 5;
   background-color: rgba(17,29,85,0.78);
   align-items: center;
-  margin: auto;
   justify-content: center;
 `
 

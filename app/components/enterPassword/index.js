@@ -28,15 +28,8 @@ class EnterPassword extends Component {
         <ViewBottom>
           <ImageBg source={require('../../assets/backgrounds/bottom.png')}/>
         </ViewBottom>
+
         <InputForm
-          ref={input => {
-            if (input !== null) {
-              input.focus()
-              if (value.length >= 4) {
-                input.blur()
-              }
-            }
-          }}
           value={value}
           onChange={e => {
             this.setState({value: e.nativeEvent.text})
@@ -47,7 +40,7 @@ class EnterPassword extends Component {
           </SendCountText>
         </SendCount>
         <ButtonPanelView>
-          <NextButtonView onPress={() => next(value)}>
+          <NextButtonView onPress={() => value.length >= 8 && next(value)}>
             <NextButton>
               Next
             </NextButton>

@@ -25,7 +25,6 @@ class CodeScan extends Component {
   }
 
   render() {
-    console.log(this.props, 'oorrorororo');
     if (!this.state.Start_Scanner) {
       const {QR_Code_Value} = this.state
       return (

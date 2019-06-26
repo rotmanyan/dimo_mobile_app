@@ -63,7 +63,7 @@ class ProofIdentify extends Component {
                 <SvgUri
                   width="16"
                   height='16'
-                  source={require('../../../assets/icons/downloadImg.svg')}
+                  source={require('../../../assets/icons/rectangleGreen.svg')}
                 />
               </SvgView>
               <UploadImageTextBox>
@@ -73,7 +73,7 @@ class ProofIdentify extends Component {
                 <SvgUri
                   width="16"
                   height='16'
-                  source={require('../../../assets/icons/downloadImg.svg')}
+                  source={require('../../../assets/icons/closeIcon.svg')}
                 />
               </SvgView>
             </UploadImage>
@@ -101,7 +101,7 @@ class ProofIdentify extends Component {
                 <SvgUri
                   width="16"
                   height='16'
-                  source={require('../../../assets/icons/downloadImg.svg')}
+                  source={require('../../../assets/icons/rectangleGreen.svg')}
                 />
               </SvgView>
               <UploadImageTextBox>
@@ -111,7 +111,7 @@ class ProofIdentify extends Component {
                 <SvgUri
                   width="16"
                   height='16'
-                  source={require('../../../assets/icons/downloadImg.svg')}
+                  source={require('../../../assets/icons/closeIcon.svg')}
                 />
               </SvgView>
             </UploadImage>
