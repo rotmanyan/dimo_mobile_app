@@ -23,6 +23,7 @@ import {
   BlueButton,
   BlueButtonText
 } from "./styles";
+import {ImagePickerIOS} from "react-native";
 
 class Profile extends Component {
   static navigationOptions = {
@@ -35,20 +36,33 @@ class Profile extends Component {
     },
   };
 
+  state = {
+    avatarImage: ''
+  }
+
   componentDidMount() {
     this.props.getUserProfile()
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    !this.state.avatarImage && this.props.avatar && this.setState({avatarImage: this.props.avatar})
+  }
+
+
+  pickImage = () => ImagePickerIOS.openSelectDialog({}, avatarImage => this.setState({avatarImage}), error => console.log(error, 'error'));
+
 
   render() {
     const {
-      avatar, userNumber, userEmail,
+      userNumber, userEmail,
       userCountry, userName, userAddress,
       userFullName, kycStatus, dailyLimits,
       withdrawLimits, isVerified
     } = this.props
+    const {avatarImage} = this.state
+
+    console.log(this.state, 'state');
     return (
-      !!avatar &&
       <MainView>
         <TopView>
           {!isVerified && <YellowBlock>
@@ -74,8 +88,8 @@ class Profile extends Component {
             </LeftBlock>
 
             <CenterBlock>
-              <ViewUser>
-                <ImageUser source={{uri: avatar}}/>
+              <ViewUser onPress={this.pickImage}>
+                {!!avatarImage && <ImageUser source={{uri: avatarImage}}/>}
               </ViewUser>
               <TextUser>John Doe</TextUser>
               <TariffUserView>
