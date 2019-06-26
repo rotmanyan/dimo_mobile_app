@@ -2,6 +2,7 @@ import styled from 'styled-components/native'
 
 export const MainView = styled.View`
   flex: 5;
+  background-color: #e9edf2;
 `
 
 export const TopView = styled.View`
@@ -9,9 +10,11 @@ export const TopView = styled.View`
   background-color: #fff;
   padding: 8px 8px 18px;
   shadow-color: rgba(0,0,0,0.7);
-  shadow-opacity: 0.7;
+  shadow-opacity: 0.3;
   shadow-radius: 2;
   shadow-offset: 0 2px;
+  border-radius: 10px;
+  margin-bottom: 5px;
 `
 
 export const BottomView = styled.ScrollView`
@@ -123,15 +126,20 @@ export const TextNumberRight = styled.Text`
   text-align: right;
 `
 
-export const ViewUser = styled.View`
+export const ViewUser = styled.TouchableOpacity`
   background-color: #000000;
   width: 80px;
   height: 80px;
   border-radius: 64px;
   margin: auto auto 8px;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
 `
 
 export const ImageUser = styled.Image`
+  width: 80px;
+  height: 80px;
 `
 
 export const TextUser = styled.Text`

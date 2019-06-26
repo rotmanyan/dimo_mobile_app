@@ -48,6 +48,7 @@ class Profile extends Component {
       withdrawLimits, isVerified
     } = this.props
     return (
+      !!avatar &&
       <MainView>
         <TopView>
           {!isVerified && <YellowBlock>
@@ -91,9 +92,8 @@ class Profile extends Component {
               </TextNumberRight>
             </RightBlock>
           </HeadBlock>
-
-
         </TopView>
+
         <BottomView>
           <Text>
             E-mail
@@ -124,7 +124,7 @@ class Profile extends Component {
           </ViewBlueButton>
         </BottomView>
       </MainView>
-    );
+    )
   }
 }
 

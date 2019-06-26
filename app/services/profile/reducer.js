@@ -47,7 +47,6 @@ export const signUser = (state = initialState, {type, payload}) => {
         token: payload.token
       }
     case actionTypes.GET_USER_PROFILE_SUCCESS:
-      console.log(payload, 'datatatat');
       return {
         ...state,
         avatar: payload.avatar,
