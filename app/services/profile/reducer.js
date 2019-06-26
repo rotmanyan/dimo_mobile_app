@@ -2,12 +2,21 @@ import {actionTypes} from './actions';
 
 const initialState = {
   token: '',
+
+  avatar: '',
+
   userNumber: '',
   userEmail: '',
   userCountry: '',
   userName: '',
   userAddress: '',
   userFullName: '',
+  isVerified: false,
+
+  kyc: {
+    status: 'empty'
+  },
+
   dailyLimits: 0,
   withdrawLimits: 0,
   success: false,
@@ -28,20 +37,26 @@ export const signUser = (state = initialState, {type, payload}) => {
         isRegistered: payload.isRegistered
       }
     case actionTypes.SIGN_USER_REGISTRATION_SUCCESS:
-      console.log(payload, 'regist success');
       return {
         ...state,
         token: payload.token
       }
     case actionTypes.SIGN_USER_LOGIN_SUCCESS:
-      console.log(payload, 'login success');
       return {
         ...state,
         token: payload.token
       }
     case actionTypes.GET_USER_PROFILE_SUCCESS:
+      console.log(payload, 'datatatat');
       return {
-        ...state
+        ...state,
+        avatar: payload.avatar,
+        userNumber: payload.phone,
+        userEmail: payload.email,
+        userCountry: payload.country,
+        kyc: {status: payload.kyc.status},
+        isVerified: payload.isVerified
+
       }
     case actionTypes.CLEAR_USER:
       return {

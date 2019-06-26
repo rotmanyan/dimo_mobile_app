@@ -9,16 +9,20 @@ import {
   NextButton,
   NextButtonView,
   SendCount,
-  SendCountText
+  SendCountText,
+  ImageKey
 } from './styles'
 import {connect} from "react-redux";
 import {signUserIn} from "../../services/profile/operation";
 
 class EnterPassword extends Component {
-  state = {value: ''}
+  state = {
+    value: '',
+    passwordType: true,
+  }
 
   render() {
-    const {value} = this.state
+    const {value, passwordType} = this.state
     const {next} = this.props
     return (
       <MainView>
@@ -28,17 +32,22 @@ class EnterPassword extends Component {
         <ViewBottom>
           <ImageBg source={require('../../assets/backgrounds/bottom.png')}/>
         </ViewBottom>
-
+        <ImageKey
+          source={require('../../assets/icons/ico-pass.png')}
+        />
         <InputForm
           value={value}
-          onChange={e => {
-            this.setState({value: e.nativeEvent.text})
-          }} placeholder="Enter your password"/>
+          onChange={e => this.setState({value: e.nativeEvent.text})}
+          placeholder="Enter your password"
+          secureTextEntry={passwordType}
+        />
+
         <SendCount>
           <SendCountText>
             I've forgotten my password
           </SendCountText>
         </SendCount>
+
         <ButtonPanelView>
           <NextButtonView onPress={() => value.length >= 8 && next(value)}>
             <NextButton>
@@ -46,6 +55,7 @@ class EnterPassword extends Component {
             </NextButton>
           </NextButtonView>
         </ButtonPanelView>
+
       </MainView>
     )
   }

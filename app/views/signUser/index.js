@@ -92,7 +92,6 @@ class SignUser extends Component {
     )
   }
 
-/*
   render() {
     const {userNumber, success, isRegistered} = this.props
     if (1) {
@@ -107,11 +106,6 @@ class SignUser extends Component {
         return this.writeBody()
       }
     }
-  }
-*/
-
-  render() {
-    return <SignUserCode/>
   }
 }
 

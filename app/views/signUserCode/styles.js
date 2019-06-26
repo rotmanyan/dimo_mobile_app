@@ -27,6 +27,7 @@ export const BackButtonView = styled.TouchableOpacity`
   justify-content: center; 
   border: 1px solid #FFFFFF;
 `
+
 export const NextButtonView = styled.TouchableOpacity`
   border-radius: 50px;
   width: 104px;

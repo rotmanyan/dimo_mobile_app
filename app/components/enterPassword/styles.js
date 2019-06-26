@@ -2,11 +2,11 @@ import styled from 'styled-components/native'
 
 export const MainView = styled.View`
   width: 100%;
-  flex: 1;
+  flex: 4;
   padding: 32px 0;
   background-color: rgba(17,29,85,0.78);
+  
   align-items: center;
-  justify-content: center;
 `
 
 export const Button = styled.TouchableOpacity`
@@ -41,10 +41,13 @@ export const ImageBg = styled.Image`
 `
 
 export const ButtonPanelView = styled.View`
-  flex:1;
   width: 240px;
-  justify-content: flex-end;
-  margin-top: auto;
+`
+
+export const ImageKey = styled.Image`
+  width: 128px;
+  height: 128px;
+  margin: 32px 0 47px;
 `
 
 export const NextButtonView = styled.TouchableOpacity`
@@ -56,22 +59,22 @@ export const NextButtonView = styled.TouchableOpacity`
 `
 
 export const NextButton = styled.Text`
-color: #fff;
-font-size: 14px;
+  color: #fff;
+  font-size: 14px;
+  text-transform: uppercase;
 `
 
 export const InputForm = styled.TextInput`
-  flex:1;
   width: 300px;
   border-radius: 18px;
   max-height: 40px;
   background-color: #fff;
   padding: 10px 0 10px 18px;
-  margin-bottom: 16px;
+  text-transform: lowercase;
 `
 
 export const SendCount = styled.TouchableOpacity`
-  flex:1;
+  margin: 16px 0 42px;
 `
 
 export const SendCountText = styled.Text`

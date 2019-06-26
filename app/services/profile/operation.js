@@ -115,19 +115,23 @@ export const signUserIn = credential => (dispatch, getState) => {
 
 export const getUserProfile = credential => (dispatch, getState) => {
   dispatch(getUserProfileRequest())
-  const state = getState()
 
-  const options = {
-    method: 'POST',
-    data: {
-      phone: state.profile.token,
-    },
-    url: urlProfile
-  }
+  const actualToken = getState().profile.token;
 
-  axios(options)
-    .then(res => {
-      dispatch(getUserProfileSuccess(res.data))
+  AsyncStorage.getItem('token')
+    .then(data => token = data)
+    .then(token => {
+
+      const options = {
+        method: 'GET',
+        headers: {'x-access-token': actualToken || token},
+        url: urlProfile
+      }
+
+      axios(options)
+        .then(res => {
+          dispatch(getUserProfileSuccess(res.data.data))
+        })
+        .catch(error => dispatch(getUserProfileError(error)))
     })
-    .catch(error => dispatch(getUserProfileError(error)))
 }

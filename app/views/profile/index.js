@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux'
+import {getUserProfile} from "../../services/profile/operation";
+import * as selector from '../../services/selectors'
 import {
   MainView,
   TopView,
@@ -21,7 +23,6 @@ import {
   BlueButton,
   BlueButtonText
 } from "./styles";
-import {getUserProfile} from "../../services/profile/operation";
 
 class Profile extends Component {
   static navigationOptions = {
@@ -40,10 +41,16 @@ class Profile extends Component {
 
 
   render() {
+    const {
+      avatar, userNumber, userEmail,
+      userCountry, userName, userAddress,
+      userFullName, kycStatus, dailyLimits,
+      withdrawLimits, isVerified
+    } = this.props
     return (
       <MainView>
         <TopView>
-          <YellowBlock>
+          {!isVerified && <YellowBlock>
             <YellowText>
               Account wit limited abilities
             </YellowText>
@@ -54,20 +61,20 @@ class Profile extends Component {
                 </YellowButtonText>
               </YellowButton>
             </YellowButtonView>
-          </YellowBlock>
+          </YellowBlock>}
           <HeadBlock>
             <LeftBlock>
               <TextLimit>
                 Daily Limits:
               </TextLimit>
               <TextNumber>
-                10.000
+                {dailyLimits}
               </TextNumber>
             </LeftBlock>
 
             <CenterBlock>
               <ViewUser>
-                <ImageUser source={require('../../assets/images/ignat.png')}/>
+                <ImageUser source={{uri: avatar}}/>
               </ViewUser>
               <TextUser>John Doe</TextUser>
               <TariffUserView>
@@ -80,7 +87,7 @@ class Profile extends Component {
                 Withdraw Limit:
               </TextLimit>
               <TextNumberRight>
-                10.000.000
+                {withdrawLimits}
               </TextNumberRight>
             </RightBlock>
           </HeadBlock>
@@ -91,15 +98,15 @@ class Profile extends Component {
           <Text>
             E-mail
           </Text>
-          <Input placeholder='Enter your e-mail'/>
+          <Input defaultValue={userEmail} placeholder='Enter your e-mail'/>
           <Text>
             Mobile number
           </Text>
-          <Input placeholder='Enter your mobile number'/>
+          <Input defaultValue={userNumber} placeholder='Enter your mobile number'/>
           <Text>
             Country
           </Text>
-          <Input placeholder='Enter your country'/>
+          <Input defaultValue={userCountry} placeholder='Enter your country'/>
           <Text>
             Address
           </Text>
@@ -121,10 +128,23 @@ class Profile extends Component {
   }
 }
 
-const MSTP = state = ({})
+const MSTP = state => ({
+  avatar: selector.avatar(state),
+  userNumber: selector.userNumber(state),
+  userEmail: selector.userEmail(state),
+  userCountry: selector.userCountry(state),
+  userName: selector.userName(state),
+  userAddress: selector.userAddress(state),
+  userFullName: selector.userFullName(state),
+  kycStatus: selector.kycStatus(state),
+  dailyLimits: selector.dailyLimits(state),
+  withdrawLimits: selector.withdrawLimits(state),
+  isVerified: selector.isVerified(state),
+  profile: selector.profile(state),
+})
 
 const MDTP = {
   getUserProfile
 }
 
-export default connect(null, MDTP)(Profile)
+export default connect(MSTP, MDTP)(Profile)
