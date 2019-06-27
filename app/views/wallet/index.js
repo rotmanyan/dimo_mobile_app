@@ -4,8 +4,8 @@ import AsyncStorage from "@react-native-community/async-storage";
 
 class Wallet extends Component {
   componentDidMount() {
-    AsyncStorage.clear()
   }
+
 
   render() {
     return (
@@ -13,7 +13,10 @@ class Wallet extends Component {
         <Text>
           It's a Wallet
         </Text>
-        <TouchableOpacity style={{backgroundColor: '#00ddff', opacity: '.7', padding: '10px 15px', margin: 'auto'}}>
+        <TouchableOpacity
+          onPress={() => AsyncStorage.clear()}
+          style={{backgroundColor: '#00ddff', width: 200, padding: 10, alignItems: 'center', marginTop: 100, borderRadius: 20}}
+        >
           <Text>
             Please press to LOGOUT
           </Text>
