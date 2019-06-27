@@ -1,4 +1,6 @@
 import axios from 'axios'
+import AsyncStorage from "@react-native-community/async-storage";
+
 import {
   signUserVerifyPhoneRequest,
   signUserVerifyPhoneSuccess,
@@ -22,16 +24,27 @@ import {
 
   updateUserProfileRequest,
   updateUserProfileSuccess,
-  updateUserProfileError
+  updateUserProfileError,
+
+  updateUserAvatarRequest,
+  updateUserAvatarSuccess,
+  updateUserAvatarError
 } from './actions'
-import {urlVerifyphone, urlMobileconfirm, urlSignIn, urlSignUp, urlProfile, urlProfileUpdate, urlKyc} from '../baseUrl'
-import AsyncStorage from "@react-native-community/async-storage";
+
+import {
+  urlVerifyphone,
+  urlMobileconfirm,
+  urlSignIn,
+  urlSignUp,
+  urlProfile,
+  urlProfileUpdate,
+  urlUpdateAvatar,
+  urlKyc
+} from '../baseUrl'
 
 export const signUserVerifyPhone = credential => (dispatch, getState) => {
   dispatch(signUserVerifyPhoneRequest())
-  // const actualToken = getState().profile.token || token;
-  // const headerDefault = {Authorization: `Bearer ${actualToken}`};
-  // +255 721 234 566
+
   const options = {
     method: 'POST',
     data: {
@@ -158,6 +171,28 @@ export const updateUserProfile = credential => (dispatch, getState) => {
       axios(options)
         .then(res => dispatch(updateUserProfileSuccess(res.data.data)))
         .catch(error => dispatch(updateUserProfileError(error)))
+    })
+
+}
+
+export const updateUserAvatar = credential => (dispatch, getState) => {
+  dispatch(updateUserAvatarRequest())
+
+  const actualToken = getState().profile.token;
+  AsyncStorage.getItem('token')
+    .then(data => token = data)
+    .then(token => {
+
+      const options = {
+        method: 'POST',
+        headers: {'x-access-token': actualToken || token},
+        data: credential,
+        url: urlUpdateAvatar
+      }
+
+      axios(options)
+        .then(res => dispatch(updateUserAvatarSuccess(res.data.data)))
+        .catch(error => dispatch(updateUserAvatarError(error)))
     })
 
 }

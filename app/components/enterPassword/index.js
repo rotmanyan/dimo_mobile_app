@@ -13,12 +13,17 @@ import {
   ImageKey
 } from './styles'
 import {connect} from "react-redux";
+import {Linking} from "react-native";
 import {signUserIn} from "../../services/profile/operation";
 
 class EnterPassword extends Component {
   state = {
     value: '',
     passwordType: true,
+  }
+
+  link = () => {
+    Linking.openURL('https://app.dimo.org/login/forgot-password')
   }
 
   render() {
@@ -42,7 +47,7 @@ class EnterPassword extends Component {
           secureTextEntry={passwordType}
         />
 
-        <SendCount>
+        <SendCount onPress={this.link}>
           <SendCountText>
             I've forgotten my password
           </SendCountText>

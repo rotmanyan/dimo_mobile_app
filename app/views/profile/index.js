@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {ImagePickerIOS} from "react-native";
 import {connect} from 'react-redux'
-import {getUserProfile, updateUserProfile} from "../../services/profile/operation";
+import {getUserProfile, updateUserProfile, updateUserAvatar} from "../../services/profile/operation";
 import * as selector from '../../services/selectors'
 import {
   MainView,
@@ -41,7 +41,8 @@ class Profile extends Component {
       avatarImage: '',
       userNumber: '',
       userEmail: '',
-      userAddress: ''
+      userAddress: '',
+      userName: '',
     }
   }
 
@@ -53,7 +54,11 @@ class Profile extends Component {
     !this.state.userInfo.avatarImage && this.props.avatar && this.setState({
       userInfo: {
         ...this.state.userInfo,
-        avatarImage: this.props.avatar
+        avatarImage: this.props.avatar,
+        userNumber: this.props.userNumber,
+        userEmail: this.props.userEmail,
+        userAddress: this.props.userAddress,
+        userName: this.props.userName,
       }
     })
   }
@@ -62,9 +67,8 @@ class Profile extends Component {
     const {submit} = this.props
     const {userInfo} = this.state
     submit({
-      phone: userInfo.userNumber,
-      email: userInfo.userEmail,
-      address: userInfo.userAddress
+      address: userInfo.userAddress,
+      username: userInfo.userName
     })
   }
 
@@ -73,7 +77,7 @@ class Profile extends Component {
       ...this.state.userInfo,
       avatarImage
     }
-  }), error => console.log(error, 'error'));
+  }, () => this.props.updateAvatar(this.state.userInfo.avatarImage)), error => console.log(error, 'error'));
 
   render() {
     const {userInfo} = this.state
@@ -136,6 +140,8 @@ class Profile extends Component {
             E-mail
           </Text>
           <Input
+            editable={false}
+            style={{opacity: .5}}
             onChangeText={userEmail => this.setState({userInfo: {...userInfo, userEmail}})}
             value={userInfo.userEmail || userEmail}
             placeholder='Enter your e-mail'
@@ -144,6 +150,8 @@ class Profile extends Component {
             Mobile number
           </Text>
           <Input
+            editable={false}
+            style={{opacity: .5}}
             onChangeText={userNumber => this.setState({userInfo: {...userInfo, userNumber}})}
             value={userInfo.userNumber || userNumber}
             placeholder='Enter your mobile number'
@@ -162,13 +170,17 @@ class Profile extends Component {
           </Text>
           <Input
             onChangeText={userAddress => this.setState({userInfo: {...userInfo, userAddress}})}
-            value={userInfo.userAddress || userAddress}
+            value={userInfo.userAddress}
             placeholder='Enter your address'
           />
           <Text>
             Username
           </Text>
-          <InputWhite defaultValue={userName} placeholder='Enter your username'/>
+          <InputWhite
+            onChangeText={userName => this.setState({userInfo: {...userInfo, userName}})}
+            value={userInfo.userName}
+            placeholder='Enter your username'
+          />
           <ViewBlueButton>
             <BlueButton onPress={this.submitProfile}>
               <BlueButtonText>
@@ -200,7 +212,8 @@ const MSTP = state => ({
 
 const MDTP = {
   getUserProfile,
-  submit: updateUserProfile
+  submit: updateUserProfile,
+  updateAvatar: updateUserAvatar
 }
 
 export default connect(MSTP, MDTP)(Profile)

@@ -78,8 +78,19 @@ export const InputForm = styled.TextInput`
   margin-bottom: 16px;
 `
 
-export const SendCount = styled.Text`
+export const SendCount = styled.TouchableOpacity`
+ flex:1;
+  font-size: 16px;
+  color: #fff;
+`
+
+export const SendCountText = styled.Text`
   flex:1;
+  font-size: 16px;
+  color: #fff;
+`
+
+export const SendCountTextSec = styled.Text`
   font-size: 16px;
   color: #fff;
 `

@@ -23,6 +23,10 @@ export const actionTypes = {
   'UPDATE_USER_PROFILE_SUCCESS': 'UPDATE_USER_PROFILE_SUCCESS',
   'UPDATE_USER_PROFILE_ERROR': 'UPDATE_USER_PROFILE_ERROR',
 
+  'UPDATE_USER_AVATAR_REQUEST': 'UPDATE_USER_AVATAR_REQUEST',
+  'UPDATE_USER_AVATAR_SUCCESS': 'UPDATE_USER_AVATAR_SUCCESS',
+  'UPDATE_USER_AVATAR_ERROR': 'UPDATE_USER_AVATAR_ERROR',
+
   'CLEAR_USER': 'CLEAR_USER'
 }
 
@@ -116,6 +120,21 @@ export const updateUserProfileSuccess = data => ({
 
 export const updateUserProfileError = error => ({
   type: actionTypes.UPDATE_USER_PROFILE_ERROR,
+  payload: error
+})
+
+//UPDATE_USER_AVATAR
+export const updateUserAvatarRequest = () => ({
+  type: actionTypes.UPDATE_USER_AVATAR_REQUEST
+})
+
+export const updateUserAvatarSuccess = data => ({
+  type: actionTypes.UPDATE_USER_AVATAR_SUCCESS,
+  payload: data
+})
+
+export const updateUserAvatarError = error => ({
+  type: actionTypes.UPDATE_USER_AVATAR_ERROR,
   payload: error
 })
 

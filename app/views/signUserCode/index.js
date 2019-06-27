@@ -14,9 +14,11 @@ import {
   SendCount,
   ViewHead,
   ViewBottom,
-  ImageBg
+  ImageBg,
+  SendCountText,
+  SendCountTextSec
 } from './styles'
-import {signUserMobileConfirm} from "../../services/profile/operation";
+import {signUserMobileConfirm, signUserVerifyPhone} from "../../services/profile/operation";
 
 let timerSend;
 
@@ -35,7 +37,7 @@ class SignUserCode extends Component {
   }
 
   render() {
-    const {back, next, userNumber} = this.props
+    const {back, next, userNumber, sign} = this.props
     const {timer, value} = this.state
     return (
       <MainView>
@@ -65,11 +67,16 @@ class SignUserCode extends Component {
             this.setState({value: e.nativeEvent.text})
           }} placeholder="Insert the 4-digit code"/>
         {timer > 0
-          ? <SendCount>
+          ? <SendCountText>
             Send again: {timer}
-          </SendCount>
-          : <SendCount>
-            Click to send again
+          </SendCountText>
+          :
+          <SendCount onPress={() => {
+            this.setState({timer: 59}, () => sign(userNumber))
+          }}>
+            <SendCountTextSec>
+              Click to send again
+            </SendCountTextSec>
           </SendCount>
         }
         <ButtonPanelView>
@@ -96,7 +103,8 @@ const MSTP = state => ({
 })
 const MDTP = {
   back: clearUser,
-  next: signUserMobileConfirm
+  next: signUserMobileConfirm,
+  sign: signUserVerifyPhone,
 }
 
 export default connect(MSTP, MDTP)(SignUserCode)
