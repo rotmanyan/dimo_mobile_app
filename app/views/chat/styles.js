@@ -1,6 +1,10 @@
 import styled from 'styled-components/native'
 
-export const MainView = styled.ScrollView`
+export const MainView = styled.View`
+  flex: 5;
+  background-color: #e9edf2;
+`
+export const MainScrollView = styled.ScrollView`
   flex: 5;
   background-color: #e9edf2;
 `

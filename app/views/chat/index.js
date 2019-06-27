@@ -13,9 +13,9 @@ import {
   SvgUserView,
   BlockUserView,
   EmptyBox,
-  EmptyImage, EmptyText, EmptyView
+  EmptyImage, EmptyText, EmptyView,
+  MainScrollView
 } from "./styles";
-import {svgStyle, ViewSvg} from "../signUser/styles";
 
 class LogoTitle extends Component {
   render() {
@@ -77,58 +77,59 @@ class Chat extends Component {
               </SvgUserView>
             </BlockUserView>
           </BlockUser>
+          <MainScrollView>
+            {
+              arrayContacts.length > 0
+                ? arrayContacts.map((el, key) =>
+                  <BlockUser onPress={() => this.props.navigation.navigate('PersonalChat')} key={key}>
 
-          {
-            arrayContacts.length > 0
-              ? arrayContacts.map((el, key) =>
-                <BlockUser onPress={() => this.props.navigation.navigate('PersonalChat')} key={key}>
+                    <BlockUserView>
+                      {el.thumbnailPath
+                        ? <AvatarUser source={{uri: el.thumbnailPath}}/>
+                        : <AvatarUser source={require('../../assets/images/oval58.png')}/>
+                      }
+                      <ViewUserText>
+                        <UserTextBold>
+                          {el.givenName}
+                        </UserTextBold>
+                        <UserText>
+                          Last seen 3 hours ago
+                        </UserText>
+                      </ViewUserText>
 
-                  <BlockUserView>
-                    {el.thumbnailPath
-                      ? <AvatarUser source={{uri: el.thumbnailPath}}/>
-                      : <AvatarUser source={require('../../assets/images/oval58.png')}/>
-                    }
-                    <ViewUserText>
-                      <UserTextBold>
-                        {el.givenName}
-                      </UserTextBold>
-                      <UserText>
-                        Last seen 3 hours ago
-                      </UserText>
-                    </ViewUserText>
-
-                    <SvgUserView>
-                      <SvgUri
-                        width="22"
-                        height='22'
-                        source={require('../../assets/icons/chat_bubble_outline.svg')}
-                      />
-                    </SvgUserView>
-                  </BlockUserView>
-                </BlockUser>)
-              : <EmptyBox onPress={() => {
-                Vibration.vibrate(1000)
-                Contacts.getAll((error, data) => this.setState({arrayContacts: data}))
-              }}>
-                <EmptyView>
-                  <EmptyText>
-                    - Empty contacts -
-                  </EmptyText>
-                  <SvgUri
-                    width="102"
-                    height='102'
-                    source={require('../../assets/icons/group2.svg')}
-                    style={{margin: 16}}
-                  />
-                  <EmptyText>
-                    Tell your friend about
-                  </EmptyText>
-                  <EmptyText>
-                    DIMO
-                  </EmptyText>
-                </EmptyView>
-              </EmptyBox>
-          }
+                      <SvgUserView>
+                        <SvgUri
+                          width="22"
+                          height='22'
+                          source={require('../../assets/icons/chat_bubble_outline.svg')}
+                        />
+                      </SvgUserView>
+                    </BlockUserView>
+                  </BlockUser>)
+                : <EmptyBox onPress={() => {
+                  Vibration.vibrate(1000)
+                  Contacts.getAll((error, data) => this.setState({arrayContacts: data}))
+                }}>
+                  <EmptyView>
+                    <EmptyText>
+                      - Empty contacts -
+                    </EmptyText>
+                    <SvgUri
+                      width="102"
+                      height='102'
+                      source={require('../../assets/icons/group2.svg')}
+                      style={{margin: 16}}
+                    />
+                    <EmptyText>
+                      Tell your friend about
+                    </EmptyText>
+                    <EmptyText>
+                      DIMO
+                    </EmptyText>
+                  </EmptyView>
+                </EmptyBox>
+            }
+          </MainScrollView>
         </MainView>
       </>
     )
