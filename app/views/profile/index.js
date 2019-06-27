@@ -62,7 +62,6 @@ class Profile extends Component {
     const {submit} = this.props
     const {userInfo} = this.state
     submit({
-      // avatar: userInfo.avatarImage,
       phone: userInfo.userNumber,
       email: userInfo.userEmail,
       address: userInfo.userAddress

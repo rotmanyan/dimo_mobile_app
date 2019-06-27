@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Text, View} from 'react-native'
+import {Text, View, TouchableOpacity} from 'react-native'
 import AsyncStorage from "@react-native-community/async-storage";
 
 class Wallet extends Component {
@@ -13,6 +13,11 @@ class Wallet extends Component {
         <Text>
           It's a Wallet
         </Text>
+        <TouchableOpacity>
+          <Text>
+            Please press to LOGOUT
+          </Text>
+        </TouchableOpacity>
       </View>
     );
   }
