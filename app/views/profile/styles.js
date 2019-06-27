@@ -127,7 +127,7 @@ export const TextNumberRight = styled.Text`
 `
 
 export const ViewUser = styled.TouchableOpacity`
-  background-color: #000000;
+  background-color: #ebebeb;
   width: 80px;
   height: 80px;
   border-radius: 64px;

@@ -1,28 +1,19 @@
 import React, {Component} from 'react';
-import {ImagePickerIOS} from "react-native";
+import {ImagePickerIOS, ActivityIndicator} from "react-native";
+import ImagePicker from 'react-native-image-picker';
+import RNImgToBase64 from 'react-native-image-base64';
 import {connect} from 'react-redux'
 import {getUserProfile, updateUserProfile, updateUserAvatar} from "../../services/profile/operation";
 import * as selector from '../../services/selectors'
 import {
-  MainView,
-  TopView,
-  BottomView,
-  Text,
-  Input,
-  InputWhite,
-  TextLimit,
-  TextNumber,
-  TextNumberRight,
+  MainView, TopView, BottomView,
+  Text, Input, InputWhite,
+  TextLimit, TextNumber, TextNumberRight,
   ImageUser, ViewUser, TextUser, TariffUserView, TariffUserText,
   YellowButtonView, YellowButton, YellowText, YellowButtonText,
-  HeadBlock,
-  LeftBlock,
-  CenterBlock,
-  RightBlock,
-  YellowBlock,
-  ViewBlueButton,
-  BlueButton,
-  BlueButtonText
+  HeadBlock, LeftBlock, CenterBlock,
+  RightBlock, YellowBlock, ViewBlueButton,
+  BlueButton, BlueButtonText
 } from "./styles";
 
 class Profile extends Component {
@@ -37,7 +28,9 @@ class Profile extends Component {
   };
 
   state = {
+    loadImage: false,
     userInfo: {
+      // avatarImage: 'assets-library://asset/asset.HEIC?id=CC95F08C-88C3-4012-9D6D-64A413D254B3&ext=HEIC',
       avatarImage: '',
       userNumber: '',
       userEmail: '',
@@ -47,7 +40,7 @@ class Profile extends Component {
   }
 
   componentDidMount() {
-    this.props.getUserProfile()
+    // this.props.getUserProfile()
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -72,15 +65,55 @@ class Profile extends Component {
     })
   }
 
-  pickImage = () => ImagePickerIOS.openSelectDialog({}, avatarImage => this.setState({
-    userInfo: {
-      ...this.state.userInfo,
-      avatarImage
-    }
-  }, () => this.props.updateAvatar(this.state.userInfo.avatarImage)), error => console.log(error, 'error'));
+  pickImage = () => {
+    this.setState({loadImage: true}, () => {
+      const options = {
+        title: 'Select Avatar',
+        storageOptions: {
+          skipBackup: true,
+          path: 'images',
+        },
+      };
+
+      ImagePicker.showImagePicker({}, (response) => {
+        console.log('Response = ', response);
+
+        if (response.didCancel) {
+          console.log('User cancelled image picker');
+          this.setState({loadImage: false})
+        } else if (response.error) {
+          console.log('ImagePicker Error: ', response.error);
+          this.setState({loadImage: false})
+        } else {
+          const source = 'data:image/jpeg;base64,' + response.data
+          const source2 = response.origURL
+
+          // You can also display the image using data:
+          // const source = { uri: 'data:image/jpeg;base64,' + response.data };
+
+          this.setState({
+            loadImage: false,
+            userInfo: {
+              ...this.state.userInfo,
+              avatarImage: source2
+            }
+          })
+        }
+      })
+    })
+  }
+
+  /*
+    pickImage = () => ImagePickerIOS.openSelectDialog({}, avatarImage => this.setState({
+      userInfo: {
+        ...this.state.userInfo,
+        avatarImage
+      }
+      }, () => this.saveAvatar(avatarImage)), error => console.log(error, 'error'));
+    */
 
   render() {
-    const {userInfo} = this.state
+    const {userInfo, loadImage} = this.state
 
     const {
       userNumber, userEmail,
@@ -88,6 +121,8 @@ class Profile extends Component {
       userFullName, kycStatus, dailyLimits,
       withdrawLimits, isVerified, type,
     } = this.props
+
+    console.log(userInfo.avatarImage, 'ababa');
 
     return (
       <MainView>
@@ -116,7 +151,19 @@ class Profile extends Component {
 
             <CenterBlock>
               <ViewUser onPress={this.pickImage}>
-                {!!userInfo.avatarImage && <ImageUser source={{uri: userInfo.avatarImage}}/>}
+                {!!userInfo.avatarImage && <ImageUser style={loadImage && {opacity: 0.2}} source={{uri: userInfo.avatarImage}}/>}
+                {loadImage && <ActivityIndicator
+                  animating={loadImage}
+                  color='#3878FF'
+                  size="large"
+                  style={{
+                    position: 'absolute',
+                    flex: 1,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    height: 80
+                  }}
+                />}
               </ViewUser>
               <TextUser>{userFullName}</TextUser>
               <TariffUserView>
