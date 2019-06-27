@@ -6,6 +6,12 @@ export const MainView = styled.ScrollView`
 `
 
 export const BlockUser = styled.TouchableOpacity`
+  shadow-color: rgba(0,0,0,0.7);
+  shadow-opacity: 0.3;
+  shadow-radius: 2;
+  shadow-offset: 0 2px;
+  border-radius: 10px;
+  margin-bottom: .5px;
 `
 
 export const BlockUserView = styled.View`

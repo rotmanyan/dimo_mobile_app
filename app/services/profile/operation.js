@@ -142,25 +142,24 @@ export const getUserProfile = credential => (dispatch, getState) => {
 
 export const updateUserProfile = credential => (dispatch, getState) => {
   dispatch(updateUserProfileRequest())
-  const actualToken = getState().profile.token;
 
+  const actualToken = getState().profile.token;
   AsyncStorage.getItem('token')
     .then(data => token = data)
     .then(token => {
 
       const options = {
-        method: 'GET',
+        method: 'POST',
         headers: {'x-access-token': actualToken || token},
-        data: {},
+        data: credential,
         url: urlProfileUpdate
       }
 
       axios(options)
-        .then(res => {
-          dispatch(updateUserProfileSuccess(res.data.data))
-        })
+        .then(res => dispatch(updateUserProfileSuccess(res.data.data)))
         .catch(error => dispatch(updateUserProfileError(error)))
     })
+
 }
 
 export const sendKyc = credential => (dispatch, getState) => {

@@ -14,3 +14,4 @@ export const kycStatus = state => state.profile.kyc.status
 export const dailyLimits = state => state.profile.dailyLimits
 export const withdrawLimits = state => state.profile.withdrawLimits
 export const isVerified = state => state.profile.isVerified
+export const type = state => state.profile.type

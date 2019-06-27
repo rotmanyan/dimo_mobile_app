@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
+import {ImagePickerIOS} from "react-native";
 import {connect} from 'react-redux'
-import {getUserProfile} from "../../services/profile/operation";
+import {getUserProfile, updateUserProfile} from "../../services/profile/operation";
 import * as selector from '../../services/selectors'
 import {
   MainView,
@@ -23,7 +24,6 @@ import {
   BlueButton,
   BlueButtonText
 } from "./styles";
-import {ImagePickerIOS} from "react-native";
 
 class Profile extends Component {
   static navigationOptions = {
@@ -37,7 +37,12 @@ class Profile extends Component {
   };
 
   state = {
-    avatarImage: ''
+    userInfo: {
+      avatarImage: '',
+      userNumber: '',
+      userEmail: '',
+      userAddress: ''
+    }
   }
 
   componentDidMount() {
@@ -45,23 +50,42 @@ class Profile extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    !this.state.avatarImage && this.props.avatar && this.setState({avatarImage: this.props.avatar})
+    !this.state.userInfo.avatarImage && this.props.avatar && this.setState({
+      userInfo: {
+        ...this.state.userInfo,
+        avatarImage: this.props.avatar
+      }
+    })
   }
 
+  submitProfile = () => {
+    const {submit} = this.props
+    const {userInfo} = this.state
+    submit({
+      // avatar: userInfo.avatarImage,
+      phone: userInfo.userNumber,
+      email: userInfo.userEmail,
+      address: userInfo.userAddress
+    })
+  }
 
-  pickImage = () => ImagePickerIOS.openSelectDialog({}, avatarImage => this.setState({avatarImage}), error => console.log(error, 'error'));
-
+  pickImage = () => ImagePickerIOS.openSelectDialog({}, avatarImage => this.setState({
+    userInfo: {
+      ...this.state.userInfo,
+      avatarImage
+    }
+  }), error => console.log(error, 'error'));
 
   render() {
+    const {userInfo} = this.state
+
     const {
       userNumber, userEmail,
       userCountry, userName, userAddress,
       userFullName, kycStatus, dailyLimits,
-      withdrawLimits, isVerified
+      withdrawLimits, isVerified, type,
     } = this.props
-    const {avatarImage} = this.state
 
-    console.log(this.state, 'state');
     return (
       <MainView>
         <TopView>
@@ -89,11 +113,11 @@ class Profile extends Component {
 
             <CenterBlock>
               <ViewUser onPress={this.pickImage}>
-                {!!avatarImage && <ImageUser source={{uri: avatarImage}}/>}
+                {!!userInfo.avatarImage && <ImageUser source={{uri: userInfo.avatarImage}}/>}
               </ViewUser>
-              <TextUser>John Doe</TextUser>
+              <TextUser>{userFullName}</TextUser>
               <TariffUserView>
-                <TariffUserText>Business Account</TariffUserText>
+                <TariffUserText>{type} Account</TariffUserText>
               </TariffUserView>
             </CenterBlock>
 
@@ -112,25 +136,42 @@ class Profile extends Component {
           <Text>
             E-mail
           </Text>
-          <Input defaultValue={userEmail} placeholder='Enter your e-mail'/>
+          <Input
+            onChangeText={userEmail => this.setState({userInfo: {...userInfo, userEmail}})}
+            value={userInfo.userEmail || userEmail}
+            placeholder='Enter your e-mail'
+          />
           <Text>
             Mobile number
           </Text>
-          <Input defaultValue={userNumber} placeholder='Enter your mobile number'/>
+          <Input
+            onChangeText={userNumber => this.setState({userInfo: {...userInfo, userNumber}})}
+            value={userInfo.userNumber || userNumber}
+            placeholder='Enter your mobile number'
+          />
           <Text>
             Country
           </Text>
-          <Input defaultValue={userCountry} placeholder='Enter your country'/>
+          <Input
+            style={{opacity: .5}}
+            editable={false}
+            value={userCountry}
+            placeholder='Enter your country'
+          />
           <Text>
             Address
           </Text>
-          <Input placeholder='Enter your address'/>
+          <Input
+            onChangeText={userAddress => this.setState({userInfo: {...userInfo, userAddress}})}
+            value={userInfo.userAddress || userAddress}
+            placeholder='Enter your address'
+          />
           <Text>
             Username
           </Text>
-          <InputWhite placeholder='Enter your username'/>
+          <InputWhite defaultValue={userName} placeholder='Enter your username'/>
           <ViewBlueButton>
-            <BlueButton>
+            <BlueButton onPress={this.submitProfile}>
               <BlueButtonText>
                 SUBMIT
               </BlueButtonText>
@@ -155,10 +196,12 @@ const MSTP = state => ({
   withdrawLimits: selector.withdrawLimits(state),
   isVerified: selector.isVerified(state),
   profile: selector.profile(state),
+  type: selector.type(state),
 })
 
 const MDTP = {
-  getUserProfile
+  getUserProfile,
+  submit: updateUserProfile
 }
 
 export default connect(MSTP, MDTP)(Profile)
