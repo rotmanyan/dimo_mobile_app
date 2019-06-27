@@ -13,7 +13,7 @@ class Wallet extends Component {
         <Text>
           It's a Wallet
         </Text>
-        <TouchableOpacity>
+        <TouchableOpacity style={{backgroundColor: '#00ddff', opacity: '.7', padding: '10px 15px', margin: 'auto'}}>
           <Text>
             Please press to LOGOUT
           </Text>
