@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {ImagePickerIOS, ActivityIndicator} from "react-native";
+import SvgUri from 'react-native-svg-uri';
 import ImagePicker from 'react-native-image-picker';
 import RNImgToBase64 from 'react-native-image-base64';
 import {connect} from 'react-redux'
@@ -7,13 +8,13 @@ import {getUserProfile, updateUserProfile, updateUserAvatar} from "../../service
 import * as selector from '../../services/selectors'
 import {
   MainView, TopView, BottomView,
-  Text, Input, InputWhite,
+  Text, Input, InputWhite, ViewUserOverlay,
   TextLimit, TextNumber, TextNumberRight,
   ImageUser, ViewUser, TextUser, TariffUserView, TariffUserText,
   YellowButtonView, YellowButton, YellowText, YellowButtonText,
   HeadBlock, LeftBlock, CenterBlock,
   RightBlock, YellowBlock, ViewBlueButton,
-  BlueButton, BlueButtonText
+  BlueButton, BlueButtonText, Confirmed
 } from "./styles";
 
 class Profile extends Component {
@@ -36,6 +37,7 @@ class Profile extends Component {
       userEmail: '',
       userAddress: '',
       userName: '',
+      confirmed: true
     }
   }
 
@@ -69,13 +71,14 @@ class Profile extends Component {
     this.setState({loadImage: true}, () => {
       const options = {
         title: 'Select Avatar',
+        cameraType: 'front',
         storageOptions: {
           skipBackup: true,
           path: 'images',
         },
       };
 
-      ImagePicker.showImagePicker({}, (response) => {
+      ImagePicker.showImagePicker(options, (response) => {
         console.log('Response = ', response);
 
         if (response.didCancel) {
@@ -151,19 +154,29 @@ class Profile extends Component {
 
             <CenterBlock>
               <ViewUser onPress={this.pickImage}>
-                {!!userInfo.avatarImage && <ImageUser style={loadImage && {opacity: 0.2}} source={{uri: userInfo.avatarImage}}/>}
-                {loadImage && <ActivityIndicator
-                  animating={loadImage}
-                  color='#3878FF'
-                  size="large"
-                  style={{
-                    position: 'absolute',
-                    flex: 1,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    height: 80
-                  }}
-                />}
+                <ViewUserOverlay>
+                  {!!userInfo.avatarImage &&
+                  <ImageUser style={loadImage && {opacity: 0.2}} source={{uri: userInfo.avatarImage}}/>}
+                  {loadImage && <ActivityIndicator
+                    animating={loadImage}
+                    color='#3878FF'
+                    size="large"
+                    style={{
+                      position: 'absolute',
+                      flex: 1,
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      height: 80
+                    }}
+                  />}
+                </ViewUserOverlay>
+                {userInfo.confirmed && <Confirmed>
+                  <SvgUri
+                    width="16"
+                    height='16'
+                    source={require('../../assets/icons/rectangleWhite.svg')}
+                  />
+                </Confirmed>}
               </ViewUser>
               <TextUser>{userFullName}</TextUser>
               <TariffUserView>

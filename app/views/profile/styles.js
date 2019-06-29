@@ -6,7 +6,6 @@ export const MainView = styled.View`
 `
 
 export const TopView = styled.View`
-  flex: 2;
   background-color: #fff;
   padding: 8px 8px 18px;
   shadow-color: rgba(0,0,0,0.7);
@@ -18,7 +17,6 @@ export const TopView = styled.View`
 `
 
 export const BottomView = styled.ScrollView`
-  flex: 3;
   background-color: #e9edf2;
   padding: 8px 16px 0;
 `
@@ -134,6 +132,9 @@ export const ViewUser = styled.TouchableOpacity`
   margin: auto auto 8px;
   align-items: center;
   justify-content: center;
+`
+
+export const ViewUserOverlay = styled.View`
   overflow: hidden;
 `
 
@@ -187,4 +188,13 @@ color: #ffffff;
 font-size: 14px;
 line-height: 19px;
 letter-spacing: 1.35px;
+`
+
+export const Confirmed = styled.View`
+  position: absolute;
+  
+  background-color: #57ffd0;
+  border-radius: 8px;
+  bottom: 4px;
+  right: 4px;
 `
