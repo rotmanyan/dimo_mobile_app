@@ -3,14 +3,13 @@ import SvgUri from "react-native-svg-uri";
 import {ImagePickerIOS} from "react-native";
 import {
   UploadImageBox, TitleText, SubTitleText,
-  FieldBox, ItemField, TextField, PopupBox,
+  FieldBox, ItemField, TextField,
   SvgView, UploadImage, UploadImageTextBox,
   UploadImageTextFooter, UploadImageTextHead,
-  HeadBlue, RectangleSvgView, HeadBlueText,
+  HeadBlueText,
   BlueButton, BlueButtonText, HeadBlueTitleText,
   ButtonProceedBlue, ButtonProceedGrey, ButtonProceedText
 } from './styles'
-import {} from "../proofIdentify/styles";
 
 class Selfie extends Component {
   static navigationOptions = {
@@ -30,38 +29,6 @@ class Selfie extends Component {
   pickImage = type => type
     ? this.setState({selfiePhoto: ''})
     : ImagePickerIOS.openSelectDialog({}, selfiePhoto => this.setState({selfiePhoto}), error => console.log(error, 'error'))
-
-  componentDidUpdate(prevProps, prevState) {
-    // if (this.state.selfiePhoto) this.props.changeStep()
-  }
-
-  wellDone = () => {
-    return (
-      <PopupBox>
-        <HeadBlue>
-          <RectangleSvgView>
-            <SvgUri
-              width="16"
-              height='16'
-              source={require('../../../assets/icons/rectangle.svg')}
-            />
-          </RectangleSvgView>
-          <HeadBlueTitleText>well done!</HeadBlueTitleText>
-        </HeadBlue>
-        <HeadBlueText>
-          Thank you for submitting your KYC form.
-          Please keep in mind, it may take several days to verify your information.
-          Once your form will be reviewed you will receive a notification informing you of your KYC status
-        </HeadBlueText>
-        <BlueButton onPress={this.props.send}>
-          <BlueButtonText>
-            ok
-          </BlueButtonText>
-        </BlueButton>
-
-      </PopupBox>
-    )
-  }
 
   render() {
     const {selfiePhoto} = this.state

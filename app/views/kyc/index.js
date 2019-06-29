@@ -1,17 +1,15 @@
 import React, {Component} from 'react';
 import SvgUri from 'react-native-svg-uri';
+import ProofIdentify from "./proofIdentify";
+import Selfie from "./selfie";
+import Status from "./status";
 import {
   MainView,
   HeadView,
   BodyView, StepLineOne, StepLineTwo,
   StepView, StepNumberView, StepNumberText, StepText,
   activeText, activeStep, activeLine,
-
 } from "./styles";
-import ProofIdentify from "./proofIdentify";
-import Selfie from "./selfie";
-import Status from "./status";
-import {SvgUserView} from "../chat/styles";
 
 class Kyc extends Component {
   static navigationOptions = {
@@ -25,7 +23,7 @@ class Kyc extends Component {
   }
 
   state = {
-    step: 1
+    step: 2
   }
 
   stepView = number => {
@@ -87,9 +85,13 @@ class Kyc extends Component {
           {step === 1 && <ProofIdentify changeStep={() => this.setState({step: this.state.step + 1})}/>}
           {step === 2 && <Selfie
             send={() => this.props.navigation.navigate('Profile')}
-            changeStep={() => this.setState({step: this.state.step + 1})}/>
+            changeStep={() => this.setState({step: this.state.step + 1})}
+          />
           }
-          {step === 3 && <Status send={() => this.props.navigation.navigate('Profile')}/>}
+          {step === 3 && <Status
+            changeStep={() => this.setState({step: 1})}
+            send={() => this.props.navigation.navigate('Profile')}
+          />}
         </BodyView>
       </MainView>
     )
