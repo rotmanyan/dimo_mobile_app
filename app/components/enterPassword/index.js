@@ -44,6 +44,7 @@ class EnterPassword extends Component {
           value={value}
           onChange={e => this.setState({value: e.nativeEvent.text})}
           placeholder="Enter your password"
+          autoCapitalize='none'
           secureTextEntry={passwordType}
         />
 

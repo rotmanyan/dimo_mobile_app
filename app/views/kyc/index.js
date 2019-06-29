@@ -32,12 +32,12 @@ class Kyc extends Component {
     const {step} = this.state
     const arrSteps = [' Proof of identify', 'Selfie', 'Status']
 
-    const styleStep = step >= number ? activeStep : {}
     const styleText = step >= number ? activeText : {}
+    const styleSvg = step >= number ? {backgroundColor: '#3878ff', borderColor: '#3878ff'} : {}
 
     return (
       <StepView>
-        <StepNumberView style={styleStep}>
+        <StepNumberView style={styleSvg}>
           <SvgUri
             width="15"
             height='15'
@@ -77,9 +77,9 @@ class Kyc extends Component {
     return (
       <MainView>
         <HeadView>
-          {this.stepViewSec(1)}
+          {step > 1 ? this.stepView(1) : this.stepViewSec(1)}
           <StepLineOne/>
-          {this.stepViewSec(2)}
+          {step > 2 ? this.stepView(2) : this.stepViewSec(2)}
           <StepLineTwo style={step === 3 ? activeLine : {}}/>
           {this.stepViewSec(3)}
         </HeadView>

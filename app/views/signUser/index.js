@@ -92,20 +92,23 @@ class SignUser extends Component {
     )
   }
 
+  /* render() {
+     const {userNumber, success, isRegistered} = this.props
+     if (1) {
+       if (userNumber) {
+         if (success) {
+           if (isRegistered) {
+             return <EnterPassword/>
+           } else return <RegistrationUser/>
+         }
+         return <SignUserCode/>
+       } else if (!userNumber) {
+         return this.writeBody()
+       }
+     }
+   }*/
   render() {
-    const {userNumber, success, isRegistered} = this.props
-    if (1) {
-      if (userNumber) {
-        if (success) {
-          if (isRegistered) {
-            return <EnterPassword/>
-          } else return <RegistrationUser/>
-        }
-        return <SignUserCode/>
-      } else if (!userNumber) {
-        return this.writeBody()
-      }
-    }
+    return <SignUserCode/>
   }
 }
 

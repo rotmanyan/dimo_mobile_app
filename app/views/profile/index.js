@@ -16,6 +16,7 @@ import {
   RightBlock, YellowBlock, ViewBlueButton,
   BlueButton, BlueButtonText, Confirmed
 } from "./styles";
+import {InputForm} from "../signUserCode/styles";
 
 class Profile extends Component {
   static navigationOptions = {
@@ -205,6 +206,7 @@ class Profile extends Component {
             onChangeText={userEmail => this.setState({userInfo: {...userInfo, userEmail}})}
             value={userInfo.userEmail || userEmail}
             placeholder='Enter your e-mail'
+            autoCapitalize='none'
           />
           <Text>
             Mobile number
@@ -214,6 +216,7 @@ class Profile extends Component {
             style={{opacity: .5}}
             onChangeText={userNumber => this.setState({userInfo: {...userInfo, userNumber}})}
             value={userInfo.userNumber || userNumber}
+            autoCapitalize='none'
             placeholder='Enter your mobile number'
           />
           <Text>
@@ -231,6 +234,7 @@ class Profile extends Component {
           <Input
             onChangeText={userAddress => this.setState({userInfo: {...userInfo, userAddress}})}
             value={userInfo.userAddress}
+            autoCapitalize='none'
             placeholder='Enter your address'
           />
           <Text>
@@ -240,6 +244,7 @@ class Profile extends Component {
             onChangeText={userName => this.setState({userInfo: {...userInfo, userName}})}
             value={userInfo.userName}
             placeholder='Enter your username'
+            autoCapitalize='none'
           />
           <ViewBlueButton>
             <BlueButton onPress={this.submitProfile}>

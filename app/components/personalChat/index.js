@@ -33,7 +33,8 @@ class PersonalChat extends Component {
     ],
     messagesForMe: [
       {text: 'Hello!', time: '5:42 PM'},
-    ]
+    ],
+    isWriting: false
   }
 
   componentDidMount() {
@@ -85,19 +86,31 @@ class PersonalChat extends Component {
 
   render() {
     const {name} = this.props
-    const {value} = this.state
+    const {value, isWriting} = this.state
+    const style = {
+      position: 'relative',
+      left: 0,
+      bottom: '45%',
+      backgroundColor: '#fff',
+      width: '100%'
+    }
     return (
       <MainView>
         <BodyView>
           {this.writeForMe()}
           {this.writeFromMe()}
         </BodyView>
-        <InputBoxView>
+        <InputBoxView
+          style={isWriting ? style : {}}
+        >
           <InputView>
             <InputForm
               value={value}
               onChange={e => this.setState({value: e.nativeEvent.text})}
               placeholder='Type a message here...'
+              multiline={true}
+              onFocus={() => this.setState({isWriting: true})}
+              onBlur={() => this.setState({isWriting: false})}
             />
             <InputButton onPress={this.spreadToState}>
               <InputButtonText>

@@ -25,7 +25,7 @@ let timerSend;
 class SignUserCode extends Component {
   state = {
     timer: 59,
-    value: ''
+    value: '',
   }
 
   componentDidMount(): void {
@@ -55,17 +55,18 @@ class SignUserCode extends Component {
         <InputForm
           ref={input => {
             if (input !== null) {
-              input.focus()
-              if (value.length === 4) {
-                next(value)
-              }
+              if (!value.length) input.focus()
+              if (value.length === 4) input.blur()
             }
           }}
-          maxLength={4}
+          autoCapitalize='none'
+          onFocus={() => this.setState({value: ''})}
+          onBlur={() => next(value)}
           value={value}
-          onChange={e => {
-            this.setState({value: e.nativeEvent.text})
-          }} placeholder="Insert the 4-digit code"/>
+          maxLength={4}
+          onChangeText={value => this.setState({value})}
+          placeholder="Insert the 4-digit code"
+        />
         {timer > 0
           ? <SendCountText>
             Send again: {timer}

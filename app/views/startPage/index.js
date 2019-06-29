@@ -146,7 +146,7 @@ class StartPage extends Component {
           height: 100
         }}
       />
-    } else return this.state.isAuthenticated || this.props.token
+    } else return !this.state.isAuthenticated || !this.props.token
       ? <Navigation/>
       : <SignUser/>
   }

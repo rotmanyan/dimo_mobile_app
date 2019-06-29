@@ -92,6 +92,7 @@ class RegistrationUser extends Component {
                 value={email}
                 onChangeText={email => this.setState({email})}
                 placeholder="E-mail"
+                autoCapitalize='none'
                 style={{textTransform: 'lowercase'}}
                 textContentType={'emailAddress'}
               />
@@ -99,6 +100,7 @@ class RegistrationUser extends Component {
               <InputForm
                 onChangeText={password => this.setState({password})}
                 placeholder="Password"
+                autoCapitalize='none'
                 value={password}
                 secureTextEntry={passwordType}
               />
@@ -106,6 +108,7 @@ class RegistrationUser extends Component {
                 onChangeText={confirmPassword => this.setState({confirmPassword})}
                 placeholder="Re-enter password"
                 value={confirmPassword}
+                autoCapitalize='none'
                 secureTextEntry={confirmPasswordType}
               />
             </InputBoxView>

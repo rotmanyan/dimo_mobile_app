@@ -81,6 +81,7 @@ export const InputView = styled.View`
   border-radius: 18px;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
 `
 
 export const InputForm = styled.TextInput`
