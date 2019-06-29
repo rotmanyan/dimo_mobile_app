@@ -37,7 +37,7 @@ class Profile extends Component {
       userEmail: '',
       userAddress: '',
       userName: '',
-      confirmed: true
+      confirmed: false
     }
   }
 
@@ -170,13 +170,13 @@ class Profile extends Component {
                     }}
                   />}
                 </ViewUserOverlay>
-                {userInfo.confirmed && <Confirmed>
+                <Confirmed style={!userInfo.confirmed ? {} : {backgroundColor: '#FF0000'}}>
                   <SvgUri
                     width="12"
                     height='12'
                     source={require('../../assets/icons/rectangleWhite.svg')}
                   />
-                </Confirmed>}
+                </Confirmed>
               </ViewUser>
               <TextUser>{userFullName}</TextUser>
               <TariffUserView>
