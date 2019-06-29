@@ -172,8 +172,8 @@ class Profile extends Component {
                 </ViewUserOverlay>
                 {userInfo.confirmed && <Confirmed>
                   <SvgUri
-                    width="16"
-                    height='16'
+                    width="12"
+                    height='12'
                     source={require('../../assets/icons/rectangleWhite.svg')}
                   />
                 </Confirmed>}

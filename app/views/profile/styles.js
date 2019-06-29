@@ -192,9 +192,12 @@ letter-spacing: 1.35px;
 
 export const Confirmed = styled.View`
   position: absolute;
-  
+  height: 18px;
+  width: 18px;
+  align-items: center;
+  justify-content: center;
   background-color: #57ffd0;
-  border-radius: 8px;
+  border-radius: 9px;
   bottom: 4px;
   right: 4px;
 `
