@@ -131,3 +131,35 @@ export const BlueButtonText = styled.Text`
   color: #fff;
   text-transform: uppercase;
 `
+
+export const ButtonProceedGrey = styled.TouchableOpacity`
+  width: 150px;	
+  border-radius: 24px;
+	background-color: #909DAE;
+  padding: 11px 0;
+  margin: 8px auto auto;
+  font-weight: 700;
+  
+  shadow-color: rgba(0,0,0,1);
+  shadow-opacity: 0.19;
+  shadow-radius: 9;
+  shadow-offset: 0 5px;
+`
+export const ButtonProceedBlue = styled.TouchableOpacity`
+  width: 150px;
+	border-radius: 24px;
+	background-color: #3878ff;
+  padding: 11px 0;
+  margin: 8px auto auto;
+  font-weight: 700;
+  
+  shadow-color: rgba(0,0,0,1);
+  shadow-opacity: 0.19;
+  shadow-radius: 9;
+  shadow-offset: 0 5px;
+`
+
+export const ButtonProceedText = styled.Text`
+color: #ffffff;
+font-size: 14px;	letter-spacing: 1.35px;	line-height: 19px;	text-align: center;
+`

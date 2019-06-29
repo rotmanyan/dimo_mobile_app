@@ -1,5 +1,14 @@
 import React, {Component} from 'react';
-import {View, Text} from 'react-native'
+import {
+  BlueButton,
+  BlueButtonText,
+  HeadBlue,
+  HeadBlueText,
+  HeadBlueTitleText,
+  PopupBox,
+  RectangleSvgView
+} from "../selfie/styles";
+import SvgUri from "../selfie";
 
 class Status extends Component {
   static navigationOptions = {
@@ -14,11 +23,29 @@ class Status extends Component {
 
   render() {
     return (
-      <View>
-        <Text>
-          REJECTED!
-        </Text>
-      </View>
+      <PopupBox>
+        <HeadBlue>
+          <RectangleSvgView>
+            <SvgUri
+              width="16"
+              height='16'
+              source={require('../../../assets/icons/rectangle.svg')}
+            />
+          </RectangleSvgView>
+          <HeadBlueTitleText>well done!</HeadBlueTitleText>
+        </HeadBlue>
+        <HeadBlueText>
+          Thank you for submitting your KYC form.
+          Please keep in mind, it may take several days to verify your information.
+          Once your form will be reviewed you will receive a notification informing you of your KYC status
+        </HeadBlueText>
+        <BlueButton onPress={this.props.send}>
+          <BlueButtonText>
+            ok
+          </BlueButtonText>
+        </BlueButton>
+
+      </PopupBox>
     );
   }
 }

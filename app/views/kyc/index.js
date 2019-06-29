@@ -1,15 +1,17 @@
 import React, {Component} from 'react';
+import SvgUri from 'react-native-svg-uri';
 import {
   MainView,
   HeadView,
-  BodyView,
+  BodyView, StepLineOne, StepLineTwo,
   StepView, StepNumberView, StepNumberText, StepText,
-  activeText, activeStep,
+  activeText, activeStep, activeLine,
 
 } from "./styles";
 import ProofIdentify from "./proofIdentify";
 import Selfie from "./selfie";
 import Status from "./status";
+import {SvgUserView} from "../chat/styles";
 
 class Kyc extends Component {
   static navigationOptions = {
@@ -26,50 +28,68 @@ class Kyc extends Component {
     step: 1
   }
 
+  stepView = number => {
+    const {step} = this.state
+    const arrSteps = [' Proof of identify', 'Selfie', 'Status']
+
+    const styleStep = step >= number ? activeStep : {}
+    const styleText = step >= number ? activeText : {}
+
+    return (
+      <StepView>
+        <StepNumberView style={styleStep}>
+          <SvgUri
+            width="15"
+            height='15'
+            source={require('../../assets/icons/rectangleWhite.svg')}
+          />
+        </StepNumberView>
+        <StepText style={styleText}>
+          {arrSteps[number - 1]}
+        </StepText>
+      </StepView>
+    )
+  }
+
+  stepViewSec = number => {
+    const {step} = this.state
+    const arrSteps = [' Proof of identify', 'Selfie', 'Status']
+
+    const styleStep = step >= number ? activeStep : {}
+    const styleText = step >= number ? activeText : {}
+
+    return (
+      <StepView>
+        <StepNumberView style={styleStep}>
+          <StepNumberText style={styleText}>
+            {number}
+          </StepNumberText>
+        </StepNumberView>
+        <StepText style={styleText}>
+          {arrSteps[number - 1]}
+        </StepText>
+      </StepView>
+    )
+  }
+
   render() {
     const step = this.state.step
     return (
       <MainView>
         <HeadView>
-          <StepView>
-            <StepNumberView style={step === 1 || step === 2 || step === 3 ? activeStep : {}}>
-              <StepNumberText style={step === 1 || step === 2 || step === 3 ? activeText : {}}>
-                1
-              </StepNumberText>
-            </StepNumberView>
-            <StepText style={step === 1 || step === 2 || step === 3 ? activeText : {}}>
-              Proof of identify
-            </StepText>
-          </StepView>
-          <StepView>
-            <StepNumberView style={step === 2 || step === 3 ? activeStep : {}}>
-              <StepNumberText style={step === 2 || step === 3 ? activeText : {}}>
-                2
-              </StepNumberText>
-            </StepNumberView>
-            <StepText style={step === 2 || step === 3 ? activeText : {}}>
-              Selfie
-            </StepText>
-          </StepView>
-          <StepView>
-            <StepNumberView style={step === 3 ? activeStep : {}}>
-              <StepNumberText style={step === 3 ? activeText : {}}>
-                3
-              </StepNumberText>
-            </StepNumberView>
-            <StepText style={step === 3 ? activeText : {}}>
-              Status
-            </StepText>
-          </StepView>
+          {this.stepViewSec(1)}
+          <StepLineOne/>
+          {this.stepViewSec(2)}
+          <StepLineTwo style={step === 3 ? activeLine : {}}/>
+          {this.stepViewSec(3)}
         </HeadView>
         <BodyView>
-          {step === 1
-            ? <ProofIdentify changeStep={() => this.setState({step: this.state.step + 1})}/>
-            : step === 2
-              ? <Selfie send={() => this.props.navigation.navigate('Profile')}
-                        changeStep={() => this.setState({step: this.state.step + 1})}/>
-              : <Status send={() => this.props.navigation.navigate('Profile')}/>
+          {step === 1 && <ProofIdentify changeStep={() => this.setState({step: this.state.step + 1})}/>}
+          {step === 2 && <Selfie
+            send={() => this.props.navigation.navigate('Profile')}
+            changeStep={() => this.setState({step: this.state.step + 1})}/>
           }
+          {step === 3 && <Status send={() => this.props.navigation.navigate('Profile')}/>}
         </BodyView>
       </MainView>
     )
