@@ -107,15 +107,6 @@ class Profile extends Component {
     })
   }
 
-  /*
-    pickImage = () => ImagePickerIOS.openSelectDialog({}, avatarImage => this.setState({
-      userInfo: {
-        ...this.state.userInfo,
-        avatarImage
-      }
-      }, () => this.saveAvatar(avatarImage)), error => console.log(error, 'error'));
-    */
-
   render() {
     const {userInfo, loadImage} = this.state
 
@@ -125,8 +116,6 @@ class Profile extends Component {
       userFullName, kycStatus, dailyLimits,
       withdrawLimits, isVerified, type,
     } = this.props
-
-    console.log(userInfo.avatarImage, 'ababa');
 
     return (
       <MainView>

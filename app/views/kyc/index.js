@@ -23,7 +23,7 @@ class Kyc extends Component {
   }
 
   state = {
-    step: 2
+    step: 1
   }
 
   stepView = number => {

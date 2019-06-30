@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
 import SvgUri from "react-native-svg-uri";
 import {
   PopupBox, HeadBlue, RectangleSvgView,
@@ -102,8 +103,11 @@ class Status extends Component {
   }
 
   render() {
-    return this.writeRejected()
+    return 1 ? this.writeDone() : this.writeRejected()
   }
 }
 
-export default Status;
+const MSTP = state => ({})
+const MDTP = {}
+
+export default connect(MSTP, MDTP)(Status)
