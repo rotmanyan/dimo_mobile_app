@@ -18,7 +18,9 @@ import {
   NoSelectedPlan,
   NoSelectedPlanText,
   SelectedPlanText,
-  TextH1
+  TextH1,
+  CharacterBox, CharacterBoxOval, CharacterBoxText,
+  CharacterBoxItem, CharacterOvalStyle, CharacterTextStyle,
 } from './styles'
 
 class RegistrationUser extends Component {
@@ -74,6 +76,8 @@ class RegistrationUser extends Component {
       passwordType, confirmPasswordType
     } = this.state
 
+    const arrCharacter = ['', '', '', '']
+
     return (
       <MainView>
         <TextH1>
@@ -104,6 +108,41 @@ class RegistrationUser extends Component {
                 value={password}
                 secureTextEntry={passwordType}
               />
+              <CharacterBox>
+
+                <CharacterBoxItem>
+                  <CharacterBoxOval style={password.length >= 8 ? CharacterOvalStyle : {}}>
+                  </CharacterBoxOval>
+                  <CharacterBoxText style={password.length >= 8 ? CharacterTextStyle : {}}>
+                    At least 8 characters
+                  </CharacterBoxText>
+                </CharacterBoxItem>
+
+                <CharacterBoxItem>
+                  <CharacterBoxOval style={!!password.match(/[A-Z]/) ? CharacterOvalStyle : {}}>
+                  </CharacterBoxOval>
+                  <CharacterBoxText style={!!password.match(/[A-Z]/) ? CharacterTextStyle : {}}>
+                    One uppercase character
+                  </CharacterBoxText>
+                </CharacterBoxItem>
+
+                <CharacterBoxItem>
+                  <CharacterBoxOval style={!!password.match(/[a-z]/) ? CharacterOvalStyle : {}}>
+                  </CharacterBoxOval>
+                  <CharacterBoxText style={!!password.match(/[a-z]/) ? CharacterTextStyle : {}}>
+                    One lowercase character
+                  </CharacterBoxText>
+                </CharacterBoxItem>
+
+                <CharacterBoxItem>
+                  <CharacterBoxOval style={!!password.match(/[0-9]/) ? CharacterOvalStyle : {}}>
+                  </CharacterBoxOval>
+                  <CharacterBoxText style={!!password.match(/[0-9]/) ? CharacterTextStyle : {}}>
+                    One number
+                  </CharacterBoxText>
+                </CharacterBoxItem>
+
+              </CharacterBox>
               <InputForm
                 onChangeText={confirmPassword => this.setState({confirmPassword})}
                 placeholder="Re-enter password"
@@ -130,13 +169,23 @@ class RegistrationUser extends Component {
                 )
               })}
             </PlanView>
-            <ButtonPanelView>
-              <NextButtonView onPress={this.next}>
-                <NextButton>
-                  Next
-                </NextButton>
-              </NextButtonView>
-            </ButtonPanelView>
+            {password === confirmPassword && !!password.length
+              ?
+              <ButtonPanelView>
+                <NextButtonView onPress={this.next}>
+                  <NextButton>
+                    Next
+                  </NextButton>
+                </NextButtonView>
+              </ButtonPanelView>
+              : <ButtonPanelView>
+                <NextButtonView style={{backgroundColor: '#909DAE'}}>
+                  <NextButton>
+                    Next
+                  </NextButton>
+                </NextButtonView>
+              </ButtonPanelView>
+            }
           </BodyView>
         </BodyScrollView>
       </MainView>

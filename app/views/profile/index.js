@@ -43,7 +43,7 @@ class Profile extends Component {
   }
 
   componentDidMount() {
-    // this.props.getUserProfile()
+    this.props.getUserProfile()
   }
 
   componentDidUpdate(prevProps, prevState) {

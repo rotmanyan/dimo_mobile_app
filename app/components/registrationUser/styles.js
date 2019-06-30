@@ -134,3 +134,36 @@ export const Button = styled.TouchableOpacity`
   padding: 10px;
   background-color: #0a8cff;
 `
+
+export const CharacterBox = styled.View`
+  margin-bottom: 12px;
+  padding: 0 16px;
+`
+
+export const CharacterBoxItem = styled.View`
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 4px;
+`
+
+export const CharacterBoxOval = styled.View`
+  background-color: #5a85df;
+  height: 8px;
+  width: 8px;
+  margin-right: 6px;
+  border-radius: 4px;
+`
+
+export const CharacterBoxText = styled.Text`
+	font-size: 10px;
+	letter-spacing: 0.21px;
+	line-height: 14px;
+	color: #5a85df;
+`
+
+export const CharacterOvalStyle = {
+  backgroundColor: '#4EDBD0'
+}
+export const CharacterTextStyle = {
+  color: '#fff'
+}

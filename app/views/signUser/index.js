@@ -92,7 +92,7 @@ class SignUser extends Component {
     )
   }
 
-  render() {
+/*  render() {
     const {userNumber, success, isRegistered, phone} = this.props
 
     if (userNumber) {
@@ -108,11 +108,11 @@ class SignUser extends Component {
     } else if (!userNumber) {
       return this.writeBody()
     }
-  }
+  }*/
 
-  /*  render() {
-      return <SignUserCode/>
-    }*/
+    render() {
+      return <RegistrationUser/>
+    }
 }
 
 const MSTP = state => ({
