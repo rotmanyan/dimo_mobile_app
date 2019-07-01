@@ -3,6 +3,16 @@ package com.dimo;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.imagepicker.ImagePickerPackage;
+import com.rnfs.RNFSPackage;
+import com.swmansion.rnscreens.RNScreensPackage;
+import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
+import fr.snapp.imagebase64.RNImgToBase64Package;
+import cl.json.RNSharePackage;
+import com.RNFetchBlob.RNFetchBlobPackage;
+import com.horcrux.svg.SvgPackage;
+import com.rt2zz.reactnativecontacts.ReactNativeContacts;
+import org.reactnative.camera.RNCameraPackage;
 import com.AlexanderZaytsev.RNI18n.RNI18nPackage;
 import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
 import com.lugg.ReactNativeConfig.ReactNativeConfigPackage;
@@ -26,6 +36,16 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new ImagePickerPackage(),
+            new RNFSPackage(),
+            new RNScreensPackage(),
+            new RNGestureHandlerPackage(),
+            new RNImgToBase64Package(),
+            new RNSharePackage(),
+            new RNFetchBlobPackage(),
+            new SvgPackage(),
+            new ReactNativeContacts(),
+            new RNCameraPackage(),
             new RNI18nPackage(),
             new AsyncStoragePackage(),
             new ReactNativeConfigPackage()

@@ -1,12 +1,9 @@
 import React, {Component} from 'react'
-// import {connect} from 'react-redux'
-import AsyncStorage from '@react-native-community/async-storage'
-import {getLanguages} from 'react-native-i18n'
+import {connect} from 'react-redux'
 import PhoneInput from 'react-native-phone-input'
-import en from '../../i18n/locales/en'
-import ru from '../../i18n/locales/ru'
-import pl from '../../i18n/locales/pl'
-
+import {signUserVerifyPhone} from '../../services/profile/operation'
+import SignUserCode from '../signUserCode'
+import * as selectorLang from '../../services/selectors'
 import {
   TextHeadMiddle,
   StyledButton,
@@ -15,56 +12,51 @@ import {
   MainView,
   ViewHead,
   ViewBottom,
-  ImageBg
+  ImageBg,
+  ViewLogo,
+  ImageLogo,
 } from './styles'
+import EnterPassword from "../../components/enterPassword";
+import RegistrationUser from "../../components/registrationUser";
 
 class SignUser extends Component {
   state = {
-    value: '+255',
-    storage: '',
-    language: 'ru',
+    value: '',
   }
 
-  componentDidMount() {
-    AsyncStorage.setItem('@storage_Key', 'yeyyeuquqwuewquuqwe')
-    getLanguages().then(languages => {
-      let language = languages[0].split('-')[0]
-      this.setState({language})
-    })
+  writeInput = () => {
+    const {value} = this.state
+
+    return (
+      <PhoneInput
+        initialCountry='tz'
+        ref={input => {
+          if (input !== null) {
+            let a = value.split(' ').join('')
+            input.focus()
+
+            if (a.length >= 13) {
+              input.blur()
+              // sign(value)
+            }
+          }
+        }}
+        autoFormat={true}
+        flagStyle={{borderRadius: 12.5, width: 25, height: 25}}
+        confirmText='Confirm'
+        cancelText='Cancel'
+        value={value}
+        onChangePhoneNumber={value => this.setState({value})}
+        isValidNumber
+        getFlag={a => console.log(a, 'getFlag')}
+      />
+    )
   }
 
-  componentDidUpdate(prevProps: Readonly<P>, prevState: Readonly<S>): void {
-    this.state.storage.length === 0
-      ? AsyncStorage.getItem('@storage_Key').then(storage => this.setState({storage}))
-      : null
-  }
+  writeBody = () => {
+    const {translate, sign} = this.props
+    const {value} = this.state
 
-  writeButton = () => {
-    switch (this.state.language) {
-      case 'ru':
-        return <StyledButton
-          onPress={() => this.setState({language: 'en'})}
-          title={ru.next}
-          color='#fff'/>
-      case 'pl':
-        return <StyledButton
-          onPress={() => this.setState({language: 'en'})}
-          title={pl.next}
-          color='#fff'/>
-      case 'en':
-        return <StyledButton
-          onPress={() => this.setState({language: 'ru'})}
-          title={en.next}
-          color='#fff'/>
-      default:
-        return <StyledButton
-          onPress={() => this.setState({language: 'ru'})}
-          title={en.next}
-          color='#fff'/>
-    }
-  }
-
-  render() {
     return (
       <MainView>
         <ViewHead>
@@ -73,46 +65,60 @@ class SignUser extends Component {
         <ViewBottom>
           <ImageBg source={require('../../assets/backgrounds/bottom.png')}/>
         </ViewBottom>
+        <ViewLogo>
+          <ImageLogo source={require('../../assets/backgrounds/logo.png')}/>
+        </ViewLogo>
         <TextHeadMiddle>
-          Please enter your number
+          {translate.please_enter_your_number}
         </TextHeadMiddle>
 
         <PhoneView>
-          <PhoneInput
-            initialCountry='tz'
-            ref={input => {
-              if (input !== null) {
-                let a = this.state.value.split(' ').join('')
-                input.focus()
-
-                if (a.length >= 13) {
-                  input.blur()
-                }
-              }
-            }}
-            autoFormat={true}
-            flagStyle={{borderRadius: 12.5, width: 25, height: 25}}
-            isValidNumber={e => console.log(e, 'eve t')}
-            blur={() => console.log('1zzzzzz')}
-            focus={
-              () => console.log('2qqqqq')
-            }
-            confirmText='Confirm'
-            cancelText='Cancel'
-            onChangePhoneNumber={value => this.setState({value})}
-          />
+          {this.writeInput()}
         </PhoneView>
 
         <TextHeadMiddle>
-          By clicking 'Next' you confirm that you have read and understand the Dimo Privacy Policy
-          and Terms and Conditions, and agree to its
+          {translate.by_clicking_next}
         </TextHeadMiddle>
         <ButtonView>
-          {this.writeButton()}
+          <StyledButton
+            title={translate.next}
+            color='#fff'
+            onPress={() => {
+              if (value.length > 3) sign(value)
+            }}
+          />
         </ButtonView>
       </MainView>
     )
   }
+
+  render() {
+    const {userNumber, success, isRegistered, phone} = this.props
+
+    if (userNumber) {
+      if (phone) {
+        return <EnterPassword/>
+      }
+      if (success) {
+        if (isRegistered) {
+          return <EnterPassword/>
+        } else return <RegistrationUser/>
+      }
+      return <SignUserCode/>
+    } else if (!userNumber) {
+      return this.writeBody()
+    }
+  }
 }
 
-export default SignUser
+const MSTP = state => ({
+  translate: selectorLang.translate(state),
+  userNumber: state.profile.userNumber,
+  success: state.profile.success,
+  isRegistered: state.profile.isRegistered
+})
+const MDTP = {
+  sign: signUserVerifyPhone,
+}
+
+export default connect(MSTP, MDTP)(SignUser)

@@ -1,12 +1,24 @@
 import {StyleSheet} from 'react-native'
-import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import styled from 'styled-components/native'
 
 export const MainView = styled.View`
+  padding: 50px 0;
   flex: 5;
   background-color: #3878FF;
-  align-items: center;
   justify-content: center;
+`
+
+//logo
+export const ViewLogo = styled.View`
+  min-height: 90px;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+`
+
+export const ImageLogo = styled.Image`
+  width: 128px;
+  height: 90px;
 `
 
 //image
@@ -34,6 +46,20 @@ export const ImageBg = styled.Image`
   min-height: 20%;
   max-height: 280px;
   width: 100%;
+`
+
+//svg
+export const ViewSvg = styled.View`
+  flex-direction: row;
+  margin: auto;
+`
+
+export const svgStyle = {
+  marginRight: '12%'
+}
+
+export const ButtonSvg = styled.TouchableHighlight`
+  margin-right: 12%;
 `
 
 //button

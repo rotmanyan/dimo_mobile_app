@@ -1,7 +1,14 @@
-import React from 'react';
-import SignUser from './app/views/signUser'
-import {StyledView} from './stylesApp'
+import React, {Component} from 'react'
+import {Provider} from 'react-redux'
+import store from './app/services/store'
+import StartPage from './app/views/startPage'
 
-export const App = () => <StyledView>
-  <SignUser/>
-</StyledView>
+export default class App extends Component {
+  render() {
+    return (
+      <Provider store={store}>
+        <StartPage/>
+      </Provider>
+    )
+  }
+}
