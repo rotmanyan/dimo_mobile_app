@@ -22,6 +22,7 @@ const loggerMiddleware = createLogger({
     action: () => '#149945',
     nextState: () => '#A47104',
     error: () => '#ff0005'
+
   }
 })
 
