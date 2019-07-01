@@ -25,12 +25,12 @@ const loggerMiddleware = createLogger({
   }
 })
 
-const devtools = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
-const composeEnhancers = devtools ? devtools : compose
+// const devtools = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+// const composeEnhancers = devtools ? devtools : compose
 
 const store = createStore(
   rootReducer,
-  composeEnhancers(applyMiddleware(thunkMiddleware, loggerMiddleware))
+  applyMiddleware(thunkMiddleware, loggerMiddleware)
 )
 
 export default store
