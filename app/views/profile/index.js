@@ -146,19 +146,18 @@ class Profile extends Component {
                 <ViewUserOverlay>
                   {!!userInfo.avatarImage &&
                   <ImageUser style={loadImage && {opacity: 0.2}} source={{uri: userInfo.avatarImage}}/>}
-                  {loadImage && <ActivityIndicator
-                    animating={loadImage}
-                    color='#3878FF'
-                    size="large"
-                    style={{
-                      position: 'absolute',
-                      flex: 1,
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                      height: 80
-                    }}
-                  />}
                 </ViewUserOverlay>
+                {loadImage && <ActivityIndicator
+                  animating={loadImage}
+                  color='#3878FF'
+                  size="large"
+                  style={{
+                    position: 'absolute',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    height: 80
+                  }}
+                />}
                 <Confirmed style={!userInfo.confirmed ? {} : {backgroundColor: '#FF0000'}}>
                   <SvgUri
                     width="12"

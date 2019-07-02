@@ -139,6 +139,7 @@ export const ViewUserOverlay = styled.View`
 `
 
 export const ImageUser = styled.Image`
+  border-radius: 40px;
   width: 80px;
   height: 80px;
 `
