@@ -1,14 +1,17 @@
-import React, {Component} from 'react';
-import {ActivityIndicator} from 'react-native';
+import React, { Component } from "react";
+import { ActivityIndicator } from "react-native";
 import AsyncStorage from "@react-native-community/async-storage";
-import {connect} from 'react-redux'
-import {getLanguages} from "react-native-i18n";
-import {setLocalizationRequest, setLocalizationSuccess} from '../../services/i18n/actions'
+import { connect } from "react-redux";
+import { getLanguages } from "react-native-i18n";
+import {
+  setLocalizationRequest,
+  setLocalizationSuccess
+} from "../../services/i18n/actions";
 import {
   createAppContainer,
   createStackNavigator,
-  createBottomTabNavigator,
-} from 'react-navigation';
+  createBottomTabNavigator
+} from "react-navigation";
 import Kyc from "../kyc";
 import Chat from "../chat";
 import Wallet from "../wallet";
@@ -18,58 +21,63 @@ import Activity from "../activity";
 import SignUser from "../signUser";
 import PersonalChat from "../../components/personalChat";
 
-const ChatStack = createStackNavigator({
+const ChatStack = createStackNavigator(
+  {
     Chat,
     PersonalChat
   },
   {
-    initialRouteName: 'Chat'
+    initialRouteName: "Chat"
   }
-)
+);
 
-const SendStack = createStackNavigator({
+const SendStack = createStackNavigator(
+  {
     Camera
   },
   {
-    initialRouteName: 'Camera'
+    initialRouteName: "Camera"
   }
 );
 
-const WalletStack = createStackNavigator({
+const WalletStack = createStackNavigator(
+  {
     Wallet: Wallet
   },
   {
-    initialRouteName: 'Wallet'
+    initialRouteName: "Wallet"
   }
 );
 
-const ActivityStack = createStackNavigator({
+const ActivityStack = createStackNavigator(
+  {
     Activity
   },
   {
-    initialRouteName: 'Activity'
+    initialRouteName: "Activity"
   }
 );
 
-const ProfileStack = createStackNavigator({
+const ProfileStack = createStackNavigator(
+  {
     Profile,
     Kyc
   },
   {
-    initialRouteName: 'Profile'
+    initialRouteName: "Profile"
   }
 );
 
-ProfileStack.navigationOptions = ({navigation}) => {
+ProfileStack.navigationOptions = ({ navigation }) => {
   let tabBarVisible = true;
   if (navigation.state.index > 0) {
     tabBarVisible = false;
   }
 
   return {
-    tabBarVisible,
+    tabBarVisible
   };
-}
+};
 
 /*
 class LogoTitle extends Component {
@@ -97,21 +105,21 @@ const Navigation = createAppContainer(
       Profile: ProfileStack
     },
     {
-      initialRouteName: 'Profile',
+      initialRouteName: "Profile",
       tabBarOptions: {
-        activeTintColor: '#3878FF',
-        inactiveTintColor: '#90a5c2',
+        activeTintColor: "#3878FF",
+        inactiveTintColor: "#90a5c2"
       },
       defaultNavigationOptions: {
         headerStyle: {
-          backgroundColor: '#3878FF',
+          backgroundColor: "#3878FF"
         },
-        headerTintColor: '#fff',
+        headerTintColor: "#fff",
         headerTitleStyle: {
-          fontWeight: 'bold',
-          color: '#fff'
-        },
-      },
+          fontWeight: "bold",
+          color: "#fff"
+        }
+      }
     }
   )
 );
@@ -120,46 +128,59 @@ class StartPage extends Component {
   state = {
     isLoading: true,
     isAuthenticated: false
-  }
+  };
 
   componentDidMount() {
-    getLanguages()
-      .then(data => setLocalizationSuccess(data[0].split('-')[0]))
+    getLanguages().then(data => setLocalizationSuccess(data[0].split("-")[0]));
 
-    AsyncStorage.getItem('token')
-      .then(token => {
-        if (token || this.props.token) setTimeout(() => this.setState({isAuthenticated: true}, () => this.setState({isLoading: false})), 15)
-        else setTimeout(() => this.setState({isLoading: false}), 15)
-      })
+    AsyncStorage.getItem("token").then(token => {
+      if (token || this.props.token)
+        setTimeout(
+          () =>
+            this.setState({ isAuthenticated: true }, () =>
+              this.setState({ isLoading: false })
+            ),
+          15
+        );
+      else setTimeout(() => this.setState({ isLoading: false }), 15);
+    });
   }
 
   render() {
     if (this.state.isLoading) {
-      return <ActivityIndicator
-        animating={this.state.isLoading}
-        color='#3878FF'
-        size="large"
-        style={{
-          flex: 1,
-          justifyContent: 'center',
-          alignItems: 'center',
-          height: 100
-        }}
-      />
-    } else return <SignUser/>/*this.state.isAuthenticated || this.props.token
-      ? <Navigation/>
-      : <SignUser/>*/
+      return (
+        <ActivityIndicator
+          animating={this.state.isLoading}
+          color="#3878FF"
+          size="large"
+          style={{
+            flex: 1,
+            justifyContent: "center",
+            alignItems: "center",
+            height: 100
+          }}
+        />
+      );
+    } else
+      return this.state.isAuthenticated || this.props.token ? (
+        <Navigation />
+      ) : (
+        <SignUser />
+      );
   }
 }
 
 const MSTP = state => ({
   token: state.profile.token,
-  localization: state.localization.language,
-})
+  localization: state.localization.language
+});
 
 const MDTP = {
   setLocalizationRequest,
   setLocalizationSuccess
-}
+};
 
-export default connect(MSTP, MDTP)(StartPage)
+export default connect(
+  MSTP,
+  MDTP
+)(StartPage);

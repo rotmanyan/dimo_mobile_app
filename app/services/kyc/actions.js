@@ -1,8 +1,19 @@
 export const actionTypes = {
-  'LOAD_PHOTO_KYC_STORE': 'LOAD_PHOTO_KYC_STORE'
-}
+  UPLOAD_KYC_PHOTO_REQUEST: "UPLOAD_KYC_PHOTO_REQUEST",
+  UPLOAD_KYC_PHOTO_SUCCESS: "UPLOAD_KYC_PHOTO_SUCCESS",
+  UPLOAD_KYC_PHOTO_ERROR: "UPLOAD_KYC_PHOTO_ERROR"
+};
 
-export const loadPhotoKycStore = data => ({
-  type: actionTypes.LOAD_PHOTO_KYC_STORE,
+export const uploadKycPhotoRequest = () => ({
+  type: actionTypes.UPLOAD_KYC_PHOTO_REQUEST
+});
+
+export const uploadKycPhotoSuccess = data => ({
+  type: actionTypes.UPLOAD_KYC_PHOTO_SUCCESS,
   payload: data
-})
+});
+
+export const uploadKycPhotoError = error => ({
+  type: actionTypes.UPLOAD_KYC_PHOTO_ERROR,
+  payload: error
+});
