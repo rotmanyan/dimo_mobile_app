@@ -93,6 +93,7 @@ class Profile extends Component {
 
           // You can also display the image using data:
           // const source = { uri: 'data:image/jpeg;base64,' + response.data };
+          this.props.updateAvatar(source)
 
           this.setState({
             loadImage: false,
@@ -265,7 +266,7 @@ const MSTP = state => ({
 const MDTP = {
   getUserProfile,
   submit: updateUserProfile,
-  updateAvatar: updateUserAvatar
+  updateAvatar: updateUserAvatar,
 }
 
 export default connect(MSTP, MDTP)(Profile)

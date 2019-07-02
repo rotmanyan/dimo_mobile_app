@@ -39,8 +39,9 @@ import {
   urlProfile,
   urlProfileUpdate,
   urlUpdateAvatar,
-  urlKyc
+  urlKyc, urlContacsSync
 } from '../baseUrl'
+import {contactSyncError, contactSyncSuccess} from "../chat/actions";
 
 export const signUserVerifyPhone = credential => (dispatch, getState) => {
   dispatch(signUserVerifyPhoneRequest())
@@ -180,24 +181,23 @@ export const updateUserProfile = credential => (dispatch, getState) => {
 
 export const updateUserAvatar = credential => (dispatch, getState) => {
   dispatch(updateUserAvatarRequest())
+  const store = getState();
+  const actualToken = store.profile.token;
 
-  const actualToken = getState().profile.token;
-  AsyncStorage.getItem('token')
-    .then(data => token = data)
-    .then(token => {
+  AsyncStorage.getItem("token").then(token => {
+    const options = {
+      method: "POST",
+      headers: {
+        "x-access-token": actualToken || token
+      },
+      data: {data: credential},
+      url: urlUpdateAvatar
+    }
 
-      const options = {
-        method: 'POST',
-        headers: {'x-access-token': actualToken || token},
-        data: credential,
-        url: urlUpdateAvatar
-      }
-
-      axios(options)
-        .then(res => dispatch(updateUserAvatarSuccess(res.data.data)))
-        .catch(error => dispatch(updateUserAvatarError(error)))
-    })
-
+    axios(options)
+      .then(data => dispatch(updateUserAvatarSuccess(data)))
+      .catch(error => dispatch(updateUserAvatarError(error)));
+  })
 }
 
 export const sendKyc = credential => (dispatch, getState) => {
