@@ -72,7 +72,7 @@ export const signUserMobileConfirm = credential => (dispatch, getState) => {
     },
     url: urlMobileconfirm
   }
-
+  console.log(options, 'optiittiti');
   axios(options)
     .then(data => {
       AsyncStorage.setItem('phone', state.profile.userNumber)

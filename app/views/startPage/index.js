@@ -125,6 +125,10 @@ class StartPage extends Component {
   componentDidMount() {
     getLanguages()
       .then(data => setLocalizationSuccess(data[0].split('-')[0]))
+    /*   AsyncStorage.getItem('phone')
+         .then(phone => {
+
+         })*/
 
     AsyncStorage.getItem('token')
       .then(token => {
@@ -146,9 +150,9 @@ class StartPage extends Component {
           height: 100
         }}
       />
-    } else return <SignUser/>/*this.state.isAuthenticated || this.props.token
+    } else return this.state.isAuthenticated || this.props.token
       ? <Navigation/>
-      : <SignUser/>*/
+      : <SignUser/>
   }
 }
 

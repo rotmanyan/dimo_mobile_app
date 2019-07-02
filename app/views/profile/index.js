@@ -16,7 +16,6 @@ import {
   RightBlock, YellowBlock, ViewBlueButton,
   BlueButton, BlueButtonText, Confirmed
 } from "./styles";
-import {InputForm} from "../signUserCode/styles";
 
 class Profile extends Component {
   static navigationOptions = {
