@@ -77,6 +77,7 @@ export const InputForm = styled.TextInput`
   background-color: #fff;
   padding: 10px 0 10px 18px;
   margin-bottom: 16px;
+  border: 2px solid transparent;
 `
 // end Button and Input
 
@@ -159,6 +160,7 @@ export const CharacterBoxText = styled.Text`
 	letter-spacing: 0.21px;
 	line-height: 14px;
 	color: #5a85df;
+	width: 236px;
 `
 
 export const CharacterOvalStyle = {
@@ -167,3 +169,12 @@ export const CharacterOvalStyle = {
 export const CharacterTextStyle = {
   color: '#fff'
 }
+
+export const CharacterOvalRed = {
+  backgroundColor: '#FF387E'
+}
+
+export const PasswordNoMatch = {
+  borderColor: '#FF387E'
+}
+

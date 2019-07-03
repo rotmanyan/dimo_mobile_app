@@ -2,25 +2,14 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux'
 import {signUserUp} from "../../services/profile/operation";
 import {
-  MainView,
-  ViewHead,
-  ViewBottom,
-  ImageBg,
-  ButtonPanelView,
-  NextButtonView,
-  NextButton,
-  InputForm,
-  BodyScrollView,
-  BodyView,
-  InputBoxView,
-  PlanView,
-  SelectedPlan,
-  NoSelectedPlan,
-  NoSelectedPlanText,
-  SelectedPlanText,
-  TextH1,
-  CharacterBox, CharacterBoxOval, CharacterBoxText,
+  MainView, ViewHead, ViewBottom,
+  ImageBg, ButtonPanelView, NextButtonView,
+  NextButton, InputForm, BodyScrollView,
+  BodyView, InputBoxView, PlanView, SelectedPlan,
+  NoSelectedPlan, NoSelectedPlanText, SelectedPlanText,
+  TextH1, CharacterBox, CharacterBoxOval, CharacterBoxText,
   CharacterBoxItem, CharacterOvalStyle, CharacterTextStyle,
+  CharacterOvalRed, PasswordNoMatch,
 } from './styles'
 
 class RegistrationUser extends Component {
@@ -148,8 +137,19 @@ class RegistrationUser extends Component {
                 placeholder="Re-enter password"
                 value={confirmPassword}
                 autoCapitalize='none'
+                style={password !== confirmPassword && !!password.length && confirmPassword.length > 5 ? PasswordNoMatch : {}}
                 secureTextEntry={confirmPasswordType}
               />
+              {password !== confirmPassword && !!password.length && confirmPassword.length > 5 && <CharacterBox>
+                <CharacterBoxItem>
+                  <CharacterBoxOval style={CharacterOvalRed}>
+                  </CharacterBoxOval>
+                  <CharacterBoxText style={CharacterTextStyle}>
+                    The passwords you entered do not match. Please re-enter your password.
+                  </CharacterBoxText>
+                </CharacterBoxItem>
+              </CharacterBox>}
+
             </InputBoxView>
             <PlanView>
               {selectors.map((el, key) => {
@@ -169,7 +169,7 @@ class RegistrationUser extends Component {
                 )
               })}
             </PlanView>
-            {password === confirmPassword && !!password.length
+            {password === confirmPassword && password.length >= 8
               ?
               <ButtonPanelView>
                 <NextButtonView onPress={this.next}>

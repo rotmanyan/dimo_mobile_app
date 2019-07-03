@@ -1,62 +1,73 @@
-import React, {Component} from 'react';
-import {ActivityIndicator} from 'react-native';
+import React, {Component} from "react";
+import {ActivityIndicator, View, Text, TouchableHighlight} from "react-native";
 import AsyncStorage from "@react-native-community/async-storage";
-import {connect} from 'react-redux'
+import {connect} from "react-redux";
 import {getLanguages} from "react-native-i18n";
-import {setLocalizationRequest, setLocalizationSuccess} from '../../services/i18n/actions'
+import {
+  setLocalizationRequest,
+  setLocalizationSuccess
+} from "../../services/i18n/actions";
 import {
   createAppContainer,
   createStackNavigator,
   createBottomTabNavigator,
-} from 'react-navigation';
+  DrawerNavigator,
+} from "react-navigation";
 import Kyc from "../kyc";
 import Chat from "../chat";
 import Wallet from "../wallet";
 import Profile from "../profile";
-import Camera from "../../components/camera";
+import FirstScreen from "../firstScreen";
 import Activity from "../activity";
+import Send from "../send";
 import SignUser from "../signUser";
 import PersonalChat from "../../components/personalChat";
 
-const ChatStack = createStackNavigator({
+const ChatStack = createStackNavigator(
+  {
     Chat,
-    PersonalChat
+    PersonalChat,
   },
   {
-    initialRouteName: 'Chat'
-  }
-)
-
-const SendStack = createStackNavigator({
-    Camera
-  },
-  {
-    initialRouteName: 'Camera'
+    initialRouteName: "Chat"
   }
 );
 
-const WalletStack = createStackNavigator({
-    Wallet: Wallet
+const SendStack = createStackNavigator(
+  {
+    Send
   },
   {
-    initialRouteName: 'Wallet'
+    initialRouteName: "Send"
   }
 );
 
-const ActivityStack = createStackNavigator({
+const WalletStack = createStackNavigator(
+  {
+    Wallet: Wallet,
+    First: FirstScreen,
+  },
+  {
+    initialRouteName: "First"
+  }
+);
+
+const ActivityStack = createStackNavigator(
+  {
     Activity
   },
   {
-    initialRouteName: 'Activity'
+    initialRouteName: "Activity"
   }
 );
 
-const ProfileStack = createStackNavigator({
+const ProfileStack = createStackNavigator(
+  {
     Profile,
     Kyc
   },
   {
-    initialRouteName: 'Profile'
+    initialRouteName: "Profile"
   }
 );
 
@@ -67,9 +78,9 @@ ProfileStack.navigationOptions = ({navigation}) => {
   }
 
   return {
-    tabBarVisible,
+    tabBarVisible
   };
-}
+};
 
 /*
 class LogoTitle extends Component {
@@ -86,6 +97,57 @@ class LogoTitle extends Component {
 }
 */
 
+/*
+Drawer: { screen: DrawerNavigator(
+      {
+        Home: { screen: TabNavigator(
+          {
+            Red: { screen: RedScreen },
+            Blue: { screen: BlueScreen }
+          },
+          {
+            tabBarOptions: {
+              labelStyle: {
+                fontSize: 20,
+                marginBottom: 10
+              }
+            }
+          }
+        )},
+        Send: { screen: SendStack }
+      }
+    ) }
+
+ */
+
+class GreenScreen extends Component {
+  render() {
+    return (
+      <View>
+        <TouchableHighlight
+          onPress={() => this.props.navigation.navigate('Send')}
+        >
+          <Text style={{color: '#40ff00'}}>Go to Red</Text>
+        </TouchableHighlight>
+      </View>
+    );
+  }
+}
+
+class RedScreen extends Component {
+  render() {
+    return (
+      <View>
+        <TouchableHighlight
+          onPress={() => this.props.navigation.navigate('Chat')}
+        >
+          <Text style={{color: '#ff0000'}}>Back to Green</Text>
+        </TouchableHighlight>
+      </View>
+    );
+  }
+}
+
 // And the app container
 const Navigation = createAppContainer(
   createBottomTabNavigator(
@@ -94,24 +156,24 @@ const Navigation = createAppContainer(
       Send: SendStack,
       Wallet: WalletStack,
       Activity: ActivityStack,
-      Profile: ProfileStack
+      Profile: ProfileStack,
     },
     {
-      initialRouteName: 'Profile',
+      initialRouteName: "Profile",
       tabBarOptions: {
-        activeTintColor: '#3878FF',
-        inactiveTintColor: '#90a5c2',
+        activeTintColor: "#3878FF",
+        inactiveTintColor: "#90a5c2"
       },
       defaultNavigationOptions: {
         headerStyle: {
-          backgroundColor: '#3878FF',
+          backgroundColor: "#3878FF"
         },
-        headerTintColor: '#fff',
+        headerTintColor: "#fff",
         headerTitleStyle: {
-          fontWeight: 'bold',
-          color: '#fff'
-        },
-      },
+          fontWeight: "bold",
+          color: "#fff"
+        }
+      }
     }
   )
 );
@@ -120,11 +182,15 @@ class StartPage extends Component {
   state = {
     isLoading: true,
     isAuthenticated: false
-  }
+  };
 
   componentDidMount() {
     getLanguages()
       .then(data => setLocalizationSuccess(data[0].split('-')[0]))
+    /*   AsyncStorage.getItem('phone')
+         .then(phone => {
+
+         })*/
 
     AsyncStorage.getItem('token')
       .then(token => {
@@ -146,20 +212,23 @@ class StartPage extends Component {
           height: 100
         }}
       />
-    } else return <SignUser/>/*this.state.isAuthenticated || this.props.token
-      ? <Navigation/>
-      : <SignUser/>*/
+    } else return this.state.isAuthenticated || this.props.token
+      ? <Navigation style={{backgroundColor: '#e9edf2'}}/>
+      : <SignUser/>
   }
 }
 
 const MSTP = state => ({
   token: state.profile.token,
-  localization: state.localization.language,
-})
+  localization: state.localization.language
+});
 
 const MDTP = {
   setLocalizationRequest,
   setLocalizationSuccess
-}
+};
 
-export default connect(MSTP, MDTP)(StartPage)
+export default connect(
+  MSTP,
+  MDTP
+)(StartPage);

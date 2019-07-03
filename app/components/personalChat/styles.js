@@ -4,6 +4,12 @@ export const MainView = styled.View`
   flex: 10;
 `
 
+export const BodyView = styled.ScrollView`
+  height: 490px;
+  background-color: #e9edf2;
+  padding: 15px 21.5px;
+`
+
 export const Button = styled.TouchableOpacity`
   padding: 10px;
   background-color: #0a8cff;
@@ -12,12 +18,6 @@ export const Button = styled.TouchableOpacity`
 export const Text = styled.Text`
   text-align: center;
   color: #ffffff;
-`
-
-export const BodyView = styled.ScrollView`
-flex: 9;
-background-color: #e9edf2;
-padding: 15px 21.5px;
 `
 
 export const MessageGreen = styled.View`
@@ -101,4 +101,7 @@ export const InputButton = styled.TouchableOpacity`
 export const InputButtonText = styled.Text`
 font-size: 16px;
 color: #ffffff;
+`
+
+export const KeyboardAvoidingView = styled.KeyboardAvoidingView`
 `

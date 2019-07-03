@@ -1,18 +1,14 @@
 import React, {Component} from 'react';
-import {Vibration} from 'react-native'
+import {Vibration, ActivityIndicator} from 'react-native'
+import {connect} from 'react-redux'
+import {contacsSync} from "../../services/chat/operations";
 import Contacts from 'react-native-contacts'
 import SvgUri from 'react-native-svg-uri';
 
 import {
-  MainView,
-  BlockUser,
-  AvatarUser,
-  ViewUserText,
-  UserTextBold,
-  UserText,
-  SvgUserView,
-  BlockUserView,
-  EmptyBox,
+  MainView, BlockUser, AvatarUser,
+  ViewUserText, UserTextBold, UserText,
+  SvgUserView, BlockUserView, EmptyBox,
   EmptyImage, EmptyText, EmptyView,
   MainScrollView
 } from "./styles";
@@ -43,97 +39,109 @@ class Chat extends Component {
 
   state = {
     contactName: '',
-    arrayContacts: []
   }
+
+  componentDidMount() {
+    setTimeout(() => Contacts.getAll((error, data) => {
+      Vibration.vibrate(1000)
+      const numbers = data.map(el => el.phoneNumbers[0].number.split('-').join('').split('(').join('').split(' ').join('').split(')').join(''))
+
+      this.props.send(numbers)
+    }), 600)
+  }
+
 
   changeContactName = contactName => this.setState({contactName})
 
   render() {
-    const {arrayContacts} = this.state
+    const {contacts, send, status} = this.props
+
     return (
-      <>
-        <MainView>
-          {/*<BlockUser onPress={() => this.changeContactName('Support')}>*/}
-          <BlockUser onPress={() => this.props.navigation.navigate('PersonalChat')}>
+      !status
+        ? <ActivityIndicator
+          color='#3878FF'
+          size="large"
+          style={{
+            flex: 1,
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: 50,
+          }}
+        />
+        : <>
+          <MainView>
+            {/*<BlockUser onPress={() => this.changeContactName('Support')}>*/}
+            <BlockUser onPress={() => this.props.navigation.navigate('PersonalChat')}>
 
-            <BlockUserView>
-              <AvatarUser source={require('../../assets/images/oval58.png')}/>
+              <BlockUserView>
+                <AvatarUser source={require('../../assets/images/oval58.png')}/>
 
-              <ViewUserText>
-                <UserTextBold>
-                  Support
-                </UserTextBold>
-                <UserText>
-                  Last seen 3 hours ago
-                </UserText>
-              </ViewUserText>
+                <ViewUserText>
+                  <UserTextBold>
+                    Support
+                  </UserTextBold>
+                  <UserText>
+                    Last seen 3 hours ago
+                  </UserText>
+                </ViewUserText>
+              </BlockUserView>
+            </BlockUser>
+            <MainScrollView>
+              {
+                contacts
+                  ? contacts.map((el, key) =>
+                    <BlockUser onPress={() => this.props.navigation.navigate('PersonalChat')} key={el.phone}>
 
-              <SvgUserView>
-                <SvgUri
-                  width="22"
-                  height='22'
-                  source={require('../../assets/icons/chat_bubble_outline.svg')}
-                />
-              </SvgUserView>
-            </BlockUserView>
-          </BlockUser>
-          <MainScrollView>
-            {
-              arrayContacts.length > 0
-                ? arrayContacts.map((el, key) =>
-                  <BlockUser onPress={() => this.props.navigation.navigate('PersonalChat')} key={key}>
-
-                    <BlockUserView>
-                      {el.thumbnailPath
-                        ? <AvatarUser source={{uri: el.thumbnailPath}}/>
-                        : <AvatarUser source={require('../../assets/images/oval58.png')}/>
-                      }
-                      <ViewUserText>
-                        <UserTextBold>
-                          {el.givenName}
-                        </UserTextBold>
-                        <UserText>
-                          Last seen 3 hours ago
-                        </UserText>
-                      </ViewUserText>
-
-                      <SvgUserView>
-                        <SvgUri
-                          width="22"
-                          height='22'
-                          source={require('../../assets/icons/chat_bubble_outline.svg')}
-                        />
-                      </SvgUserView>
-                    </BlockUserView>
-                  </BlockUser>)
-                : <EmptyBox onPress={() => {
-                  Vibration.vibrate(1000)
-                  Contacts.getAll((error, data) => this.setState({arrayContacts: data}))
-                }}>
-                  <EmptyView>
-                    <EmptyText>
-                      - Empty contacts -
-                    </EmptyText>
-                    <SvgUri
-                      width="102"
-                      height='102'
-                      source={require('../../assets/icons/group2.svg')}
-                      style={{margin: 16}}
-                    />
-                    <EmptyText>
-                      Tell your friend about
-                    </EmptyText>
-                    <EmptyText>
-                      DIMO
-                    </EmptyText>
-                  </EmptyView>
-                </EmptyBox>
-            }
-          </MainScrollView>
-        </MainView>
-      </>
+                      <BlockUserView>
+                        <AvatarUser source={{uri: el.avatar}}/>
+                        <ViewUserText>
+                          <UserTextBold>
+                            {el.firstName} {el.lastName}
+                          </UserTextBold>
+                          <UserText>
+                            Last seen {key + 1} minute ago
+                          </UserText>
+                        </ViewUserText>
+                      </BlockUserView>
+                    </BlockUser>)
+                  : <EmptyBox onPress={() => {
+                    Vibration.vibrate(1000)
+                    Contacts.getAll((error, data) => {
+                      const numbers = data.map(el => el.phoneNumbers[0].number.split('-').join('').split('(').join('').split(' ').join('').split(')').join(''))
+                      send(numbers)
+                    })
+                  }}>
+                    <EmptyView>
+                      <EmptyText>
+                        - Empty contacts -
+                      </EmptyText>
+                      <SvgUri
+                        width="102"
+                        height='102'
+                        source={require('../../assets/icons/group2.svg')}
+                        style={{margin: 16}}
+                      />
+                      <EmptyText>
+                        Tell your friend about
+                      </EmptyText>
+                      <EmptyText>
+                        DIMO
+                      </EmptyText>
+                    </EmptyView>
+                  </EmptyBox>
+              }
+            </MainScrollView>
+          </MainView>
+        </>
     )
   }
 }
 
-export default Chat
+const MSTP = state => ({
+  contacts: state.contacts.friends,
+  status: state.contacts.status
+})
+const MDTP = {
+  send: contacsSync
+}
+export default connect(MSTP, MDTP)(Chat)

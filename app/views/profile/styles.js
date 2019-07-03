@@ -1,7 +1,10 @@
 import styled from 'styled-components/native'
 
-export const MainView = styled.View`
-  flex: 5;
+export const MainView = styled.ScrollView`
+  background-color: #e9edf2;
+`
+
+export const GlobalView = styled.View`
   background-color: #e9edf2;
 `
 
@@ -14,6 +17,8 @@ export const TopView = styled.View`
   shadow-offset: 0 2px;
   border-radius: 10px;
   margin-bottom: 5px;
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
 `
 
 export const BottomView = styled.ScrollView`
@@ -139,6 +144,7 @@ export const ViewUserOverlay = styled.View`
 `
 
 export const ImageUser = styled.Image`
+  border-radius: 40px;
   width: 80px;
   height: 80px;
 `
@@ -200,4 +206,7 @@ export const Confirmed = styled.View`
   border-radius: 9px;
   bottom: 4px;
   right: 4px;
+`
+
+export const KeyboardAvoidingView = styled.KeyboardAvoidingView`
 `

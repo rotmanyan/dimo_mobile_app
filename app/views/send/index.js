@@ -1,12 +1,10 @@
-import React, {Component} from 'react'
-import {
-  MainView,
-} from "./styles";
-import {View, Text} from 'react-native'
+import React, {Component} from 'react';
+import CodeScan from '../../components/qrCodeScanner';
+import {MainView, Text} from "./styles";
 
-class FirstScreen extends Component {
+class Send extends Component {
   static navigationOptions = {
-    headerTitle: 'Registration',
+    headerTitle: 'Send',
     headerStyle: {
       backgroundColor: '#3878FF',
     },
@@ -19,11 +17,13 @@ class FirstScreen extends Component {
     return (
       <MainView>
         <Text>
-          Hey Buddy!
+          Send page
         </Text>
+
+        <CodeScan/>
       </MainView>
     );
   }
 }
 
-export default FirstScreen;
+export default Send;

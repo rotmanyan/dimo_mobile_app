@@ -1,17 +1,12 @@
 import React, {Component} from 'react';
+import ReactNative from 'react-native';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view'
 import {
-  MainView,
-  BodyView,
-  MessageGreen,
-  MessageText,
-  MessageGreenTime,
-  MessageWhite,
-  MessageWhiteTime,
-  InputBoxView,
-  InputView,
-  InputForm,
-  InputButton,
-  InputButtonText
+  MainView, BodyView, KeyboardAvoidingView,
+  MessageGreen, MessageText, MessageGreenTime,
+  MessageWhite, MessageWhiteTime,
+  InputBoxView, InputView, InputForm,
+  InputButton, InputButtonText
 } from './styles'
 
 class PersonalChat extends Component {
@@ -80,8 +75,13 @@ class PersonalChat extends Component {
     const {value, messagesFromMe} = this.state
 
     this.setState({
-      messagesFromMe: [...messagesFromMe, {text: value, time: '7.15 PM'}]
+      messagesFromMe: [...messagesFromMe, {text: value.trim(), time: '7.15 PM'}]
     }, () => this.setState({value: ''}))
+  }
+
+  _scrollToInput(reactNode: any) {
+    // Add a 'scroll' ref to your ScrollView
+    this.scroll.props.scrollToFocusedInput(reactNode)
   }
 
   render() {
@@ -95,31 +95,41 @@ class PersonalChat extends Component {
       width: '100%'
     }
     return (
-      <MainView>
+      <KeyboardAwareScrollView
+        style={{flex: 10}}
+        innerRef={ref => {
+          this.scroll = ref
+        }}>
+
         <BodyView>
           {this.writeForMe()}
           {this.writeFromMe()}
         </BodyView>
-        <InputBoxView
-          style={isWriting ? style : {}}
-        >
-          <InputView>
-            <InputForm
-              value={value}
-              onChange={e => this.setState({value: e.nativeEvent.text})}
-              placeholder='Type a message here...'
-              multiline={true}
-              onFocus={() => this.setState({isWriting: true})}
-              onBlur={() => this.setState({isWriting: false})}
-            />
-            <InputButton onPress={this.spreadToState}>
-              <InputButtonText>
-                ->
-              </InputButtonText>
-            </InputButton>
-          </InputView>
+        <InputBoxView>
+          <KeyboardAvoidingView behavior='padding' enabled>
+            <InputView>
+
+              <InputForm
+                value={value}
+                onChange={e => this.setState({value: e.nativeEvent.text})}
+                placeholder='Type a message here...'
+                multiline={true}
+                onFocus={(event: Event) => {
+                  this._scrollToInput(ReactNative.findNodeHandle(event.target))
+                  this.setState({isWriting: true})
+                }}
+                onBlur={() => this.setState({isWriting: false})}
+              />
+
+              <InputButton onPress={!!value ? this.spreadToState : null}>
+                <InputButtonText>
+                  ->
+                </InputButtonText>
+              </InputButton>
+            </InputView>
+          </KeyboardAvoidingView>
         </InputBoxView>
-      </MainView>
+      </KeyboardAwareScrollView>
     )
   }
 }

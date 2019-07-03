@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {MainView} from "./styles";
-import Camera from "../../../components/camera";
 import Profile from "../../profile";
 import Chat from "../../chat";
 import Kyc from "../../kyc";
