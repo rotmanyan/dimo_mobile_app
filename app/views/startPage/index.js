@@ -16,7 +16,7 @@ import Kyc from "../kyc";
 import Chat from "../chat";
 import Wallet from "../wallet";
 import Profile from "../profile";
-import Camera from "../../components/camera";
+import CodeScan from "../../components/qrCodeScanner";
 import Activity from "../activity";
 import SignUser from "../signUser";
 import PersonalChat from "../../components/personalChat";
@@ -33,10 +33,10 @@ const ChatStack = createStackNavigator(
 
 const SendStack = createStackNavigator(
   {
-    Camera
+    CodeScan
   },
   {
-    initialRouteName: "Camera"
+    initialRouteName: "CodeScan"
   }
 );
 

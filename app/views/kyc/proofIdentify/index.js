@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
+import React, {Component} from "react";
+import {connect} from "react-redux";
 
-import { sendingPhotoKyc } from "../../../services/kyc/operation";
+import {sendingPhotoKyc} from "../../../services/kyc/operation";
 import ImagePicker from "react-native-image-picker";
 import SvgUri from "react-native-svg-uri";
 import {
@@ -57,7 +57,7 @@ class ProofIdentify extends Component {
           } else if (response.error) {
           } else {
             const source = "data:image/jpeg;base64," + response.data;
-            const source2 = response.origURL;
+            const source2 = response.origURL || response.uri;
 
             this.props.sendPhoto(source);
 
@@ -70,10 +70,10 @@ class ProofIdentify extends Component {
           }
         });
       case "clean_front":
-        this.setState({ frontPic: "" });
+        this.setState({frontPic: ""});
         break;
       case "clean_back":
-        this.setState({ backPic: "" });
+        this.setState({backPic: ""});
         break;
       case "back":
         return ImagePicker.showImagePicker(options, response => {
@@ -84,7 +84,7 @@ class ProofIdentify extends Component {
           } else if (response.error) {
           } else {
             const source = "data:image/jpeg;base64," + response.data;
-            const source2 = response.origURL;
+            const source2 = response.origURL || response.uri;
             this.props.sendPhoto(source);
             this.setState({
               ...this.state,
@@ -100,6 +100,7 @@ class ProofIdentify extends Component {
   // pickImage = side => {
   //   switch (side) {
   //     case "front":
+
   //       return ImagePickerIOS.openSelectDialog(
   //         {},
   //         frontPic => this.setState({ frontPic }),
@@ -120,13 +121,13 @@ class ProofIdentify extends Component {
   // };
 
   render() {
-    const { frontPic, backPic } = this.state;
-    const { changeStep } = this.props;
+    const {frontPic, backPic} = this.state;
+    const {changeStep} = this.props;
     return (
       <>
         {console.log(this.state, "FROM COMPONENT")}
         <TextH1>Account verification</TextH1>
-        <SelectorPassport />
+        <SelectorPassport/>
 
         <UploadImageBox>
           {frontPic ? (
@@ -137,7 +138,7 @@ class ProofIdentify extends Component {
                 justifyContent: "space-between"
               }}
             >
-              <SvgView style={{ backgroundColor: "#fff" }}>
+              <SvgView style={{backgroundColor: "#fff"}}>
                 <SvgUri
                   width="16"
                   height="16"
@@ -146,12 +147,12 @@ class ProofIdentify extends Component {
               </SvgView>
               <UploadImageTextBox>
                 <UploadImageTextHead
-                  style={{ textAlign: "center", color: "#fff" }}
+                  style={{textAlign: "center", color: "#fff"}}
                 >
                   UPLOADED!
                 </UploadImageTextHead>
               </UploadImageTextBox>
-              <SvgView style={{ backgroundColor: "#31d4a0" }}>
+              <SvgView style={{backgroundColor: "#31d4a0"}}>
                 <SvgUri
                   width="16"
                   height="16"
@@ -185,7 +186,7 @@ class ProofIdentify extends Component {
                 justifyContent: "space-between"
               }}
             >
-              <SvgView style={{ backgroundColor: "#fff" }}>
+              <SvgView style={{backgroundColor: "#fff"}}>
                 <SvgUri
                   width="16"
                   height="16"
@@ -194,12 +195,12 @@ class ProofIdentify extends Component {
               </SvgView>
               <UploadImageTextBox>
                 <UploadImageTextHead
-                  style={{ textAlign: "center", color: "#fff" }}
+                  style={{textAlign: "center", color: "#fff"}}
                 >
                   UPLOADED!
                 </UploadImageTextHead>
               </UploadImageTextBox>
-              <SvgView style={{ backgroundColor: "#31d4a0" }}>
+              <SvgView style={{backgroundColor: "#31d4a0"}}>
                 <SvgUri
                   width="16"
                   height="16"

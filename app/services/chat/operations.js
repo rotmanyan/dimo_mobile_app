@@ -22,7 +22,7 @@ export const contacsSync = credential => (dispatch, getState) => {
       headers: {
         "x-access-token": actualToken || token
       },
-      data: credential,
+      data: {contacts: credential},
       url: urlContacsSync
     }
 

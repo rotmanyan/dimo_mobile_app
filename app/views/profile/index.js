@@ -122,8 +122,6 @@ class Profile extends Component {
     const styleInputWriting = {
       position: 'absolute',
       left: 0,
-      bottom: '55%',
-      backgroundColor: '#fff',
       justifyContent: 'center',
       alignItems: 'center',
       borderRadius: 0,
@@ -238,7 +236,7 @@ class Profile extends Component {
             value={userInfo.userAddress}
             autoCapitalize='none'
             placeholder='Enter your address'
-            style={isWriting === 'address' ? styleInputWriting : {opacity: .5}}
+            style={isWriting === 'address' ? styleInputWriting : {}}
             onFocus={() => this.setState({isWriting: 'address'})}
             onBlur={() => this.setState({isWriting: ''})}
           />
@@ -250,7 +248,7 @@ class Profile extends Component {
             value={userInfo.userName}
             placeholder='Enter your username'
             autoCapitalize='none'
-            style={isWriting === 'username' ? styleInputWriting : {opacity: .5}}
+            style={isWriting === 'username' ? styleInputWriting : {}}
             onFocus={() => this.setState({isWriting: 'username'})}
             onBlur={() => this.setState({isWriting: ''})}
           />
