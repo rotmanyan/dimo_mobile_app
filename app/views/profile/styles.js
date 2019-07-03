@@ -205,7 +205,4 @@ export const Confirmed = styled.View`
 `
 
 export const KeyboardAvoidingView = styled.KeyboardAvoidingView`
-  flex: 1;
-  align-items: center;
-  justify-content: center;
 `

@@ -2,21 +2,11 @@ import React, {Component} from 'react'
 import {connect} from "react-redux";
 import {clearUser} from "../../services/profile/actions";
 import {
-  TextHeadMiddle,
-  MainView,
-  ButtonPanelView,
-  BackButtonView,
-  NextButtonView,
-  BackButton,
-  NextButton,
-  NumberMiddle,
-  InputForm,
-  SendCount,
-  ViewHead,
-  ViewBottom,
-  ImageBg,
-  SendCountText,
-  SendCountTextSec
+  TextHeadMiddle, MainView,
+  ButtonPanelView, BackButtonView, NextButtonView,
+  BackButton, NextButton, NumberMiddle,
+  InputForm, SendCount, ViewHead, ViewBottom,
+  ImageBg, SendCountText, SendCountTextSec
 } from './styles'
 import {signUserMobileConfirm, signUserVerifyPhone} from "../../services/profile/operation";
 

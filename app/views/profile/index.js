@@ -132,74 +132,74 @@ class Profile extends Component {
             height: 50,
           }}
         />
-        : <MainView>
-          <TopView>
-            {!isVerified && <YellowBlock>
-              <YellowText>
-                Account wit limited abilities
-              </YellowText>
-              <YellowButtonView>
-                <YellowButton onPress={() => this.props.navigation.navigate('Kyc')}>
-                  <YellowButtonText>
-                    Complete KYC
-                  </YellowButtonText>
-                </YellowButton>
-              </YellowButtonView>
-            </YellowBlock>}
-            <HeadBlock>
-              <LeftBlock>
-                <TextLimit>
-                  Daily Limits:
-                </TextLimit>
-                <TextNumber>
-                  {dailyLimits}
-                </TextNumber>
-              </LeftBlock>
+        :
+          <KeyboardAvoidingView behavior="padding">
+            <TopView>
+              {!isVerified && <YellowBlock>
+                <YellowText>
+                  Account wit limited abilities
+                </YellowText>
+                <YellowButtonView>
+                  <YellowButton onPress={() => this.props.navigation.navigate('Kyc')}>
+                    <YellowButtonText>
+                      Complete KYC
+                    </YellowButtonText>
+                  </YellowButton>
+                </YellowButtonView>
+              </YellowBlock>}
+              <HeadBlock>
+                <LeftBlock>
+                  <TextLimit>
+                    Daily Limits:
+                  </TextLimit>
+                  <TextNumber>
+                    {dailyLimits}
+                  </TextNumber>
+                </LeftBlock>
 
-              <CenterBlock>
-                <ViewUser onPress={this.pickImage}>
-                  <ViewUserOverlay>
-                    {!!userInfo.avatarImage &&
-                    <ImageUser style={loadImage && {opacity: 0.2}} source={{uri: userInfo.avatarImage}}/>}
-                  </ViewUserOverlay>
-                  {loadImage && <ActivityIndicator
-                    animating={loadImage}
-                    color='#3878FF'
-                    size="large"
-                    style={{
-                      position: 'absolute',
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                      height: 80
-                    }}
-                  />}
-                  <Confirmed style={!userInfo.confirmed ? {} : {backgroundColor: '#FF0000'}}>
-                    <SvgUri
-                      width="12"
-                      height='12'
-                      source={require('../../assets/icons/rectangleWhite.svg')}
-                    />
-                  </Confirmed>
-                </ViewUser>
-                <TextUser>{userFullName}</TextUser>
-                <TariffUserView>
-                  <TariffUserText>{type} Account</TariffUserText>
-                </TariffUserView>
-              </CenterBlock>
+                <CenterBlock>
+                  <ViewUser onPress={this.pickImage}>
+                    <ViewUserOverlay>
+                      {!!userInfo.avatarImage &&
+                      <ImageUser style={loadImage && {opacity: 0.2}} source={{uri: userInfo.avatarImage}}/>}
+                    </ViewUserOverlay>
+                    {loadImage && <ActivityIndicator
+                      animating={loadImage}
+                      color='#3878FF'
+                      size="large"
+                      style={{
+                        position: 'absolute',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        height: 80
+                      }}
+                    />}
+                    <Confirmed style={!userInfo.confirmed ? {} : {backgroundColor: '#FF0000'}}>
+                      <SvgUri
+                        width="12"
+                        height='12'
+                        source={require('../../assets/icons/rectangleWhite.svg')}
+                      />
+                    </Confirmed>
+                  </ViewUser>
+                  <TextUser>{userFullName}</TextUser>
+                  <TariffUserView>
+                    <TariffUserText>{type} Account</TariffUserText>
+                  </TariffUserView>
+                </CenterBlock>
 
-              <RightBlock>
-                <TextLimit>
-                  Withdraw Limit:
-                </TextLimit>
-                <TextNumberRight>
-                  {withdrawLimits}
-                </TextNumberRight>
-              </RightBlock>
-            </HeadBlock>
-          </TopView>
+                <RightBlock>
+                  <TextLimit>
+                    Withdraw Limit:
+                  </TextLimit>
+                  <TextNumberRight>
+                    {withdrawLimits}
+                  </TextNumberRight>
+                </RightBlock>
+              </HeadBlock>
+            </TopView>
 
-          <BottomView>
-            <KeyboardAvoidingView behavior='padding' enabled>
+            <BottomView>
               <Text>
                 E-mail
               </Text>
@@ -255,16 +255,15 @@ class Profile extends Component {
                 onFocus={() => this.setState({isWriting: 'username'})}
                 onBlur={() => this.setState({isWriting: ''})}
               />
-            </KeyboardAvoidingView>
-            <ViewBlueButton>
-              <BlueButton onPress={this.submitProfile}>
-                <BlueButtonText>
-                  SUBMIT
-                </BlueButtonText>
-              </BlueButton>
-            </ViewBlueButton>
-          </BottomView>
-        </MainView>
+              <ViewBlueButton>
+                <BlueButton onPress={this.submitProfile}>
+                  <BlueButtonText>
+                    SUBMIT
+                  </BlueButtonText>
+                </BlueButton>
+              </ViewBlueButton>
+            </BottomView>
+          </KeyboardAvoidingView>
     )
   }
 }
