@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
+import React, {Component} from "react";
+import {connect} from "react-redux";
 import PhoneInput from "react-native-phone-input";
-import { signUserVerifyPhone } from "../../services/profile/operation";
+import {signUserVerifyPhone} from "../../services/profile/operation";
 import SignUserCode from "../signUserCode";
 import * as selectorLang from "../../services/selectors";
 import {
@@ -25,7 +25,7 @@ class SignUser extends Component {
   };
 
   writeInput = () => {
-    const { value } = this.state;
+    const {value} = this.state;
 
     return (
       <PhoneInput
@@ -42,11 +42,11 @@ class SignUser extends Component {
           }
         }}
         autoFormat={true}
-        flagStyle={{ borderRadius: 12.5, width: 25, height: 25 }}
+        flagStyle={{borderRadius: 12.5, width: 25, height: 25}}
         confirmText="Confirm"
         cancelText="Cancel"
         value={value}
-        onChangePhoneNumber={value => this.setState({ value })}
+        onChangePhoneNumber={value => this.setState({value})}
         isValidNumber
         getFlag={a => console.log(a, "getFlag")}
       />
@@ -54,19 +54,19 @@ class SignUser extends Component {
   };
 
   writeBody = () => {
-    const { translate, sign } = this.props;
-    const { value } = this.state;
+    const {translate, sign} = this.props;
+    const {value} = this.state;
 
     return (
       <MainView>
         <ViewHead>
-          <ImageBg source={require("../../assets/backgrounds/Top.png")} />
+          <ImageBg source={require("../../assets/backgrounds/Top.png")}/>
         </ViewHead>
         <ViewBottom>
-          <ImageBg source={require("../../assets/backgrounds/bottom.png")} />
+          <ImageBg source={require("../../assets/backgrounds/bottom.png")}/>
         </ViewBottom>
         <ViewLogo>
-          <ImageLogo source={require("../../assets/backgrounds/logo.png")} />
+          <ImageLogo source={require("../../assets/backgrounds/logo.png")}/>
         </ViewLogo>
         <TextHeadMiddle>{translate.please_enter_your_number}</TextHeadMiddle>
 
@@ -86,22 +86,26 @@ class SignUser extends Component {
     );
   };
 
-  render() {
+/*  render() {
     const {userNumber, success, isRegistered, phone} = this.props
 
     if (userNumber) {
       if (phone) {
-        return <EnterPassword />;
+        return <EnterPassword/>;
       }
       if (success) {
         if (isRegistered) {
-          return <EnterPassword />;
-        } else return <RegistrationUser />;
+          return <EnterPassword/>;
+        } else return <RegistrationUser/>;
       }
-      return <SignUserCode />;
+      return <SignUserCode/>;
     } else if (!userNumber) {
       return this.writeBody();
     }
+  }*/
+
+  render() {
+    return <RegistrationUser/>
   }
 }
 
