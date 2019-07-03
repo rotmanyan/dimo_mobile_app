@@ -19,13 +19,6 @@ import {
   KeyboardAvoidingView,
 } from "./styles";
 
-
-/*
-const mapStateToProps = state => ({
-  logo: 'zalupa'
-})
-export default connect(mapStateToProps)(LogoTitle)*/
-
 class Profile extends Component {
   static navigationOptions = {
     headerTitle: <LogoTitle/>,
