@@ -27,7 +27,9 @@ export const actionTypes = {
   'UPDATE_USER_AVATAR_SUCCESS': 'UPDATE_USER_AVATAR_SUCCESS',
   'UPDATE_USER_AVATAR_ERROR': 'UPDATE_USER_AVATAR_ERROR',
 
-  'CLEAR_USER': 'CLEAR_USER'
+  'CLEAR_USER': 'CLEAR_USER',
+  'SIDE_BAR_ENABLE': 'SIDE_BAR_ENABLE',
+  'SIDE_BAR_DISABLE': 'SIDE_BAR_DISABLE',
 }
 
 
@@ -141,4 +143,13 @@ export const updateUserAvatarError = error => ({
 //Delete user information in Store
 export const clearUser = () => ({
   type: actionTypes.CLEAR_USER
+})
+
+//activator Side Bar
+export const sideBarEnable = () => ({
+  type: actionTypes.SIDE_BAR_ENABLE
+})
+
+export const sideBarDisable = () => ({
+  type: actionTypes.SIDE_BAR_DISABLE
 })

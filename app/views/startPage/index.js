@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import { ActivityIndicator } from "react-native";
+import React, {Component} from "react";
+import {ActivityIndicator, View, Text, TouchableHighlight} from "react-native";
 import AsyncStorage from "@react-native-community/async-storage";
-import { connect } from "react-redux";
-import { getLanguages } from "react-native-i18n";
+import {connect} from "react-redux";
+import {getLanguages} from "react-native-i18n";
 import {
   setLocalizationRequest,
   setLocalizationSuccess
@@ -10,12 +10,14 @@ import {
 import {
   createAppContainer,
   createStackNavigator,
-  createBottomTabNavigator
+  createBottomTabNavigator,
+  DrawerNavigator,
 } from "react-navigation";
 import Kyc from "../kyc";
 import Chat from "../chat";
 import Wallet from "../wallet";
 import Profile from "../profile";
+import FirstScreen from "../firstScreen";
 import Activity from "../activity";
 import Send from "../send";
 import SignUser from "../signUser";
@@ -24,7 +26,7 @@ import PersonalChat from "../../components/personalChat";
 const ChatStack = createStackNavigator(
   {
     Chat,
-    PersonalChat
+    PersonalChat,
   },
   {
     initialRouteName: "Chat"
@@ -42,10 +44,11 @@ const SendStack = createStackNavigator(
 
 const WalletStack = createStackNavigator(
   {
-    Wallet: Wallet
+    Wallet: Wallet,
+    First: FirstScreen,
   },
   {
-    initialRouteName: "Wallet"
+    initialRouteName: "First"
   }
 );
 
@@ -68,7 +71,7 @@ const ProfileStack = createStackNavigator(
   }
 );
 
-ProfileStack.navigationOptions = ({ navigation }) => {
+ProfileStack.navigationOptions = ({navigation}) => {
   let tabBarVisible = true;
   if (navigation.state.index > 0) {
     tabBarVisible = false;
@@ -94,6 +97,57 @@ class LogoTitle extends Component {
 }
 */
 
+/*
+Drawer: { screen: DrawerNavigator(
+      {
+        Home: { screen: TabNavigator(
+          {
+            Red: { screen: RedScreen },
+            Blue: { screen: BlueScreen }
+          },
+          {
+            tabBarOptions: {
+              labelStyle: {
+                fontSize: 20,
+                marginBottom: 10
+              }
+            }
+          }
+        )},
+        Send: { screen: SendStack }
+      }
+    ) }
+
+ */
+
+class GreenScreen extends Component {
+  render() {
+    return (
+      <View>
+        <TouchableHighlight
+          onPress={() => this.props.navigation.navigate('Send')}
+        >
+          <Text style={{color: '#40ff00'}}>Go to Red</Text>
+        </TouchableHighlight>
+      </View>
+    );
+  }
+}
+
+class RedScreen extends Component {
+  render() {
+    return (
+      <View>
+        <TouchableHighlight
+          onPress={() => this.props.navigation.navigate('Chat')}
+        >
+          <Text style={{color: '#ff0000'}}>Back to Green</Text>
+        </TouchableHighlight>
+      </View>
+    );
+  }
+}
+
 // And the app container
 const Navigation = createAppContainer(
   createBottomTabNavigator(
@@ -102,7 +156,7 @@ const Navigation = createAppContainer(
       Send: SendStack,
       Wallet: WalletStack,
       Activity: ActivityStack,
-      Profile: ProfileStack
+      Profile: ProfileStack,
     },
     {
       initialRouteName: "Profile",
@@ -159,7 +213,7 @@ class StartPage extends Component {
         }}
       />
     } else return this.state.isAuthenticated || this.props.token
-      ? <Navigation/>
+      ? <Navigation style={{backgroundColor: '#e9edf2'}}/>
       : <SignUser/>
   }
 }

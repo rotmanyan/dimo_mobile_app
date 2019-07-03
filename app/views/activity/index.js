@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {MainView, Text} from "./styles";
+import React, {Component} from 'react'
+import {MainView, Text} from "./styles"
 
 class Activity extends Component {
   static navigationOptions = {
@@ -19,8 +19,8 @@ class Activity extends Component {
           Activity page
         </Text>
       </MainView>
-    );
+    )
   }
 }
 
-export default Activity;
+export default Activity

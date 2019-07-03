@@ -4,6 +4,10 @@ export const MainView = styled.ScrollView`
   background-color: #e9edf2;
 `
 
+export const GlobalView = styled.View`
+  background-color: #e9edf2;
+`
+
 export const TopView = styled.View`
   background-color: #fff;
   padding: 8px 8px 18px;

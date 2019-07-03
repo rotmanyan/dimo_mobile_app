@@ -22,6 +22,8 @@ const initialState = {
   withdrawLimits: 0,
   success: false,
   isRegistered: null,
+
+  sideBar: false,
 }
 
 export const signUser = (state = initialState, {type, payload}) => {
@@ -66,6 +68,16 @@ export const signUser = (state = initialState, {type, payload}) => {
         ...state,
         token: '',
         userNumber: ''
+      }
+    case actionTypes.SIDE_BAR_ENABLE:
+      return {
+        ...state,
+        sideBar: true
+      }
+    case actionTypes.SIDE_BAR_DISABLE:
+      return {
+        ...state,
+        sideBar: false
       }
     case actionTypes.GET_USER_PROFILE_ERROR:
     case actionTypes.SIGN_USER_VERIFY_PHONE_ERROR:

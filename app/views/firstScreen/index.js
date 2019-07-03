@@ -17,11 +17,11 @@ class FirstScreen extends Component {
 
   render() {
     return (
-      <View>
+      <MainView>
         <Text>
           Hey Buddy!
         </Text>
-      </View>
+      </MainView>
     );
   }
 }
