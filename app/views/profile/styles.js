@@ -17,7 +17,7 @@ export const TopView = styled.View`
   border-top-left-radius: 0;
 `
 
-export const BottomView = styled.View`
+export const BottomView = styled.ScrollView`
   background-color: #e9edf2;
   padding: 8px 16px 0;
 `

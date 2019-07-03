@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import {MainView} from "./styles";
-import CodeScan from "../../components/qrCodeScanner";
+import {MainView, Text} from "./styles";
 
 class Activity extends Component {
   static navigationOptions = {
@@ -12,10 +11,13 @@ class Activity extends Component {
       color: '#ffffff',
     },
   }
+
   render() {
     return (
       <MainView>
-        <CodeScan/>
+        <Text>
+          Activity page
+        </Text>
       </MainView>
     );
   }

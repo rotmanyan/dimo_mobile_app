@@ -24,7 +24,7 @@ class Kyc extends Component {
   static navigationOptions = {
     headerTitle: "KYC",
     headerStyle: {
-      backgroundColor: "#3878FF"
+      backgroundColor: "#3878FF",
     },
     headerTitleStyle: {
       color: "#ffffff"

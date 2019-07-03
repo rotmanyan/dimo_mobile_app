@@ -51,7 +51,7 @@ export const StepLineOne = styled.View`
   background-color: #3878ff;
   position: absolute;
   top: 30px;
-  left: 10%;
+  left: 15%;
   height: 2px;
   width: 50%;
   z-index: -1;
@@ -60,7 +60,7 @@ export const StepLineTwo = styled.View`
   background-color: #000000;
   position: absolute;
   top: 30px;
-  right: 10%;
+  right: 9%;
   height: 2px;
   width: 50%;
   z-index: -1;

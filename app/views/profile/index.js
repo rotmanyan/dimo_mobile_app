@@ -90,7 +90,7 @@ class Profile extends Component {
           this.setState({loadImage: false})
         } else {
           const source = 'data:image/jpeg;base64,' + response.data
-          const source2 = response.origURL
+          const source2 = response.origURL || response.uri
 
           // You can also display the image using data:
           // const source = { uri: 'data:image/jpeg;base64,' + response.data };
@@ -121,139 +121,150 @@ class Profile extends Component {
     const styleInputWriting = {}
 
     return (
-      <MainView>
-        <TopView>
-          {!isVerified && <YellowBlock>
-            <YellowText>
-              Account wit limited abilities
-            </YellowText>
-            <YellowButtonView>
-              <YellowButton onPress={() => this.props.navigation.navigate('Kyc')}>
-                <YellowButtonText>
-                  Complete KYC
-                </YellowButtonText>
-              </YellowButton>
-            </YellowButtonView>
-          </YellowBlock>}
-          <HeadBlock>
-            <LeftBlock>
-              <TextLimit>
-                Daily Limits:
-              </TextLimit>
-              <TextNumber>
-                {dailyLimits}
-              </TextNumber>
-            </LeftBlock>
+      !userInfo.avatarImage
+        ? <ActivityIndicator
+          color='#3878FF'
+          size="large"
+          style={{
+            flex: 1,
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: 50,
+          }}
+        />
+        : <MainView>
+          <TopView>
+            {!isVerified && <YellowBlock>
+              <YellowText>
+                Account wit limited abilities
+              </YellowText>
+              <YellowButtonView>
+                <YellowButton onPress={() => this.props.navigation.navigate('Kyc')}>
+                  <YellowButtonText>
+                    Complete KYC
+                  </YellowButtonText>
+                </YellowButton>
+              </YellowButtonView>
+            </YellowBlock>}
+            <HeadBlock>
+              <LeftBlock>
+                <TextLimit>
+                  Daily Limits:
+                </TextLimit>
+                <TextNumber>
+                  {dailyLimits}
+                </TextNumber>
+              </LeftBlock>
 
-            <CenterBlock>
-              <ViewUser onPress={this.pickImage}>
-                <ViewUserOverlay>
-                  {!!userInfo.avatarImage &&
-                  <ImageUser style={loadImage && {opacity: 0.2}} source={{uri: userInfo.avatarImage}}/>}
-                </ViewUserOverlay>
-                {loadImage && <ActivityIndicator
-                  animating={loadImage}
-                  color='#3878FF'
-                  size="large"
-                  style={{
-                    position: 'absolute',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    height: 80
-                  }}
-                />}
-                <Confirmed style={!userInfo.confirmed ? {} : {backgroundColor: '#FF0000'}}>
-                  <SvgUri
-                    width="12"
-                    height='12'
-                    source={require('../../assets/icons/rectangleWhite.svg')}
-                  />
-                </Confirmed>
-              </ViewUser>
-              <TextUser>{userFullName}</TextUser>
-              <TariffUserView>
-                <TariffUserText>{type} Account</TariffUserText>
-              </TariffUserView>
-            </CenterBlock>
+              <CenterBlock>
+                <ViewUser onPress={this.pickImage}>
+                  <ViewUserOverlay>
+                    {!!userInfo.avatarImage &&
+                    <ImageUser style={loadImage && {opacity: 0.2}} source={{uri: userInfo.avatarImage}}/>}
+                  </ViewUserOverlay>
+                  {loadImage && <ActivityIndicator
+                    animating={loadImage}
+                    color='#3878FF'
+                    size="large"
+                    style={{
+                      position: 'absolute',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      height: 80
+                    }}
+                  />}
+                  <Confirmed style={!userInfo.confirmed ? {} : {backgroundColor: '#FF0000'}}>
+                    <SvgUri
+                      width="12"
+                      height='12'
+                      source={require('../../assets/icons/rectangleWhite.svg')}
+                    />
+                  </Confirmed>
+                </ViewUser>
+                <TextUser>{userFullName}</TextUser>
+                <TariffUserView>
+                  <TariffUserText>{type} Account</TariffUserText>
+                </TariffUserView>
+              </CenterBlock>
 
-            <RightBlock>
-              <TextLimit>
-                Withdraw Limit:
-              </TextLimit>
-              <TextNumberRight>
-                {withdrawLimits}
-              </TextNumberRight>
-            </RightBlock>
-          </HeadBlock>
-        </TopView>
+              <RightBlock>
+                <TextLimit>
+                  Withdraw Limit:
+                </TextLimit>
+                <TextNumberRight>
+                  {withdrawLimits}
+                </TextNumberRight>
+              </RightBlock>
+            </HeadBlock>
+          </TopView>
 
-        <BottomView>
-          <KeyboardAvoidingView behavior='padding'>
-            <Text>
-              E-mail
-            </Text>
-            <Input
-              editable={false}
-              onChangeText={userEmail => this.setState({userInfo: {...userInfo, userEmail}})}
-              value={userInfo.userEmail || userEmail}
-              placeholder='Enter your e-mail'
-              autoCapitalize='none'
-              style={{opacity: .5}}
-            />
-            <Text>
-              Mobile number
-            </Text>
-            <Input
-              editable={false}
-              style={{opacity: .5}}
-              onChangeText={userNumber => this.setState({userInfo: {...userInfo, userNumber}})}
-              value={userInfo.userNumber || userNumber}
-              autoCapitalize='none'
-              placeholder='Enter your mobile number'
-            />
-            <Text>
-              Country
-            </Text>
-            <Input
-              style={{opacity: .5}}
-              editable={false}
-              value={userCountry}
-              placeholder='Enter your country'
-            />
-            <Text>
-              Address
-            </Text>
-            <Input
-              onChangeText={userAddress => this.setState({userInfo: {...userInfo, userAddress}})}
-              value={userInfo.userAddress}
-              autoCapitalize='none'
-              placeholder='Enter your address'
-              style={isWriting === 'address' ? styleInputWriting : {}}
-              onFocus={() => this.setState({isWriting: 'address'})}
-              onBlur={() => this.setState({isWriting: ''})}
-            />
-            <Text>
-              Username
-            </Text>
-            <InputWhite
-              onChangeText={userName => this.setState({userInfo: {...userInfo, userName}})}
-              value={userInfo.userName}
-              placeholder='Enter your username'
-              autoCapitalize='none'
-              style={isWriting === 'username' ? styleInputWriting : {}}
-              onFocus={() => this.setState({isWriting: 'username'})}
-              onBlur={() => this.setState({isWriting: ''})}
-            />
-          </KeyboardAvoidingView>
-          <ViewBlueButton>
-            <BlueButton onPress={this.submitProfile}>
-              <BlueButtonText>
-                SUBMIT
-              </BlueButtonText>
-            </BlueButton>
-          </ViewBlueButton>
-        </BottomView>
-      </MainView>
+          <BottomView>
+            <KeyboardAvoidingView behavior='padding' enabled>
+              <Text>
+                E-mail
+              </Text>
+              <Input
+                editable={false}
+                onChangeText={userEmail => this.setState({userInfo: {...userInfo, userEmail}})}
+                value={userInfo.userEmail || userEmail}
+                placeholder='Enter your e-mail'
+                autoCapitalize='none'
+                style={{opacity: .5}}
+              />
+              <Text>
+                Mobile number
+              </Text>
+              <Input
+                editable={false}
+                style={{opacity: .5}}
+                onChangeText={userNumber => this.setState({userInfo: {...userInfo, userNumber}})}
+                value={userInfo.userNumber || userNumber}
+                autoCapitalize='none'
+                placeholder='Enter your mobile number'
+              />
+              <Text>
+                Country
+              </Text>
+              <Input
+                style={{opacity: .5}}
+                editable={false}
+                value={userCountry}
+                placeholder='Enter your country'
+              />
+              <Text>
+                Address
+              </Text>
+              <Input
+                onChangeText={userAddress => this.setState({userInfo: {...userInfo, userAddress}})}
+                value={userInfo.userAddress}
+                autoCapitalize='none'
+                placeholder='Enter your address'
+                style={isWriting === 'address' ? styleInputWriting : {}}
+                onFocus={() => this.setState({isWriting: 'address'})}
+                onBlur={() => this.setState({isWriting: ''})}
+              />
+              <Text>
+                Username
+              </Text>
+              <InputWhite
+                onChangeText={userName => this.setState({userInfo: {...userInfo, userName}})}
+                value={userInfo.userName}
+                placeholder='Enter your username'
+                autoCapitalize='none'
+                style={isWriting === 'username' ? styleInputWriting : {}}
+                onFocus={() => this.setState({isWriting: 'username'})}
+                onBlur={() => this.setState({isWriting: ''})}
+              />
+            </KeyboardAvoidingView>
+            <ViewBlueButton>
+              <BlueButton onPress={this.submitProfile}>
+                <BlueButtonText>
+                  SUBMIT
+                </BlueButtonText>
+              </BlueButton>
+            </ViewBlueButton>
+          </BottomView>
+        </MainView>
     )
   }
 }

@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
+import CodeScan from '../../components/qrCodeScanner';
 import {MainView, Text} from "./styles";
 
-class Activity extends Component {
+class Send extends Component {
   static navigationOptions = {
-    headerTitle: 'Activity',
+    headerTitle: 'Send',
     headerStyle: {
       backgroundColor: '#3878FF',
     },
@@ -16,11 +17,13 @@ class Activity extends Component {
     return (
       <MainView>
         <Text>
-          Activity page
+          Send page
         </Text>
+
+        <CodeScan/>
       </MainView>
     );
   }
 }
 
-export default Activity;
+export default Send;

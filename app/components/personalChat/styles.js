@@ -102,3 +102,6 @@ export const InputButtonText = styled.Text`
 font-size: 16px;
 color: #ffffff;
 `
+
+export const KeyboardAvoidingView = styled.KeyboardAvoidingView`
+`

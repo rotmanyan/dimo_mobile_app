@@ -1,17 +1,10 @@
 import React, {Component} from 'react';
 import {
-  MainView,
-  BodyView,
-  MessageGreen,
-  MessageText,
-  MessageGreenTime,
-  MessageWhite,
-  MessageWhiteTime,
-  InputBoxView,
-  InputView,
-  InputForm,
-  InputButton,
-  InputButtonText
+  MainView, BodyView, KeyboardAvoidingView,
+  MessageGreen, MessageText, MessageGreenTime,
+  MessageWhite, MessageWhiteTime,
+  InputBoxView, InputView, InputForm,
+  InputButton, InputButtonText
 } from './styles'
 
 class PersonalChat extends Component {
@@ -100,24 +93,24 @@ class PersonalChat extends Component {
           {this.writeForMe()}
           {this.writeFromMe()}
         </BodyView>
-        <InputBoxView
-          style={isWriting ? style : {}}
-        >
-          <InputView>
-            <InputForm
-              value={value}
-              onChange={e => this.setState({value: e.nativeEvent.text})}
-              placeholder='Type a message here...'
-              multiline={true}
-              onFocus={() => this.setState({isWriting: true})}
-              onBlur={() => this.setState({isWriting: false})}
-            />
-            <InputButton onPress={this.spreadToState}>
-              <InputButtonText>
-                ->
-              </InputButtonText>
-            </InputButton>
-          </InputView>
+        <InputBoxView>
+          <KeyboardAvoidingView behavior='padding' enabled>
+            <InputView>
+              <InputForm
+                value={value}
+                onChange={e => this.setState({value: e.nativeEvent.text})}
+                placeholder='Type a message here...'
+                multiline={true}
+                onFocus={() => this.setState({isWriting: true})}
+                onBlur={() => this.setState({isWriting: false})}
+              />
+              <InputButton onPress={this.spreadToState}>
+                <InputButtonText>
+                  ->
+                </InputButtonText>
+              </InputButton>
+            </InputView>
+          </KeyboardAvoidingView>
         </InputBoxView>
       </MainView>
     )
