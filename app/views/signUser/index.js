@@ -103,10 +103,6 @@ class SignUser extends Component {
       return this.writeBody();
     }
   }
-/*
-  render() {
-    return <RegistrationUser/>
-  }*/
 }
 
 const MSTP = state => ({
