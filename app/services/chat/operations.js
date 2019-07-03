@@ -22,12 +22,12 @@ export const contacsSync = credential => (dispatch, getState) => {
       headers: {
         "x-access-token": actualToken || token
       },
-      data: {data: credential},
+      data: credential,
       url: urlContacsSync
     }
 
     axios(options)
-      .then(data => dispatch(contactSyncSuccess(data)))
+      .then(data => dispatch(contactSyncSuccess(data.data.data)))
       .catch(error => dispatch(contactSyncError(error)));
   })
 }

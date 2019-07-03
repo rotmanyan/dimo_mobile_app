@@ -1,7 +1,6 @@
 import styled from 'styled-components/native'
 
-export const MainView = styled.View`
-  flex: 5;
+export const MainView = styled.ScrollView`
   background-color: #e9edf2;
 `
 
@@ -14,9 +13,11 @@ export const TopView = styled.View`
   shadow-offset: 0 2px;
   border-radius: 10px;
   margin-bottom: 5px;
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
 `
 
-export const BottomView = styled.ScrollView`
+export const BottomView = styled.View`
   background-color: #e9edf2;
   padding: 8px 16px 0;
 `

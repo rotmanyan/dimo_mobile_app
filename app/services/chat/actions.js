@@ -10,11 +10,11 @@ export const contactSyncRequest = () => ({
 })
 
 export const contactSyncSuccess = data => ({
-  type: actionTypes.SIGN_USER_VERIFY_PHONE_SUCCESS,
+  type: actionTypes.CONTACTS_SYNC_SUCCESS,
   payload: data
 })
 
 export const contactSyncError = error => ({
-  type: actionTypes.SIGN_USER_VERIFY_PHONE_ERROR,
+  type: actionTypes.CONTACTS_SYNC_ERROR,
   payload: error
 })

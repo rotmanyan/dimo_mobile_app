@@ -16,6 +16,7 @@ import {
   RightBlock, YellowBlock, ViewBlueButton,
   BlueButton, BlueButtonText, Confirmed
 } from "./styles";
+import {InputForm} from "../../components/personalChat/styles";
 
 class Profile extends Component {
   static navigationOptions = {
@@ -30,6 +31,7 @@ class Profile extends Component {
 
   state = {
     loadImage: false,
+    isWriting: '',
     userInfo: {
       // avatarImage: 'assets-library://asset/asset.HEIC?id=CC95F08C-88C3-4012-9D6D-64A413D254B3&ext=HEIC',
       avatarImage: '',
@@ -108,7 +110,7 @@ class Profile extends Component {
   }
 
   render() {
-    const {userInfo, loadImage} = this.state
+    const {userInfo, loadImage, isWriting} = this.state
 
     const {
       userNumber, userEmail,
@@ -116,6 +118,18 @@ class Profile extends Component {
       userFullName, kycStatus, dailyLimits,
       withdrawLimits, isVerified, type,
     } = this.props
+
+    const styleInputWriting = {
+      position: 'absolute',
+      left: 0,
+      bottom: '55%',
+      backgroundColor: '#fff',
+      justifyContent: 'center',
+      alignItems: 'center',
+      borderRadius: 0,
+      width: '110%',
+      paddingRight: '10%'
+    }
 
     return (
       <MainView>
@@ -190,11 +204,11 @@ class Profile extends Component {
           </Text>
           <Input
             editable={false}
-            style={{opacity: .5}}
             onChangeText={userEmail => this.setState({userInfo: {...userInfo, userEmail}})}
             value={userInfo.userEmail || userEmail}
             placeholder='Enter your e-mail'
             autoCapitalize='none'
+            style={{opacity: .5}}
           />
           <Text>
             Mobile number
@@ -224,6 +238,9 @@ class Profile extends Component {
             value={userInfo.userAddress}
             autoCapitalize='none'
             placeholder='Enter your address'
+            style={isWriting === 'address' ? styleInputWriting : {opacity: .5}}
+            onFocus={() => this.setState({isWriting: 'address'})}
+            onBlur={() => this.setState({isWriting: ''})}
           />
           <Text>
             Username
@@ -233,6 +250,9 @@ class Profile extends Component {
             value={userInfo.userName}
             placeholder='Enter your username'
             autoCapitalize='none'
+            style={isWriting === 'username' ? styleInputWriting : {opacity: .5}}
+            onFocus={() => this.setState({isWriting: 'username'})}
+            onBlur={() => this.setState({isWriting: ''})}
           />
           <ViewBlueButton>
             <BlueButton onPress={this.submitProfile}>

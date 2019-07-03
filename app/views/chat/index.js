@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import {Vibration} from 'react-native'
+import {connect} from 'react-redux'
+import {contacsSync} from "../../services/chat/operations";
 import Contacts from 'react-native-contacts'
 import SvgUri from 'react-native-svg-uri';
 
@@ -16,6 +18,7 @@ import {
   EmptyImage, EmptyText, EmptyView,
   MainScrollView
 } from "./styles";
+import phoneNumber from "react-native-phone-input/lib/phoneNumber";
 
 class LogoTitle extends Component {
   render() {
@@ -50,6 +53,8 @@ class Chat extends Component {
 
   render() {
     const {arrayContacts} = this.state
+    const {contacts, send} = this.props
+
     return (
       <>
         <MainView>
@@ -108,7 +113,12 @@ class Chat extends Component {
                   </BlockUser>)
                 : <EmptyBox onPress={() => {
                   Vibration.vibrate(1000)
-                  Contacts.getAll((error, data) => this.setState({arrayContacts: data}))
+                  Contacts.getAll((error, data) => {
+                    const numbers = data.map(el => el.phoneNumbers[0].number.split('-').join('').split('(').join('').split(' ').join('').split(')').join(''))
+
+                    this.setState({arrayContacts: data},
+                      () => send(numbers))
+                  })
                 }}>
                   <EmptyView>
                     <EmptyText>
@@ -136,4 +146,10 @@ class Chat extends Component {
   }
 }
 
-export default Chat
+const MSTP = state => ({
+  contacts: state.contacts
+})
+const MDTP = {
+  send: contacsSync
+}
+export default connect(MSTP, MDTP)(Chat)

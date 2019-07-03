@@ -13,5 +13,5 @@ export const urlProfile = baseUrl + 'v1/client/me'
 export const urlKyc = baseUrl + 'v1/client/upload/kyc'
 export const urlProfileUpdate = baseUrl + 'v1/client/update'
 export const urlUpdateAvatar = baseUrl + 'v1/client/upload/photo'
-export const urlContacsSync = baseUrl + 'v1/contacts/sync'
+export const urlContacsSync = baseUrl + 'v1/client/contacts/sync'
 // -- - -- - //
