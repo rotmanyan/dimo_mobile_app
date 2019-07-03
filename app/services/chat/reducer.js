@@ -1,7 +1,8 @@
 import {actionTypes} from "./actions";
 
 const initialState = {
-  friends: []
+  friends: [],
+  status: false
 }
 
 export const contacts = (state = initialState, {type, payload}) => {
@@ -9,7 +10,8 @@ export const contacts = (state = initialState, {type, payload}) => {
     case actionTypes.CONTACTS_SYNC_SUCCESS:
       return {
         ...state,
-        friends: payload
+        friends: payload,
+        status: true
       };
     case actionTypes.CONTACTS_SYNC_ERROR:
     default:

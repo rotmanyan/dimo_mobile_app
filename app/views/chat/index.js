@@ -54,10 +54,10 @@ class Chat extends Component {
   changeContactName = contactName => this.setState({contactName})
 
   render() {
-    const {contacts, send} = this.props
+    const {contacts, send, status} = this.props
 
     return (
-      !contacts.length
+      !status
         ? <ActivityIndicator
           color='#3878FF'
           size="large"
@@ -88,7 +88,7 @@ class Chat extends Component {
             </BlockUser>
             <MainScrollView>
               {
-                !!contacts.length
+                contacts
                   ? contacts.map((el, key) =>
                     <BlockUser onPress={() => this.props.navigation.navigate('PersonalChat')} key={el.phone}>
 
@@ -138,7 +138,8 @@ class Chat extends Component {
 }
 
 const MSTP = state => ({
-  contacts: state.contacts.friends
+  contacts: state.contacts.friends,
+  status: state.contacts.status
 })
 const MDTP = {
   send: contacsSync

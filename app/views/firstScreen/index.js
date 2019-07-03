@@ -1,4 +1,7 @@
-import React, {Component} from 'react';
+import React, {Component} from 'react'
+import {
+  MainView,
+} from "./styles";
 import {View, Text} from 'react-native'
 
 class FirstScreen extends Component {
@@ -11,6 +14,7 @@ class FirstScreen extends Component {
       color: '#ffffff',
     },
   }
+
   render() {
     return (
       <View>
