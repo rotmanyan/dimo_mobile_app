@@ -203,3 +203,9 @@ export const Confirmed = styled.View`
   bottom: 4px;
   right: 4px;
 `
+
+export const KeyboardAvoidingView = styled.KeyboardAvoidingView`
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+`

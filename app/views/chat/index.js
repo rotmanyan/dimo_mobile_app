@@ -84,7 +84,7 @@ class Chat extends Component {
           </BlockUser>
           <MainScrollView>
             {
-              arrayContacts.length > 0
+              contacts.length > 0
                 ? arrayContacts.map((el, key) =>
                   <BlockUser onPress={() => this.props.navigation.navigate('PersonalChat')} key={key}>
 

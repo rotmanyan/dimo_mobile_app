@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
-import {ImagePickerIOS, ActivityIndicator} from "react-native";
+import {ActivityIndicator} from "react-native";
 import SvgUri from 'react-native-svg-uri';
 import ImagePicker from 'react-native-image-picker';
-import RNImgToBase64 from 'react-native-image-base64';
 import {connect} from 'react-redux'
 import {getUserProfile, updateUserProfile, updateUserAvatar} from "../../services/profile/operation";
 import * as selector from '../../services/selectors'
@@ -14,9 +13,9 @@ import {
   YellowButtonView, YellowButton, YellowText, YellowButtonText,
   HeadBlock, LeftBlock, CenterBlock,
   RightBlock, YellowBlock, ViewBlueButton,
-  BlueButton, BlueButtonText, Confirmed
+  BlueButton, BlueButtonText, Confirmed,
+  KeyboardAvoidingView
 } from "./styles";
-import {InputForm} from "../../components/personalChat/styles";
 
 class Profile extends Component {
   static navigationOptions = {
@@ -119,15 +118,7 @@ class Profile extends Component {
       withdrawLimits, isVerified, type,
     } = this.props
 
-    const styleInputWriting = {
-      position: 'absolute',
-      left: 0,
-      justifyContent: 'center',
-      alignItems: 'center',
-      borderRadius: 0,
-      width: '110%',
-      paddingRight: '10%'
-    }
+    const styleInputWriting = {}
 
     return (
       <MainView>
@@ -197,61 +188,63 @@ class Profile extends Component {
         </TopView>
 
         <BottomView>
-          <Text>
-            E-mail
-          </Text>
-          <Input
-            editable={false}
-            onChangeText={userEmail => this.setState({userInfo: {...userInfo, userEmail}})}
-            value={userInfo.userEmail || userEmail}
-            placeholder='Enter your e-mail'
-            autoCapitalize='none'
-            style={{opacity: .5}}
-          />
-          <Text>
-            Mobile number
-          </Text>
-          <Input
-            editable={false}
-            style={{opacity: .5}}
-            onChangeText={userNumber => this.setState({userInfo: {...userInfo, userNumber}})}
-            value={userInfo.userNumber || userNumber}
-            autoCapitalize='none'
-            placeholder='Enter your mobile number'
-          />
-          <Text>
-            Country
-          </Text>
-          <Input
-            style={{opacity: .5}}
-            editable={false}
-            value={userCountry}
-            placeholder='Enter your country'
-          />
-          <Text>
-            Address
-          </Text>
-          <Input
-            onChangeText={userAddress => this.setState({userInfo: {...userInfo, userAddress}})}
-            value={userInfo.userAddress}
-            autoCapitalize='none'
-            placeholder='Enter your address'
-            style={isWriting === 'address' ? styleInputWriting : {}}
-            onFocus={() => this.setState({isWriting: 'address'})}
-            onBlur={() => this.setState({isWriting: ''})}
-          />
-          <Text>
-            Username
-          </Text>
-          <InputWhite
-            onChangeText={userName => this.setState({userInfo: {...userInfo, userName}})}
-            value={userInfo.userName}
-            placeholder='Enter your username'
-            autoCapitalize='none'
-            style={isWriting === 'username' ? styleInputWriting : {}}
-            onFocus={() => this.setState({isWriting: 'username'})}
-            onBlur={() => this.setState({isWriting: ''})}
-          />
+          <KeyboardAvoidingView behavior='padding'>
+            <Text>
+              E-mail
+            </Text>
+            <Input
+              editable={false}
+              onChangeText={userEmail => this.setState({userInfo: {...userInfo, userEmail}})}
+              value={userInfo.userEmail || userEmail}
+              placeholder='Enter your e-mail'
+              autoCapitalize='none'
+              style={{opacity: .5}}
+            />
+            <Text>
+              Mobile number
+            </Text>
+            <Input
+              editable={false}
+              style={{opacity: .5}}
+              onChangeText={userNumber => this.setState({userInfo: {...userInfo, userNumber}})}
+              value={userInfo.userNumber || userNumber}
+              autoCapitalize='none'
+              placeholder='Enter your mobile number'
+            />
+            <Text>
+              Country
+            </Text>
+            <Input
+              style={{opacity: .5}}
+              editable={false}
+              value={userCountry}
+              placeholder='Enter your country'
+            />
+            <Text>
+              Address
+            </Text>
+            <Input
+              onChangeText={userAddress => this.setState({userInfo: {...userInfo, userAddress}})}
+              value={userInfo.userAddress}
+              autoCapitalize='none'
+              placeholder='Enter your address'
+              style={isWriting === 'address' ? styleInputWriting : {}}
+              onFocus={() => this.setState({isWriting: 'address'})}
+              onBlur={() => this.setState({isWriting: ''})}
+            />
+            <Text>
+              Username
+            </Text>
+            <InputWhite
+              onChangeText={userName => this.setState({userInfo: {...userInfo, userName}})}
+              value={userInfo.userName}
+              placeholder='Enter your username'
+              autoCapitalize='none'
+              style={isWriting === 'username' ? styleInputWriting : {}}
+              onFocus={() => this.setState({isWriting: 'username'})}
+              onBlur={() => this.setState({isWriting: ''})}
+            />
+          </KeyboardAvoidingView>
           <ViewBlueButton>
             <BlueButton onPress={this.submitProfile}>
               <BlueButtonText>
