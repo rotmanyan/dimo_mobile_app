@@ -1,7 +1,7 @@
 import axios from "axios";
 import AsyncStorage from "@react-native-community/async-storage";
 
-import { urlKyc } from "../baseUrl";
+import {urlKyc} from "../baseUrl";
 
 import {
   uploadKycPhotoRequest,
@@ -20,20 +20,12 @@ export const sendingPhotoKyc = credential => (dispatch, getState) => {
       headers: {
         "x-access-token": actualToken || token
       },
-      data: { data: credential },
+      data: {data: credential},
       url: urlKyc
     };
 
-    console.log(options);
-
     axios(options)
-      .then(data => {
-        console.log(data);
-        dispatch(uploadKycPhotoSuccess(data));
-      })
-      .catch(error => {
-        dispatch(uploadKycPhotoError(error));
-        console.log(error);
-      });
+      .then(data => dispatch(uploadKycPhotoSuccess(data)))
+      .catch(error => dispatch(uploadKycPhotoError(error)))
   });
 };

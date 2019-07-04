@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {ActivityIndicator, View, Text, TouchableHighlight} from 'react-native'
+import {ActivityIndicator} from 'react-native'
 import AsyncStorage from '@react-native-community/async-storage'
 import {connect} from 'react-redux'
 import {getLanguages} from 'react-native-i18n'
@@ -11,7 +11,6 @@ import {
   createAppContainer,
   createStackNavigator,
   createBottomTabNavigator,
-  DrawerNavigator,
 } from 'react-navigation'
 import Kyc from '../kyc'
 import Chat from '../chat'
@@ -49,7 +48,7 @@ const WalletStack = createStackNavigator(
     First: FirstScreen,
   },
   {
-    initialRouteName: 'First'
+    initialRouteName: 'Wallet'
   }
 )
 
@@ -80,72 +79,6 @@ ProfileStack.navigationOptions = ({navigation}) => {
 
   return {
     tabBarVisible
-  }
-}
-
-/*
-class LogoTitle extends Component {
-  render() {
-    return (
-      <ViewLogo>
-        <Image
-          source={require('../../assets/backgrounds/logo.png')}
-          style={{width: 30, height: 30}}
-        />
-      </ViewLogo>
-    )
-  }
-}
-*/
-
-/*
-Drawer: { screen: DrawerNavigator(
-      {
-        Home: { screen: TabNavigator(
-          {
-            Red: { screen: RedScreen },
-            Blue: { screen: BlueScreen }
-          },
-          {
-            tabBarOptions: {
-              labelStyle: {
-                fontSize: 20,
-                marginBottom: 10
-              }
-            }
-          }
-        )},
-        Send: { screen: SendStack }
-      }
-    ) }
-
- */
-
-class GreenScreen extends Component {
-  render() {
-    return (
-      <View>
-        <TouchableHighlight
-          onPress={() => this.props.navigation.navigate('Send')}
-        >
-          <Text style={{color: '#40ff00'}}>Go to Red</Text>
-        </TouchableHighlight>
-      </View>
-    )
-  }
-}
-
-class RedScreen extends Component {
-  render() {
-    return (
-      <View>
-        <TouchableHighlight
-          onPress={() => this.props.navigation.navigate('Chat')}
-        >
-          <Text style={{color: '#ff0000'}}>Back to Green</Text>
-        </TouchableHighlight>
-      </View>
-    )
   }
 }
 
@@ -205,7 +138,6 @@ class StartPage extends Component {
 
   render() {
     const {isLoading, phone, isAuthenticated} = this.state
-    console.log(this.state, 'phone state')
 
     if (isLoading) {
       return <ActivityIndicator
@@ -241,7 +173,4 @@ const MDTP = {
   setLocalizationSuccess
 }
 
-export default connect(
-  MSTP,
-  MDTP
-)(StartPage)
+export default connect(MSTP, MDTP)(StartPage)

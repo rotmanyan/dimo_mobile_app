@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
-import AsyncStorage from "@react-native-community/async-storage";
 import {MainView, View, Button, TextBlue, Image} from "./styles";
-import {ImagePickerIOS} from 'react-native';
 import SvgUri from 'react-native-svg-uri';
 
 class BottomSelectors extends Component {
@@ -12,23 +10,10 @@ class BottomSelectors extends Component {
     image: []
   }
 
-  pickImage() {
-    console.log('123123123');
-    // openSelectDialog(config, successCallback, errorCallback);
-    ImagePickerIOS.openSelectDialog({}, imageUri => {
-      this.setState({image: [...this.state.image, imageUri]});
-    }, error => console.log(error, 'error'));
-  }
-
-  clearStorage = () => {
-    AsyncStorage.clear().then(() => console.log('clear storage '))
-  }
-
   render() {
     const {selectors, color, image} = this.state
     const {changeStep} = this.props
 
-    console.log(this.state, 'state');
     return (
       <MainView>
         <View>
