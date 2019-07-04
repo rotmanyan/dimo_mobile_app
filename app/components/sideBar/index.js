@@ -51,7 +51,7 @@ class SideBar extends Component {
               <SvgUri
                 width="25"
                 height='25'
-                source={require('../../assets/icons/closeYellow.svg')}
+                source={require('../../assets/icons/ico-notification.svg')}
               />
             </Logo>
             <Text>Notification</Text>
@@ -67,7 +67,7 @@ class SideBar extends Component {
               <SvgUri
                 width="25"
                 height='25'
-                source={require('../../assets/icons/closeYellow.svg')}
+                source={require('../../assets/icons/ico-language.svg')}
               />
             </Logo>
             <Text>Language</Text>
