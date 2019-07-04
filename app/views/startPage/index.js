@@ -193,9 +193,14 @@ class StartPage extends Component {
 
       AsyncStorage.getItem('phone')
         .then(phone => {
-          this.setState({phone: !!phone, isAuthenticated: this.props.token})
+          this.setState({phone: !!phone, isLoading: false})
         })
     })
+  }
+
+  componentDidUpdate(prevProps: Readonly<P>, prevState: Readonly<S>, snapshot: SS): void {
+    !this.state.isAuthenticated && this.props.token && this.setState({isAuthenticated: !!this.props.token})
+
   }
 
   render() {
@@ -223,11 +228,6 @@ class StartPage extends Component {
         return <SignUser/>
       }
     }
-    /* else return phone
-       ? isAuthenticated || token
-         ? <Navigation style={{backgroundColor: '#e9edf2'}}/>
-         : <SignUser/>
-       : <EnterPassword/>*/
   }
 }
 
