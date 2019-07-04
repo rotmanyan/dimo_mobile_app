@@ -36,6 +36,8 @@ export const Text = styled.Text`
 `
 
 export const Logo = styled.View`
+  border-radius: 4px;
+  overflow: hidden;
 `
 
 export const Select = styled.View`
