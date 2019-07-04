@@ -40,3 +40,8 @@ export const Logo = styled.View`
 
 export const Select = styled.View`
 `
+
+export const Picker = styled.Picker`
+  margin-left: auto;
+  width: 50px;
+`

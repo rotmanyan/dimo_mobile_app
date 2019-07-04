@@ -132,16 +132,13 @@ class StartPage extends Component {
   }
 
   componentDidUpdate(prevProps: Readonly<P>, prevState: Readonly<S>, snapshot: SS): void {
-    const {isAuthenticated, phone} = this.state
-    const {token, loginStatus} = this.props
+    !this.state.isAuthenticated && this.props.token && this.setState({isAuthenticated: !!this.props.token})
 
-    !isAuthenticated && token && this.setState({isAuthenticated: !!token})
-    loginStatus && !phone && this.setState({phone: loginStatus})
   }
 
   render() {
     const {isLoading, phone, isAuthenticated} = this.state
-    console.log(this.state, 'this.props.navigation.navigate("Profile")');
+
     if (isLoading) {
       return <ActivityIndicator
         animating={isLoading}
@@ -168,8 +165,7 @@ class StartPage extends Component {
 
 const MSTP = state => ({
   token: state.profile.token,
-  localization: state.localization.language,
-  loginStatus: state.profile.loginStatus,
+  localization: state.localization.language
 })
 
 const MDTP = {

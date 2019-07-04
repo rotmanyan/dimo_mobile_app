@@ -24,7 +24,6 @@ const initialState = {
   isRegistered: null,
 
   sideBar: false,
-  loginStatus: false
 }
 
 export const signUser = (state = initialState, {type, payload}) => {
@@ -48,8 +47,7 @@ export const signUser = (state = initialState, {type, payload}) => {
     case actionTypes.SIGN_USER_LOGIN_SUCCESS:
       return {
         ...state,
-        token: payload.token,
-        loginStatus: true
+        token: payload.token
       }
     case actionTypes.GET_USER_PROFILE_SUCCESS:
       return {
