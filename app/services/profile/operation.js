@@ -104,6 +104,9 @@ export const signUserUp = credential => (dispatch, getState) => {
       AsyncStorage.setItem('phone', state.profile.userNumber)
       dispatch(signUserUpSuccess(response.data.data))
     })
+    .then(data => {
+      signUserIn(credential.password)
+    })
     .catch(error => dispatch(signUserUpError(error)))
 }
 
@@ -158,6 +161,7 @@ export const getUserProfile = credential => (dispatch, getState) => {
 }
 
 export const updateUserProfile = credential => (dispatch, getState) => {
+  console.log(credential,'credential logo');
   dispatch(updateUserProfileRequest())
 
   const actualToken = getState().profile.token;

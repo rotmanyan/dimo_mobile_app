@@ -11,6 +11,9 @@ const initialState = {
   userName: '',
   userAddress: '',
   userFullName: '',
+  userFirstName: '',
+  userLastName: '',
+
   type: '',
   isVerified: false,
 
@@ -63,7 +66,9 @@ export const signUser = (state = initialState, {type, payload}) => {
         type: payload.type,
         userName: payload.username,
         userAddress: payload.address,
-        userFullName: `${payload.firstName} ${payload.lastName}`
+        userFullName: `${payload.firstName} ${payload.lastName}`,
+        userFirstName: payload.firstName,
+        userLastName: payload.lastName
       }
     case actionTypes.CLEAR_USER:
       return {

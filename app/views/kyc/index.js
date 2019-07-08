@@ -88,7 +88,6 @@ class Kyc extends Component {
 
   render() {
     const step = this.state.step;
-    console.log(step, ' step from kyc')
 
     return (
       <MainView>

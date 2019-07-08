@@ -131,7 +131,7 @@ class StartPage extends Component {
     })
   }
 
-  componentDidUpdate(prevProps: Readonly<P>, prevState: Readonly<S>, snapshot: SS): void {
+  componentDidUpdate(): void {
     const {isAuthenticated, phone} = this.state
     const {token, loginStatus} = this.props
 

@@ -34,12 +34,13 @@ class Profile extends Component {
     loadImage: false,
     isWriting: '',
     userInfo: {
-      // avatarImage: 'assets-library://asset/asset.HEIC?id=CC95F08C-88C3-4012-9D6D-64A413D254B3&ext=HEIC',
       avatarImage: '',
       userNumber: '',
       userEmail: '',
       userAddress: '',
       userName: '',
+      firstName: '',
+      lastName: '',
       confirmed: false
     }
   }
@@ -57,6 +58,8 @@ class Profile extends Component {
         userEmail: this.props.userEmail,
         userAddress: this.props.userAddress,
         userName: this.props.userName,
+        firstName: this.props.userFirstName,
+        lastName: this.props.userLastName,
       }
     })
   }
@@ -66,7 +69,9 @@ class Profile extends Component {
     const {userInfo} = this.state
     submit({
       address: userInfo.userAddress,
-      username: userInfo.userName
+      username: userInfo.userName,
+      firstName: userInfo.firstName,
+      lastName: userInfo.lastName
     })
   }
 
@@ -112,11 +117,14 @@ class Profile extends Component {
   writeBoard = () => {
     const {userInfo, loadImage, isWriting} = this.state
 
+    console.log(this.state, ' state');
+
     const {
       userNumber, userEmail, sideBar,
       userCountry, userName, userAddress,
       userFullName, kycStatus, dailyLimits,
       withdrawLimits, isVerified, type,
+      userFirstName, userLastName
     } = this.props
     return <>
       {sideBar && <SideBar/>}
@@ -187,6 +195,24 @@ class Profile extends Component {
 
       <BottomView>
         <Text>
+          First Name
+        </Text>
+        <Input
+          onChangeText={userFirstName => this.setState({userInfo: {...userInfo, firstName: userFirstName}})}
+          value={userInfo.firstName}
+          placeholder='First Name'
+          autoCapitalize='none'
+        />
+        <Text>
+          Last Name
+        </Text>
+        <Input
+          onChangeText={userLastName => this.setState({userInfo: {...userInfo, lastName: userLastName}})}
+          value={userInfo.lastName}
+          placeholder='Last Name'
+          autoCapitalize='none'
+        />
+        <Text>
           E-mail
         </Text>
         <Input
@@ -198,7 +224,7 @@ class Profile extends Component {
           style={{opacity: .5}}
         />
         <Text>
-          Mobile number
+          Mobile Number
         </Text>
         <Input
           editable={false}
@@ -251,14 +277,8 @@ class Profile extends Component {
   }
 
   render() {
-    const {userInfo, loadImage, isWriting} = this.state
-
-    const {
-      userNumber, userEmail, sideBar,
-      userCountry, userName, userAddress,
-      userFullName, kycStatus, dailyLimits,
-      withdrawLimits, isVerified, type,
-    } = this.props
+    const {userInfo} = this.state
+    const {sideBar} = this.props
 
     return (
       !userInfo.avatarImage
@@ -291,6 +311,8 @@ const MSTP = state => ({
   userName: selector.userName(state),
   userAddress: selector.userAddress(state),
   userFullName: selector.userFullName(state),
+  userFirstName: selector.userFirstName(state),
+  userLastName: selector.userLastName(state),
   kycStatus: selector.kycStatus(state),
   dailyLimits: selector.dailyLimits(state),
   withdrawLimits: selector.withdrawLimits(state),

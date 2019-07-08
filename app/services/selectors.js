@@ -10,6 +10,8 @@ export const userCountry = state => state.profile.userCountry
 export const userName = state => state.profile.userName
 export const userAddress = state => state.profile.userAddress
 export const userFullName = state => state.profile.userFullName
+export const userFirstName = state => state.profile.userFirstName
+export const userLastName = state => state.profile.userLastName
 export const kycStatus = state => state.profile.kyc.status
 export const dailyLimits = state => state.profile.dailyLimits
 export const withdrawLimits = state => state.profile.withdrawLimits
