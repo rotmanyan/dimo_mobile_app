@@ -13,19 +13,6 @@ import {
   MainScrollView
 } from "./styles";
 
-class LogoTitle extends Component {
-  render() {
-    return (
-      <ViewLogo>
-        <Image
-          source={require('../../assets/backgrounds/logo.png')}
-          style={{width: 30, height: 30}}
-        />
-      </ViewLogo>
-    );
-  }
-}
-
 class Chat extends Component {
   static navigationOptions = {
     headerTitle: 'Contacts',
@@ -42,19 +29,24 @@ class Chat extends Component {
   }
 
   componentDidMount() {
-    Contacts.getAll((error, data) => {
-      console.log(data, 'data contacts ');
-      console.log(error, 'error contacts ');
+    this.props.send([])
+    /*    Contacts.getAll((error, data) => {
+          console.log(data, 'console .data')
+          console.log(error, 'console .error')
 
-      Vibration.vibrate(1000)
-      const numbers = Array.isArray(data) ? data.map(el => el.phoneNumbers[0].number.split('-').join('').split('(').join('').split(' ').join('').split(')').join('')) : []
+          let numbers = []
 
-      this.props.send(numbers)
-    })
+
+          this.props.send(numbers)
+          /!*      console.log(data, 'data contacts ');
+                console.log(error, 'error contacts ');
+
+                Vibration.vibrate(1000)
+                const numbers = Array.isArray(data) ? data.map(el => el.phoneNumbers[0].number.split('-').join('').split('(').join('').split(' ').join('').split(')').join('')) : []
+
+                this.props.send(numbers)*!/
+        })*/
   }
-
-
-  changeContactName = contactName => this.setState({contactName})
 
   render() {
     const {contacts, send, status} = this.props
