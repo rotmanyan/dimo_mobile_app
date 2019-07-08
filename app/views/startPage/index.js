@@ -142,6 +142,7 @@ class StartPage extends Component {
   render() {
     const {isLoading, phone, isAuthenticated} = this.state
     console.log(this.state, 'this.props.navigation.navigate("Profile")');
+    console.log(this.props.store, ' store')
     if (isLoading) {
       return <ActivityIndicator
         animating={isLoading}
@@ -170,6 +171,7 @@ const MSTP = state => ({
   token: state.profile.token,
   localization: state.localization.language,
   loginStatus: state.profile.loginStatus,
+  store: state
 })
 
 const MDTP = {

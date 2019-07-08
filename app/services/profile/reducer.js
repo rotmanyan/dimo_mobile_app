@@ -43,7 +43,7 @@ export const signUser = (state = initialState, {type, payload}) => {
     case actionTypes.SIGN_USER_REGISTRATION_SUCCESS:
       return {
         ...state,
-        token: payload.token
+        token: payload.token,
       }
     case actionTypes.SIGN_USER_LOGIN_SUCCESS:
       return {

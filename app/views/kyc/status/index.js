@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
+import React, {Component} from "react";
+import {connect} from "react-redux";
 import SvgUri from "react-native-svg-uri";
 
-import { kycStatus } from "../../../services/selectors";
+import {kycStatus} from "../../../services/selectors";
 import {
   PopupBox,
   HeadBlue,
@@ -98,7 +98,7 @@ class Status extends Component {
   writeRejected = () => {
     return (
       <PopupBox>
-        <HeadBlue style={{ backgroundColor: "#FFD338" }}>
+        <HeadBlue style={{backgroundColor: "#FFD338"}}>
           <RectangleSvgView>
             <HeadYellowTitleText>i</HeadYellowTitleText>
           </RectangleSvgView>
@@ -106,7 +106,7 @@ class Status extends Component {
         </HeadBlue>
         {this.writeFieldBox()}
         <BlueButton
-          style={{ backgroundColor: "#FFD338" }}
+          style={{backgroundColor: "#FFD338"}}
           onPress={this.props.changeStep}
         >
           <BlueButtonText>ok</BlueButtonText>
@@ -116,8 +116,9 @@ class Status extends Component {
   };
 
   render() {
+    console.log(this.props.kycStatus, 'this.props.kycStatus');
     const kycStatus = this.props.kycStatus.toLowerCase();
-    return kycStatus === "pending"
+    return kycStatus === "pending" || kycStatus === 'empty'
       ? this.writeDone()
       : kycStatus === "rejected" && this.writeRejected();
   }

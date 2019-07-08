@@ -1,10 +1,10 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
+import React, {Component} from "react";
+import {connect} from "react-redux";
 import SvgUri from "react-native-svg-uri";
 import ProofIdentify from "./proofIdentify";
 import Selfie from "./selfie";
 import Status from "./status";
-import { kycStatus } from "../../services/selectors";
+import {kycStatus} from "../../services/selectors";
 import {
   MainView,
   HeadView,
@@ -36,13 +36,13 @@ class Kyc extends Component {
   };
 
   stepView = number => {
-    const { step } = this.state;
+    const {step} = this.state;
     const arrSteps = [" Proof of identify", "Selfie", "Status"];
 
     const styleText = step >= number ? activeText : {};
     const styleSvg =
       step >= number
-        ? { backgroundColor: "#3878ff", borderColor: "#3878ff" }
+        ? {backgroundColor: "#3878ff", borderColor: "#3878ff"}
         : {};
 
     return (
@@ -58,17 +58,19 @@ class Kyc extends Component {
       </StepView>
     );
   };
+
   componentDidMount() {
     const kycStatus = this.props.kycStatus.toLowerCase();
 
     if (kycStatus === "pending" || kycStatus === "rejected") {
-      this.setState({ step: 3 });
+      this.setState({step: 3});
     } else {
-      this.setState({ step: 1 });
+      this.setState({step: 1});
     }
   }
+
   stepViewSec = number => {
-    const { step } = this.state;
+    const {step} = this.state;
     const arrSteps = [" Proof of identify", "Selfie", "Status"];
 
     const styleStep = step >= number ? activeStep : {};
@@ -86,31 +88,32 @@ class Kyc extends Component {
 
   render() {
     const step = this.state.step;
+    console.log(step, ' step from kyc')
 
     return (
       <MainView>
         <HeadView>
           {step > 1 ? this.stepView(1) : this.stepViewSec(1)}
-          <StepLineOne />
+          <StepLineOne/>
           {step > 2 ? this.stepView(2) : this.stepViewSec(2)}
-          <StepLineTwo style={step === 3 ? activeLine : {}} />
+          <StepLineTwo style={step === 3 ? activeLine : {}}/>
           {this.stepViewSec(3)}
         </HeadView>
         <BodyView>
           {step === 1 && (
             <ProofIdentify
-              changeStep={() => this.setState({ step: this.state.step + 1 })}
+              changeStep={() => this.setState({step: this.state.step + 1})}
             />
           )}
           {step === 2 && (
             <Selfie
               send={() => this.props.navigation.navigate("Profile")}
-              changeStep={() => this.setState({ step: this.state.step + 1 })}
+              changeStep={() => this.setState({step: this.state.step + 1})}
             />
           )}
           {step === 3 && (
             <Status
-              changeStep={() => this.setState({ step: 1 })}
+              changeStep={() => this.setState({step: 1})}
               send={() => this.props.navigation.navigate("Profile")}
             />
           )}
