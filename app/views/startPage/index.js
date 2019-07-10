@@ -93,7 +93,7 @@ const Navigation = createAppContainer(
       Profile: ProfileStack,
     },
     {
-      initialRouteName: 'Profile',
+      initialRouteName: 'Send',
       tabBarOptions: {
         activeTintColor: '#3878FF',
         inactiveTintColor: '#90a5c2'
@@ -139,31 +139,32 @@ class StartPage extends Component {
     loginStatus && !phone && this.setState({phone: loginStatus})
   }
 
+  /* render() {
+     const {isLoading, phone, isAuthenticated} = this.state
+     if (isLoading) {
+       return <ActivityIndicator
+         animating={isLoading}
+         color='#3878FF'
+         size='large'
+         style={{
+           flex: 1,
+           justifyContent: 'center',
+           alignItems: 'center',
+           height: 100
+         }}
+       />
+     } else if (!isLoading) {
+       if (phone) {
+         if (isAuthenticated) {
+           return <Navigation style={{backgroundColor: '#e9edf2'}}/>
+         } else return <EnterPassword/>
+       } else if (!phone) {
+         return <SignUser/>
+       }
+     }
+   }*/
   render() {
-    const {isLoading, phone, isAuthenticated} = this.state
-    console.log(this.state, 'this.props.navigation.navigate("Profile")');
-    console.log(this.props.store, ' store')
-    if (isLoading) {
-      return <ActivityIndicator
-        animating={isLoading}
-        color='#3878FF'
-        size='large'
-        style={{
-          flex: 1,
-          justifyContent: 'center',
-          alignItems: 'center',
-          height: 100
-        }}
-      />
-    } else if (!isLoading) {
-      if (phone) {
-        if (isAuthenticated) {
-          return <Navigation style={{backgroundColor: '#e9edf2'}}/>
-        } else return <EnterPassword/>
-      } else if (!phone) {
-        return <SignUser/>
-      }
-    }
+    return <Navigation/>
   }
 }
 

@@ -1,13 +1,13 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {StyleSheet, Switch} from 'react-native'
+import SvgUri from "react-native-svg-uri";
+import {Dropdown} from 'react-native-material-dropdown';
 import {sideBarDisable} from "../../services/profile/actions";
 import {
   MainView, OverflowBox, LeftBox,
   ItemBox, Text, Logo, Select,
-  Picker
 } from "./styles"
-import SvgUri from "react-native-svg-uri";
 
 let timerSend;
 
@@ -16,7 +16,8 @@ class SideBar extends Component {
     transformValue: 280,
     switchValue: false,
     choosenIndex: 0,
-    language: 'EN'
+    language: 'EN',
+    langArr: [{value: 'EN'}, {value: 'PL'}, {value: 'RU'}]
   }
 
   componentDidMount() {
@@ -31,7 +32,7 @@ class SideBar extends Component {
 
 
   render() {
-    const {transformValue, switchValue} = this.state
+    const {transformValue, switchValue, language, langArr} = this.state
     let style = StyleSheet.create({
       child: {
         transform: [
@@ -40,8 +41,6 @@ class SideBar extends Component {
       },
     })
 
-
-    console.log(this.state);
     return (
       <MainView>
         <OverflowBox onPress={this.props.sideBarDisable}/>
@@ -72,13 +71,11 @@ class SideBar extends Component {
             </Logo>
             <Text>Language</Text>
             <Select>
-              <Picker
-                selectedValue={this.state.language}
-                onValueChange={itemValue => this.setState({language: itemValue})}>
-                <Picker.Item label="EN" value="en"/>
-                <Picker.Item label="PL" value="pl"/>
-                <Picker.Item label="RU" value="ru"/>
-              </Picker>
+              <Dropdown
+                onChangeText={language => this.setState({language})}
+                data={langArr}
+                value={language}
+              />
             </Select>
           </ItemBox>
         </LeftBox>

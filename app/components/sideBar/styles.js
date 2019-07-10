@@ -23,7 +23,6 @@ export const LeftBox = styled.View`
 export const ItemBox = styled.View`
   flex-direction: row;
   align-items: center;
-  margin-bottom: 24px;
 `
 
 export const Text = styled.Text`
@@ -41,9 +40,5 @@ export const Logo = styled.View`
 `
 
 export const Select = styled.View`
-`
-
-export const Picker = styled.Picker`
-  margin-left: auto;
-  width: 50px;
+  width: 60px;
 `

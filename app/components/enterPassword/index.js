@@ -1,16 +1,9 @@
 import React, {Component} from 'react';
 import {
-  MainView,
-  ImageBg,
-  ViewBottom,
-  ViewHead,
-  ButtonPanelView,
-  InputForm,
-  NextButton,
-  NextButtonView,
-  SendCount,
-  SendCountText,
-  ImageKey
+  MainView, ImageBg, ViewBottom,
+  ViewHead, ButtonPanelView, InputForm,
+  NextButton, NextButtonView, SendCount,
+  SendCountText, ImageKey, RedText
 } from './styles'
 import {connect} from "react-redux";
 import {Linking} from "react-native";
@@ -28,7 +21,7 @@ class EnterPassword extends Component {
 
   render() {
     const {value, passwordType} = this.state
-    const {next} = this.props
+    const {next, message} = this.props
     return (
       <MainView>
         <ViewHead>
@@ -52,6 +45,7 @@ class EnterPassword extends Component {
           <SendCountText>
             I've forgotten my password
           </SendCountText>
+          <RedText>{message}</RedText>
         </SendCount>
 
         <ButtonPanelView>
@@ -67,8 +61,12 @@ class EnterPassword extends Component {
   }
 }
 
+const MSTP = state => ({
+  message: state.profile.errorMessage
+})
+
 const MDTP = {
   next: signUserIn
 }
 
-export default connect(null, MDTP)(EnterPassword)
+export default connect(MSTP, MDTP)(EnterPassword)

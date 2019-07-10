@@ -1,6 +1,16 @@
 import React, {Component} from 'react';
+import SvgUri from "react-native-svg-uri";
+import {Dropdown} from 'react-native-material-dropdown';
 import CodeScan from '../../components/qrCodeScanner';
-import {MainView, Text} from "./styles";
+import {
+  MainView, WhiteBox,
+  AmountBox, AmountDropdown, AmountInput,
+  RecipientBox, RecipientInput, RecipientIcon,
+  SlideSendBox, SliderLeft, SliderRight, SliderText,
+  NotesBox, NotesInput,
+  BigText, SmallText,
+
+} from "./styles";
 
 class Send extends Component {
   static navigationOptions = {
@@ -16,11 +26,52 @@ class Send extends Component {
   render() {
     return (
       <MainView>
-        <Text>
-          Send page
-        </Text>
+        <WhiteBox>
+          <BigText>SEND</BigText>
 
-        <CodeScan/>
+          <SmallText>Enter amount to send</SmallText>
+          <AmountBox>
+            <AmountInput placeholder='0.00'/>
+            <AmountDropdown>
+              {/*<Dropdown value='DIMO'/>*/}
+            </AmountDropdown>
+          </AmountBox>
+
+          <SmallText>Recipient</SmallText>
+          <RecipientBox>
+            <RecipientInput placeholder='Phone number or Username'/>
+            <RecipientIcon>
+              <SvgUri
+                width="15"
+                height="15"
+                source={require("../../assets/icons/qrIcon.svg")}
+              />
+            </RecipientIcon>
+          </RecipientBox>
+
+          <SmallText>Notes (optional)</SmallText>
+          <NotesBox>
+            <NotesInput multiline={true}/>
+          </NotesBox>
+          <SlideSendBox>
+            <SliderLeft>
+              <SliderText>Slide to send</SliderText>
+              <SvgUri
+                width="15"
+                height="15"
+                source={require("../../assets/icons/rectangleWhite.svg")}
+              />
+            </SliderLeft>
+            <SliderRight>
+              <SvgUri
+                width="15"
+                height="15"
+                source={require("../../assets/icons/sendMoney.svg")}
+              />
+            </SliderRight>
+          </SlideSendBox>
+        </WhiteBox>
+        {/*<CodeScan/>*/}
       </MainView>
     );
   }

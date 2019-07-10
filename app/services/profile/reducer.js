@@ -27,7 +27,8 @@ const initialState = {
   isRegistered: null,
 
   sideBar: false,
-  loginStatus: false
+  loginStatus: false,
+  errorMessage: ''
 }
 
 export const signUser = (state = initialState, {type, payload}) => {
@@ -60,7 +61,7 @@ export const signUser = (state = initialState, {type, payload}) => {
         avatar: payload.avatar,
         userNumber: payload.phone,
         userEmail: payload.email,
-        userCountry: payload.limits.name,
+        userCountry: payload.country,
         kyc: {status: payload.kyc.status},
         isVerified: payload.isVerified,
         type: payload.type,
@@ -85,6 +86,12 @@ export const signUser = (state = initialState, {type, payload}) => {
       return {
         ...state,
         sideBar: false
+      }
+    case actionTypes.SIGN_USER_LOGIN_ERROR:
+      console.log(payload, 'payload');
+      return {
+        ...state,
+        errorMessage: payload.message
       }
     case actionTypes.GET_USER_PROFILE_ERROR:
     case actionTypes.SIGN_USER_VERIFY_PHONE_ERROR:

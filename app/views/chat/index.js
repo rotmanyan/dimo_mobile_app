@@ -29,23 +29,18 @@ class Chat extends Component {
   }
 
   componentDidMount() {
-    this.props.send([])
-    /*    Contacts.getAll((error, data) => {
-          console.log(data, 'console .data')
-          console.log(error, 'console .error')
+    Contacts.getAll((error, data) => {
+      console.log(data, 'data contacts ');
+      console.log(error, 'error contacts ');
 
-          let numbers = []
-
-
-          this.props.send(numbers)
-          /!*      console.log(data, 'data contacts ');
-                console.log(error, 'error contacts ');
-
-                Vibration.vibrate(1000)
-                const numbers = Array.isArray(data) ? data.map(el => el.phoneNumbers[0].number.split('-').join('').split('(').join('').split(' ').join('').split(')').join('')) : []
-
-                this.props.send(numbers)*!/
-        })*/
+      const numbers = Array.isArray(data)
+        ? data.map(el =>
+          el.phoneNumbers[0].number.split('-')
+            .join('').split('(').join('')
+            .split(' ').join('').split(')')
+            .join('')) : []
+      this.props.send(numbers)
+    })
   }
 
   render() {

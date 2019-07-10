@@ -82,3 +82,10 @@ export const SendCountText = styled.Text`
   font-size: 16px;
   color: #ffffff;
 `
+
+export const RedText = styled.Text`
+  position: relative;
+  color: #ff2d4e;
+  top: 20px;
+  text-align: center;
+`
