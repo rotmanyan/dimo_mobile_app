@@ -8,7 +8,14 @@ export const MainView = styled.View`
 `
 
 export const SubView = styled.View`
-  flex: 1;
+  background-color: #000;
+  padding-top: 50px;
+  height: 100%;
+  justify-content: center;
+`
+
+export const QRView = styled.View`
+  height: 80%;
 `
 
 export const QRtext = styled.Text`

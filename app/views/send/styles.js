@@ -3,10 +3,6 @@ import styled from 'styled-components/native'
 export const MainView = styled.View`
   background-color: #e9edf2;
   padding: 16px;
-  shadow-color: rgba(0,0,0,0.7);
-  shadow-opacity: 0.1;
-  shadow-radius: 9;
-  shadow-offset: 0 -5px;
   flex: 1;
 `
 
@@ -14,6 +10,10 @@ export const WhiteBox = styled.View`
   background-color: #ffffff;
   border-radius: 5px;
   padding: 16px;
+  shadow-color: rgba(0,0,0,0.7);
+  shadow-opacity: 0.1;
+  shadow-radius: 9;
+  shadow-offset: 0 -5px;
 `
 
 export const BigText = styled.Text`
@@ -89,16 +89,19 @@ export const SlideSendBox = styled.View`
   border-radius: 28px;
   height: 40px;
   overflow: hidden;
+  flex-direction: row;
 `
 
 export const SliderLeft = styled.View`
   background-color: #3878ff;
   align-items: center;
   justify-content: center;
-  width: 60%;
+  width: 173px;
   height: 100%;
   border-radius: 28px;
   flex-direction: row;
+  position: relative;
+  z-index: 1;
 `
 
 export const SliderText = styled.Text`
@@ -107,12 +110,14 @@ export const SliderText = styled.Text`
   line-height: 19px;
   text-align: center;
   color: #ffffff;
+  margin-right: 12px;
 `
 
 export const SliderRight = styled.View`
   align-items: center;
   justify-content: center;
   height: 100%;
-  width: 30%;
+  width: 40%;
+  margin-left: auto;
 `
 

@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {ActivityIndicator} from 'react-native'
+import SvgUri from "react-native-svg-uri";
 import AsyncStorage from '@react-native-community/async-storage'
 import {connect} from 'react-redux'
 import {getLanguages} from 'react-native-i18n'
@@ -22,6 +23,7 @@ import Send from '../send'
 import SignUser from '../signUser'
 import PersonalChat from '../../components/personalChat'
 import EnterPassword from '../../components/enterPassword'
+import CodeScan from '../../components/qrCodeScanner';
 
 const ChatStack = createStackNavigator(
   {
@@ -35,12 +37,37 @@ const ChatStack = createStackNavigator(
 
 const SendStack = createStackNavigator(
   {
-    Send
+    Send,
+    Code: CodeScan,
+    CodeSc: {
+      tabBarLabel: "Code",
+      headerMode: 'none',
+      screen: CodeScan,
+      navigationOptions: {
+        tabBarVisible: false,
+        headerVisible: false,
+      }
+    },
   },
   {
     initialRouteName: 'Send'
   }
 )
+
+SendStack.navigationOptions = ({navigation}) => {
+  let tabBarVisible = true
+  let headerVisible = true
+
+  if (navigation.state.index > 0) {
+    tabBarVisible = false
+    headerVisible = false
+  }
+
+  return {
+    tabBarVisible,
+    headerVisible
+  }
+}
 
 const WalletStack = createStackNavigator(
   {
@@ -86,11 +113,76 @@ ProfileStack.navigationOptions = ({navigation}) => {
 const Navigation = createAppContainer(
   createBottomTabNavigator(
     {
-      Chat: ChatStack,
-      Send: SendStack,
-      Wallet: WalletStack,
-      Activity: ActivityStack,
-      Profile: ProfileStack,
+      Chat: {
+        screen: ChatStack,
+        navigationOptions: {
+          tabBarLabel: "Chat",
+          tabBarIcon: ({tintColor}) => (
+            <SvgUri
+              fill={tintColor}
+              width="24"
+              height="24"
+              source={require("../../assets/icons/Chat.svg")}
+            />
+          )
+        }
+      },
+      Send: {
+        screen: SendStack,
+        navigationOptions: {
+          tabBarLabel: "Send",
+          tabBarIcon: ({tintColor}) => (
+            <SvgUri
+              fill={tintColor}
+              width="24"
+              height="24"
+              source={require("../../assets/icons/Telegram.svg")}
+            />
+          )
+        }
+      },
+      Wallet: {
+        screen: WalletStack,
+        navigationOptions: {
+          tabBarLabel: "Wallet",
+          tabBarIcon: ({tintColor}) => (
+            <SvgUri
+              fill={tintColor}
+              width="24"
+              height="24"
+              source={require("../../assets/icons/Wallet.svg")}
+            />
+          )
+        }
+      },
+      Activity: {
+        screen: ActivityStack,
+        navigationOptions: {
+          tabBarLabel: "Activity",
+          tabBarIcon: ({tintColor}) => (
+            <SvgUri
+              fill={tintColor}
+              width="24"
+              height="24"
+              source={require("../../assets/icons/Activity.svg")}
+            />
+          )
+        }
+      },
+      Profile: {
+        screen: ProfileStack,
+        navigationOptions: {
+          tabBarLabel: "Profile",
+          tabBarIcon: ({tintColor}) => (
+            <SvgUri
+              fill={tintColor}
+              width="24"
+              height="24"
+              source={require("../../assets/icons/Profile.svg")}
+            />
+          )
+        }
+      },
     },
     {
       initialRouteName: 'Send',
