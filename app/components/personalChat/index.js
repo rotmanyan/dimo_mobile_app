@@ -94,19 +94,20 @@ class PersonalChat extends Component {
       backgroundColor: '#fff',
       width: '100%'
     }
+
     return (
       <KeyboardAwareScrollView
-        style={{flex: 10}}
-        innerRef={ref => {
-          this.scroll = ref
-        }}>
-
+        innerRef={ref => this.scroll = ref}
+      >
         <BodyView>
           {this.writeForMe()}
           {this.writeFromMe()}
         </BodyView>
         <InputBoxView>
-          <KeyboardAvoidingView behavior='padding' enabled>
+          <KeyboardAvoidingView
+            behavior='padding'
+            enabled
+          >
             <InputView>
 
               <InputForm

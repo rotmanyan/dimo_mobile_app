@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux'
 import {CameraKitCameraScreen} from 'react-native-camera-kit'
-import {connect} from 'react-redux';
+import {detectionQrCode} from "../../services/send/actions";
 import {
   MainView, SubView, Button, QRView,
   TextOne, TextTwo, QRtext
@@ -10,6 +11,7 @@ class CodeScan extends Component {
   static navigationOptions = {
     header: null
   }
+
   state = {
     QR_Code_Value: '',
     Start_Scanner: true
@@ -17,21 +19,17 @@ class CodeScan extends Component {
 
   onQR_Code_Scan_Done = (QR_Code) => {
     this.setState({QR_Code_Value: QR_Code},
-      () => this.setState({Start_Scanner: false})
+      () => this.setState({Start_Scanner: false}, () => {
+        this.props.navigation.goBack()
+      })
     )
   }
 
+  componentDidUpdate(prevProps: Readonly<P>, prevState: Readonly<S>, snapshot: SS): void {
+    prevState.QR_Code_Value !== this.state.QR_Code_Value && this.state.QR_Code_Value && this.props.set(this.state.QR_Code_Value)
+  }
+
   render() {
-    if (!this.state.Start_Scanner) {
-      const {QR_Code_Value} = this.state
-      return (
-        <MainView>
-          <QRtext>
-            {QR_Code_Value}
-          </QRtext>
-        </MainView>
-      );
-    }
     return (
       <SubView>
         <QRView>
@@ -47,7 +45,8 @@ class CodeScan extends Component {
   }
 }
 
-const MSTP = state => ({})
-const MDTP = {}
+const MDTP = {
+  set: detectionQrCode
+}
 
-export default connect(MSTP, MDTP)(CodeScan)
+export default connect(null, MDTP)(CodeScan)

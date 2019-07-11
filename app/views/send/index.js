@@ -3,7 +3,6 @@ import SvgUri from "react-native-svg-uri";
 import {connect} from 'react-redux';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view'
 import {Dropdown} from 'react-native-material-dropdown';
-import { SlideButton, SlideDirection } from 'react-native-slide-button';
 import {
   MainView, WhiteBox,
   AmountBox, AmountDropdown, AmountInput,
@@ -28,24 +27,21 @@ class Send extends Component {
   }
 
   state = {
-    left: 0
-  }
-
-  componentDidMount(): void {
-    this.changePosition()
+    left: 0,
+    number: ''
   }
 
   changePosition = () => {
     timerSend = setInterval(() => this.setState({left: this.state.left + 3}), 4)
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps: Readonly<P>, prevState: Readonly<S>, snapshot: SS): void {
     this.state.left >= 140 && clearInterval(timerSend)
+    prevProps.code !== this.props.code && this.setState({number: this.props.code})
   }
 
   render() {
-    const {left} = this.state
-    console.log(left, 'left');
+    const {left, number} = this.state
     return (
       <KeyboardAwareScrollView
         style={{backgroundColor: '#e9edf2'}}
@@ -64,7 +60,12 @@ class Send extends Component {
 
             <SmallText>Recipient</SmallText>
             <RecipientBox>
-              <RecipientInput placeholder='Phone number or Username'/>
+              <RecipientInput
+                onChangeText={number => this.setState({number})}
+                value={number}
+                autoCapitalize='none'
+                placeholder='Phone number or Username'
+              />
               <RecipientIcon onPress={() => this.props.navigation.navigate("Code")}>
                 <SvgUri
                   width="15"
@@ -79,7 +80,7 @@ class Send extends Component {
               <NotesInput multiline={true}/>
             </NotesBox>
             <SlideSendBox>
-              <SliderLeft style={{left: left}}>
+              <SliderLeft onPress={this.changePosition} style={{left: left}}>
                 <SliderText>Slide to send</SliderText>
                 <SvgUri
                   width="20"
@@ -96,14 +97,16 @@ class Send extends Component {
               </SliderRight>
             </SlideSendBox>
           </WhiteBox>
-          {/*<CodeScan/>*/}
         </MainView>
       </KeyboardAwareScrollView>
     );
   }
 }
 
-const MSTP = state => ({})
+const MSTP = state => ({
+  code: state.send.code
+})
+
 const MDTP = {}
 
 export default connect(MSTP, MDTP)(Send)

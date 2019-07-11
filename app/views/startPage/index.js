@@ -231,7 +231,7 @@ class StartPage extends Component {
     loginStatus && !phone && this.setState({phone: loginStatus})
   }
 
-  /* render() {
+   render() {
      const {isLoading, phone, isAuthenticated} = this.state
      if (isLoading) {
        return <ActivityIndicator
@@ -254,10 +254,10 @@ class StartPage extends Component {
          return <SignUser/>
        }
      }
-   }*/
-  render() {
+   }
+/*  render() {
     return <Navigation/>
-  }
+  }*/
 }
 
 const MSTP = state => ({

@@ -92,7 +92,7 @@ export const SlideSendBox = styled.View`
   flex-direction: row;
 `
 
-export const SliderLeft = styled.View`
+export const SliderLeft = styled.TouchableOpacity`
   background-color: #3878ff;
   align-items: center;
   justify-content: center;
