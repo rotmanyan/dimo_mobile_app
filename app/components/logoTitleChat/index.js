@@ -4,19 +4,19 @@ import {sideBarEnable, sideBarDisable} from '../../services/profile/actions'
 import {HeaderIconBox, HeaderText, HeaderView} from "./styles"
 import SvgUri from "react-native-svg-uri"
 
-class LogoTitle extends Component {
+class LogoTitleChat extends Component {
   render() {
     const {enable, disable, status} = this.props
     return (
       <HeaderView>
         <HeaderText>
-          Profile
+          Chat
         </HeaderText>
         <HeaderIconBox onPress={status ? disable : enable}>
           <SvgUri
             width="22"
             height='22'
-            source={require('../../assets/icons/settings.svg')}
+            source={require('../../assets/icons/search.svg')}
           />
         </HeaderIconBox>
       </HeaderView>
@@ -32,4 +32,4 @@ const MDTP = {
   disable: sideBarDisable
 }
 
-export default connect(MSTP, MDTP)(LogoTitle)
+export default connect(MSTP, MDTP)(LogoTitleChat)

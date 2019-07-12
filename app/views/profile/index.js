@@ -6,7 +6,7 @@ import {connect} from 'react-redux'
 import {getUserProfile, updateUserProfile, updateUserAvatar} from "../../services/profile/operation";
 import * as selector from '../../services/selectors'
 import SideBar from "../../components/sideBar";
-import LogoTitle from '../../components/logoTitle'
+import LogoTitleProfile from '../../components/logoTitleProfile'
 import {
   MainView, TopView, BottomView, GlobalView,
   Text, Input, InputWhite, ViewUserOverlay,
@@ -21,7 +21,7 @@ import {
 
 class Profile extends Component {
   static navigationOptions = {
-    headerTitle: <LogoTitle/>,
+    headerTitle: <LogoTitleProfile/>,
     headerStyle: {
       backgroundColor: '#3878FF',
     },

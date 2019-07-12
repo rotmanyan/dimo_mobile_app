@@ -55,7 +55,7 @@ class RegistrationUser extends Component {
     password === confirmPassword && next({
       email,
       password,
-      tariff: selectedPlan
+      type: selectedPlan
     })
   }
 

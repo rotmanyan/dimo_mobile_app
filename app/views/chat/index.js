@@ -12,10 +12,12 @@ import {
   EmptyImage, EmptyText, EmptyView,
   MainScrollView
 } from "./styles";
+import LogoTitleChat from "../../components/logoTitleChat";
 
 class Chat extends Component {
   static navigationOptions = {
-    headerTitle: 'Contacts',
+    headerTitle: <LogoTitleChat/>,
+
     headerStyle: {
       backgroundColor: '#3878FF',
     },
@@ -36,7 +38,7 @@ class Chat extends Component {
       const numbers = Array.isArray(data)
         ? data.map(el =>
           el.phoneNumbers[0].number.split('-')
-            .join('').split('(').join('')
+            .join('').split('(').join3('')
             .split(' ').join('').split(')')
             .join('')) : []
       this.props.send(numbers)

@@ -93,7 +93,7 @@ export const signUserUp = credential => (dispatch, getState) => {
     data: {
       phone: state.profile.userNumber,
       email: credential.email,
-      password: credential.password
+      password: credential.password,
     },
     url: urlSignUp
   }

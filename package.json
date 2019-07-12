@@ -25,6 +25,7 @@
     "react-native-keyboard-aware-scroll-view": "^0.8.0",
     "react-native-material-dropdown": "^0.11.1",
     "react-native-phone-input": "^0.2.2",
+    "react-native-qrcode": "^0.2.7",
     "react-native-screens": "^1.0.0-alpha.22",
     "react-native-svg": "^9.5.1",
     "react-native-svg-uri": "^1.2.3",
@@ -33,6 +34,7 @@
     "redux": "^4.0.1",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
+    "rn-sliding-button": "^1.1.5",
     "styled-components": "^4.2.0",
     "ws": "^7.0.0"
   },
