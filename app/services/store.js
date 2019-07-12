@@ -7,6 +7,7 @@ import {i18n} from "./i18n/reducer";
 import {kyc} from "./kyc/reducer";
 import {contacts} from "./chat/reducer";
 import {send} from "./send/reducer";
+import {wallet} from "./wallet/reducer";
 
 
 const rootReducer = combineReducers({
@@ -14,7 +15,8 @@ const rootReducer = combineReducers({
   localization: i18n,
   kyc,
   contacts,
-  send
+  send,
+  wallet
 })
 
 const loggerMiddleware = createLogger({

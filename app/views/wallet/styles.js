@@ -5,3 +5,11 @@ export const MainView = styled.View`
   padding: 16px;
   flex: 1;
 `
+
+export const QrCodeIcon = styled.TouchableOpacity`
+  width: 32px;
+  height: 32px;
+  justify-content: center;
+  align-items: center;
+`
+

@@ -27,17 +27,12 @@ export const QRtext = styled.Text`
 
 export const TextOne = styled.Text`
   font-size: 22px;
-  text-align: center;
-`
-export const TextTwo = styled.Text`
-  font-size: 14px;
   color: #ffffff;
 `
 
 export const Button = styled.TouchableOpacity`
-  background-color: #2979ff;
-  align-items: center;
-  padding: 12px;
-  width: 300px;
-  margin-top: 14px;
+  position:absolute;
+  left: 30px;
+  top: 15px;
+  width: 100%;
 `

@@ -32,6 +32,11 @@ class CodeScan extends Component {
   render() {
     return (
       <SubView>
+        <Button onPress={() => this.props.navigation.goBack()}>
+          <TextOne>
+            Back
+          </TextOne>
+        </Button>
         <QRView>
           <CameraKitCameraScreen
             scanBarcode={true}

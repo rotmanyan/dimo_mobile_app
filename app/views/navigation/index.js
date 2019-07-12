@@ -25,15 +25,6 @@ const SendStack = createStackNavigator(
   {
     Send,
     Code: CodeScan,
-    CodeSc: {
-      tabBarLabel: 'Code',
-      headerMode: 'none',
-      screen: CodeScan,
-      navigationOptions: {
-        tabBarVisible: false,
-        headerVisible: false,
-      }
-    },
   },
   {
     initialRouteName: 'Send'
@@ -171,7 +162,7 @@ export const Navigation = createAppContainer(
       },
     },
     {
-      initialRouteName: 'Send',
+      initialRouteName: 'Wallet',
       tabBarOptions: {
         activeTintColor: '#3878FF',
         inactiveTintColor: '#90a5c2'
