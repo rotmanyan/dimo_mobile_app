@@ -38,7 +38,7 @@ class Chat extends Component {
       const numbers = Array.isArray(data)
         ? data.map(el =>
           el.phoneNumbers[0].number.split('-')
-            .join('').split('(').join3('')
+            .join('').split('(').join('')
             .split(' ').join('').split(')')
             .join('')) : []
       this.props.send(numbers)

@@ -39,6 +39,9 @@ SendStack.navigationOptions = ({navigation}) => {
     tabBarVisible = false
     headerVisible = false
   }
+  if (navigation.state.index === 0) {
+    headerVisible = false
+  }
 
   return {
     tabBarVisible,
@@ -55,6 +58,18 @@ const WalletStack = createStackNavigator(
     initialRouteName: 'Wallet'
   }
 )
+
+WalletStack.navigationOptions = ({navigation}) => {
+  let headerVisible = true
+
+  if (navigation.state.index === 0) {
+    headerVisible = false
+  }
+
+  return {
+    headerVisible
+  }
+}
 
 const ActivityStack = createStackNavigator(
   {

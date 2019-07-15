@@ -17,13 +17,7 @@ let timerSend;
 
 class Send extends Component {
   static navigationOptions = {
-    headerTitle: 'Send',
-    headerStyle: {
-      backgroundColor: '#3878FF',
-    },
-    headerTitleStyle: {
-      color: '#ffffff',
-    },
+    header: null
   }
 
   state = {

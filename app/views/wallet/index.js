@@ -5,8 +5,13 @@ import {QrCodeModal} from "../../components/qrCodeModal"
 import {
   MainView, QrCodeIcon,
 } from "./styles"
+import WalletHead from "../../components/walletHead/WalletHead";
 
 class Wallet extends Component {
+  static navigationOptions = {
+    header: null
+  }
+
   state = {
     isOpenQrCode: true
   }
@@ -20,13 +25,13 @@ class Wallet extends Component {
     return (
       <>
         <MainView>
-          <QrCodeIcon onPress={this.openQrCode}>
-            <SvgUri
-              width="15"
-              height="15"
-              source={require("../../assets/icons/qrIcon.svg")}
-            />
-          </QrCodeIcon>
+          <WalletHead
+            openQrCode={this.openQrCode}
+            walletNumber={1}
+            balance={216.0124}
+            currency={'nDIMO'}
+          />
+
         </MainView>
         {isOpenQrCode && <QrCodeModal number={number} openQrCode={this.openQrCode}/>}
       </>
