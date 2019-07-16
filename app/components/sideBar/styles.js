@@ -36,7 +36,14 @@ export const Text = styled.Text`
 `
 
 export const Logo = styled.View`
+  border-radius: 4px;
+  overflow: hidden;
 `
 
 export const Select = styled.View`
+`
+
+export const Picker = styled.Picker`
+  margin-left: auto;
+  width: 50px;
 `

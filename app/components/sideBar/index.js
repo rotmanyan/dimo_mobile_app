@@ -1,10 +1,11 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {StyleSheet} from 'react-native'
+import {StyleSheet, Switch} from 'react-native'
 import {sideBarDisable} from "../../services/profile/actions";
 import {
   MainView, OverflowBox, LeftBox,
   ItemBox, Text, Logo, Select,
+  Picker
 } from "./styles"
 import SvgUri from "react-native-svg-uri";
 
@@ -13,6 +14,9 @@ let timerSend;
 class SideBar extends Component {
   state = {
     transformValue: 280,
+    switchValue: false,
+    choosenIndex: 0,
+    language: 'EN'
   }
 
   componentDidMount() {
@@ -23,16 +27,20 @@ class SideBar extends Component {
     this.state.transformValue <= 0 && clearInterval(timerSend)
   }
 
+  toggleSwitch = () => this.setState({switchValue: !this.state.switchValue})
+
 
   render() {
-    const {transformValue} = this.state
+    const {transformValue, switchValue} = this.state
     let style = StyleSheet.create({
       child: {
         transform: [
           {translateX: transformValue},
         ],
-      }
+      },
     })
+
+
     console.log(this.state);
     return (
       <MainView>
@@ -43,15 +51,14 @@ class SideBar extends Component {
               <SvgUri
                 width="25"
                 height='25'
-                source={require('../../assets/icons/closeYellow.svg')}
+                source={require('../../assets/icons/ico-notification.svg')}
               />
             </Logo>
             <Text>Notification</Text>
             <Select>
-              <SvgUri
-                width="25"
-                height='25'
-                source={require('../../assets/icons/closeYellow.svg')}
+              <Switch
+                onValueChange={this.toggleSwitch}
+                value={switchValue}
               />
             </Select>
           </ItemBox>
@@ -60,16 +67,18 @@ class SideBar extends Component {
               <SvgUri
                 width="25"
                 height='25'
-                source={require('../../assets/icons/closeYellow.svg')}
+                source={require('../../assets/icons/ico-language.svg')}
               />
             </Logo>
             <Text>Language</Text>
             <Select>
-              <SvgUri
-                width="25"
-                height='25'
-                source={require('../../assets/icons/closeYellow.svg')}
-              />
+              <Picker
+                selectedValue={this.state.language}
+                onValueChange={itemValue => this.setState({language: itemValue})}>
+                <Picker.Item label="EN" value="en"/>
+                <Picker.Item label="PL" value="pl"/>
+                <Picker.Item label="RU" value="ru"/>
+              </Picker>
             </Select>
           </ItemBox>
         </LeftBox>
