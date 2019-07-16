@@ -6,6 +6,7 @@ import {
   BalanceBox, CurrentAccount, Balance, Currency,
   QrCodeBox,
 } from "./styles"
+import WalletBody from "../walletBody/WalletBody";
 
 class WalletHead extends Component {
   state = {
@@ -40,7 +41,7 @@ class WalletHead extends Component {
         </Top>
 
         <Bottom>
-          {}
+          <WalletBody/>
         </Bottom>
       </MainView>
     );

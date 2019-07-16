@@ -1,13 +1,13 @@
 import styled from 'styled-components/native'
 
 export const MainView = styled.View`
-  border-radius: 8px;
-  overflow: hidden;
 `
 
 export const Top = styled.View`
   background-color: #3878ff;
   padding: 16px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
 `
 export const TitleBox = styled.View`
   flex-direction: row;
@@ -60,7 +60,7 @@ export const Currency = styled.Text`
 
 export const Bottom = styled.View`
   background-color: #ffffff;
-  height: 49px;
+  height: 100%;
 `
 
 

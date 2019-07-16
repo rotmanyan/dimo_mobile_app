@@ -3,6 +3,7 @@ package com.dimo;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.swmansion.reanimated.ReanimatedPackage;
 import com.imagepicker.ImagePickerPackage;
 import com.rnfs.RNFSPackage;
 import com.swmansion.rnscreens.RNScreensPackage;
@@ -36,6 +37,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new ReanimatedPackage(),
             new ImagePickerPackage(),
             new RNFSPackage(),
             new RNScreensPackage(),

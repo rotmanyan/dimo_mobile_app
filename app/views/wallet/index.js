@@ -6,6 +6,7 @@ import {
   MainView, QrCodeIcon,
 } from "./styles"
 import WalletHead from "../../components/walletHead/WalletHead";
+import WalletBody from "../../components/walletBody/WalletBody";
 
 class Wallet extends Component {
   static navigationOptions = {
@@ -13,7 +14,7 @@ class Wallet extends Component {
   }
 
   state = {
-    isOpenQrCode: true
+    isOpenQrCode: false
   }
 
   openQrCode = () => this.setState({isOpenQrCode: !this.state.isOpenQrCode})
@@ -21,7 +22,6 @@ class Wallet extends Component {
   render() {
     const {isOpenQrCode} = this.state
     const {number} = this.props
-    console.log(this.state, 'state wallet');
     return (
       <>
         <MainView>
@@ -31,7 +31,6 @@ class Wallet extends Component {
             balance={216.0124}
             currency={'nDIMO'}
           />
-
         </MainView>
         {isOpenQrCode && <QrCodeModal number={number} openQrCode={this.openQrCode}/>}
       </>

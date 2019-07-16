@@ -13,7 +13,6 @@ export class QrCodeModal extends React.Component {
   }
 
   render() {
-    console.log(this.props.number, 'number');
     return (
       <MainView onPress={this.props.openQrCode}>
         <QrCodeWhiteBlock>
